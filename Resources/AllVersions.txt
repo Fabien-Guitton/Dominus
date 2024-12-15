@@ -1,0 +1,8 @@
+Java : java 23
+Eclipse : 2024-09 4.33
+JavaFX : 23.0.1
+Scene Builder : 23.0.1
+Data Source : 
+
+
+VM Arguments : --module-path "PATH\TO\javafx-sdk-23.0.1\lib" --add-modules javafx.controls,javafx.fxml
