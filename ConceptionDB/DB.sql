@@ -5,7 +5,7 @@ USE Dominus;
 
 /* Creation of all tables */
 CREATE OR REPLACE TABLE Ingredients(
-   IdIgredient BIGINT AUTO_INCREMENT NOT NULL,
+   idIgredient BIGINT AUTO_INCREMENT NOT NULL,
    nameIng VARCHAR(100) NOT NULL,
    stockIng BIGINT NOT NULL,
    unityIng VARCHAR(25) NOT NULL,
@@ -15,11 +15,11 @@ CREATE OR REPLACE TABLE Ingredients(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(IdIgredient)
+   PRIMARY KEY(idIgredient)
 );
 
 CREATE OR REPLACE TABLE Products(
-   IdProduct BIGINT AUTO_INCREMENT NOT NULL,
+   idProduct BIGINT AUTO_INCREMENT NOT NULL,
    nameProduct VARCHAR(100) NOT NULL,
    sizeProduct VARCHAR(50) NOT NULL,
    categoryProduct VARCHAR(100) NOT NULL,
@@ -29,7 +29,7 @@ CREATE OR REPLACE TABLE Products(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(IdProduct)
+   PRIMARY KEY(idProduct)
 );
 
 CREATE OR REPLACE TABLE Customers(
@@ -40,7 +40,7 @@ CREATE OR REPLACE TABLE Customers(
    streetNameCst VARCHAR(255) NOT NULL,
    postcodeCst VARCHAR(50) NOT NULL,
    instructionsCst VARCHAR(100),
-   InternalComCst VARCHAR(100),
+   internalComCst VARCHAR(100),
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
@@ -71,7 +71,7 @@ CREATE OR REPLACE TABLE ClockingIn(
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
    idEmployee BIGINT,
-   PRIMARY KEY(idClockingIn),
+   PRIMARY KEY(idClockingIn)
 );
 
 CREATE OR REPLACE TABLE Discounts(
@@ -79,7 +79,7 @@ CREATE OR REPLACE TABLE Discounts(
    nameDist VARCHAR(50) NOT NULL,
    valueDist DOUBLE NOT NULL,
    codeDist CHAR(6) NOT NULL,
-   AccredDistON BOOLEAN NOT NULL,
+   accredDistON BOOLEAN NOT NULL,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
@@ -104,11 +104,11 @@ CREATE OR REPLACE TABLE Orders(
    dateModif DATETIME NOT NULL,
    idDiscount BIGINT,
    idCustomer BIGINT,
-   PRIMARY KEY(idCommande),
+   PRIMARY KEY(idCommande)
 );
 
 CREATE OR REPLACE TABLE LineBasket(
-   IdLineBasket BIGINT AUTO_INCREMENT NOT NULL,
+   idLineBasket BIGINT AUTO_INCREMENT NOT NULL,
    qtyProductLB INT NOT NULL,
    priceHTLB DOUBLE NOT NULL,
    priceTTCLB DOUBLE NOT NULL,
@@ -116,54 +116,32 @@ CREATE OR REPLACE TABLE LineBasket(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   IdProduct BIGINT,
+   idProduct BIGINT,
    idCommande BIGINT,
-   PRIMARY KEY(IdLineBasket),
+   PRIMARY KEY(idLineBasket)
 );
 
-/* Declaration of table ralations */
-ALTER TABLE ClockingIn
-   ADD CONSTRAINT FK_EmployeeClokingIn
-   ADD FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee);
-
-ALTER TABLE Orders
-   ADD CONSTRAINT FK_DiscountOrder
-   FOREIGN KEY(idDiscount) REFERENCES Discounts(idDiscount),
-   ADD CONSTRAINT FK_CustomerOrder
-   FOREIGN KEY(idCustomer) REFERENCES Customers(idCustomer);
-
-ALTER TABLE LineBasket
-   ADD CONSTRAINT FK_ProductLineBasket
-   FOREIGN KEY(IdProduct) REFERENCES Products(IdProduct),
-   ADD CONSTRAINT FK_CommandeLineBasket
-   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande);
-
-/* CREATE N,N ??? */
-/*
+/* CREATE N,N */
 CREATE OR REPLACE TABLE DefaultIngredients(
-   IdIgredient BIGINT,
-   IdProduct BIGINT,
+   idIgredient BIGINT,
+   idProduct BIGINT,
    userCreate_2 VARCHAR(100) NOT NULL,
    dateCreate_2 DATETIME NOT NULL,
    userModif_2 VARCHAR(100) NOT NULL,
    dateModif_2 DATETIME NOT NULL,
-   PRIMARY KEY(IdIgredient, IdProduct),
-   FOREIGN KEY(IdIgredient) REFERENCES Ingredients(IdIgredient), /* here FK ? */
-   FOREIGN KEY(IdProduct) REFERENCES Products(IdProduct)
+   PRIMARY KEY(idIgredient, idProduct)
 );
 
 CREATE OR REPLACE TABLE Supplements(
-   IdIgredient BIGINT,
-   IdLineBasket BIGINT,
+   idIgredient BIGINT,
+   idLineBasket BIGINT,
    qtySup INT NOT NULL,
    addSupON BOOLEAN NOT NULL,
    userCreate_3 VARCHAR(100) NOT NULL,
    dateCreate_3 DATETIME NOT NULL,
    userModif_3 VARCHAR(100) NOT NULL,
    dateModif_3 DATETIME NOT NULL,
-   PRIMARY KEY(IdIgredient, IdLineBasket),
-   FOREIGN KEY(IdIgredient) REFERENCES Ingredients(IdIgredient),
-   FOREIGN KEY(IdLineBasket) REFERENCES LineBasket(IdLineBasket)
+   PRIMARY KEY(idIgredient, idLineBasket)
 );
 
 CREATE OR REPLACE TABLE TakeResponsibilityFor(
@@ -175,8 +153,40 @@ CREATE OR REPLACE TABLE TakeResponsibilityFor(
    dateCreate_1 DATETIME NOT NULL,
    userModif_1 VARCHAR(100) NOT NULL,
    dateModif_1 DATETIME NOT NULL,
-   PRIMARY KEY(idCommande, idEmployee),
-   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande),
-   FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee)
+   PRIMARY KEY(idCommande, idEmployee)
 );
-*/
+
+/* Relationship statement */
+ALTER TABLE ClockingIn
+   ADD CONSTRAINT FK_EmployeeClokingIn
+   FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee);
+
+ALTER TABLE Orders
+   ADD CONSTRAINT FK_DiscountOrder
+   FOREIGN KEY(idDiscount) REFERENCES Discounts(idDiscount),
+   ADD CONSTRAINT FK_CustomerOrder
+   FOREIGN KEY(idCustomer) REFERENCES Customers(idCustomer);
+
+ALTER TABLE LineBasket
+   ADD CONSTRAINT FK_ProductLineBasket
+   FOREIGN KEY(idProduct) REFERENCES Products(idProduct),
+   ADD CONSTRAINT FK_CommandeLineBasket
+   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande);
+
+ALTER TABLE DefaultIngredients
+   ADD CONSTRAINT FK_IngredientDefaultIngredient
+   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   ADD CONSTRAINT FK_ProductDefaultIngredient
+   FOREIGN KEY(idProduct) REFERENCES Products(idProduct);
+
+ALTER TABLE Supplements
+   ADD CONSTRAINT FK_IngredientSupplement
+   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   ADD CONSTRAINT FK_LineBasketSupplement
+   FOREIGN KEY(idLineBasket) REFERENCES LineBasket(idLineBasket);
+
+ALTER TABLE TakeResponsibilityFor
+   ADD CONSTRAINT FK_CommandeTakeResponsibilityFor
+   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande),
+   ADD CONSTRAINT FK_EmployeeTakeResponsibilityFor
+   FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee);
