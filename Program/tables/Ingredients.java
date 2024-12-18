@@ -1,27 +1,27 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Ingredients { 
 	private long idIgredient; // BIGINT AUTO_INCREMENT NOT NULL
 	private String nameIng; // VARCHAR(100) NOT NULL
 	private long stockIng; // BIGINT NOT NULL
 	private String unityIng; // VARCHAR(25) NOT NULL
-	private double priceHTIng; // DOUBLE NOT NULL
-	private double priceTTCIng; // DOUBLE NOT NULL
+	private double priceETIng; // DOUBLE NOT NULL
+	private double priceITIng; // DOUBLE NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initIngredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceHTIng, double priceTTCIng,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public void initIngredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idIgredient = idIgredient;
 		this.nameIng = nameIng;
 		this.stockIng = stockIng;
 		this.unityIng = unityIng;
-		this.priceHTIng = priceHTIng;
-		this.priceTTCIng = priceTTCIng;
+		this.priceETIng = priceETIng;
+		this.priceITIng = priceITIng;
 		this.userCreate = userCreate;
 		this.dateCreate = dateCreate;
 		this.userModif = userModif;
@@ -29,14 +29,14 @@ public class Ingredients {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Ingredients(String nameIng, long stockIng, String unityIng, double priceHTIng, double priceTTCIng,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initIngredients(0, nameIng, stockIng, unityIng, priceHTIng, priceTTCIng, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
+	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
-	public Ingredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceHTIng, double priceTTCIng,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initIngredients(idIgredient, nameIng, stockIng, unityIng, priceHTIng, priceTTCIng, userCreate, dateCreate, userModif, dateModif);
+	public Ingredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initIngredients(idIgredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
 	}
 
 	public long getIdIgredient() {
@@ -71,20 +71,20 @@ public class Ingredients {
 		this.unityIng = unityIng;
 	}
 
-	public double getPriceHTIng() {
-		return priceHTIng;
+	public double getPriceETIng() {
+		return priceETIng;
 	}
 
-	public void setPriceHTIng(double priceHTIng) {
-		this.priceHTIng = priceHTIng;
+	public void setPriceETIng(double priceETIng) {
+		this.priceETIng = priceETIng;
 	}
 
-	public double getPriceTTCIng() {
-		return priceTTCIng;
+	public double getPriceITIng() {
+		return priceITIng;
 	}
 
-	public void setPriceTTCIng(double priceTTCIng) {
-		this.priceTTCIng = priceTTCIng;
+	public void setPriceITIng(double priceITIng) {
+		this.priceITIng = priceITIng;
 	}
 
 	// A VOIR POUR CELA
@@ -96,11 +96,11 @@ public class Ingredients {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -112,11 +112,11 @@ public class Ingredients {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	
@@ -128,7 +128,7 @@ public class Ingredients {
 	@Override
 	public String toString() {
 		return "Ingredients: [idIgredient = " + idIgredient + ", nameIng = " + nameIng + ", stockIng = " + stockIng
-				+ ", unityIng = " + unityIng + ", priceHTIng = " + priceHTIng + ", priceTTCIng = " + priceTTCIng
+				+ ", unityIng = " + unityIng + ", priceETIng = " + priceETIng + ", priceITIng = " + priceITIng
 				+ ", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 	}
 }

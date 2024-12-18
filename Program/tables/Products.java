@@ -1,27 +1,27 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Products {
 	private long idProduct; // BIGINT AUTO_INCREMENT NOT NULL
 	private String nameProduct; // VARCHAR(100) NOT NULL
 	private String sizeProduct; // VARCHAR(50) NOT NULL
 	private String categoryProduct; // VARCHAR(100) NOT NULL
-	private double priceHTProduct; // DOUBLE NOT NULL
-	private double priceTTCProduct; // DOUBLE NOT NULL
+	private double priceETProduct; // DOUBLE NOT NULL
+	private double priceITProduct; // DOUBLE NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 
-	public void initProducts(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceHTProduct, double priceTTCProduct, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public void initProducts(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idProduct = idProduct;
 		this.nameProduct = nameProduct;
 		this.sizeProduct = sizeProduct;
 		this.categoryProduct = categoryProduct;
-		this.priceHTProduct = priceHTProduct;
-		this.priceTTCProduct = priceTTCProduct;
+		this.priceETProduct = priceETProduct;
+		this.priceITProduct = priceITProduct;
 		this.userCreate = userCreate;
 		this.dateCreate = dateCreate;
 		this.userModif = userModif;
@@ -29,14 +29,14 @@ public class Products {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Products(String nameProduct, String sizeProduct, String categoryProduct, double priceHTProduct, double priceTTCProduct, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initProducts(0, nameProduct, sizeProduct, categoryProduct, priceHTProduct, priceTTCProduct, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
+	public Products(String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initProducts(0, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
-	public Products(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceHTProduct, double priceTTCProduct, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initProducts(idProduct, nameProduct, sizeProduct, categoryProduct, priceHTProduct, priceTTCProduct, userCreate, dateCreate, userModif, dateModif);
+	public Products(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initProducts(idProduct, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, userCreate, dateCreate, userModif, dateModif);
 	}
 
 	public long getIdProduct() {
@@ -71,20 +71,20 @@ public class Products {
 		this.categoryProduct = categoryProduct;
 	}
 
-	public double getPriceHTProduct() {
-		return priceHTProduct;
+	public double getPriceETProduct() {
+		return priceETProduct;
 	}
 
-	public void setPriceHTProduct(double priceHTProduct) {
-		this.priceHTProduct = priceHTProduct;
+	public void setPriceETProduct(double priceETProduct) {
+		this.priceETProduct = priceETProduct;
 	}
 
-	public double getPriceTTCProduct() {
-		return priceTTCProduct;
+	public double getPriceITProduct() {
+		return priceITProduct;
 	}
 
-	public void setPriceTTCProduct(double priceTTCProduct) {
-		this.priceTTCProduct = priceTTCProduct;
+	public void setPriceITProduct(double priceITProduct) {
+		this.priceITProduct = priceITProduct;
 	}
 
 	// A VOIR POUR CELA
@@ -96,11 +96,11 @@ public class Products {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -112,11 +112,11 @@ public class Products {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	
@@ -128,7 +128,7 @@ public class Products {
 	@Override
 	public String toString() {
 		return "Products: [idProduct = " + idProduct + ", nameProduct = " + nameProduct + ", sizeProduct = " + sizeProduct
-				+ ", categoryProduct = " + categoryProduct + ", priceHTProduct = " + priceHTProduct + ", priceTTCProduct = " + priceTTCProduct 
+				+ ", categoryProduct = " + categoryProduct + ", priceETProduct = " + priceETProduct + ", priceITProduct = " + priceITProduct 
 				+ ", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 	}
 }

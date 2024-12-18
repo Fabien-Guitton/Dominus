@@ -1,6 +1,6 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TakeResponsabilityFor {   
 	private Orders idOrder; // FOREIGN KEY : BIGINT
@@ -8,12 +8,12 @@ public class TakeResponsabilityFor {
 	private boolean deliveryTakeON; // BOOLEAN NOT NULL
 	private boolean paymentTakeON; // BOOLEAN NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
 	public void initTakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idOrder = idOrder;
 		this.idEmployee = idEmployee;
 		this.deliveryTakeON = deliveryTakeON;
@@ -26,7 +26,7 @@ public class TakeResponsabilityFor {
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initTakeResponsabilityFor(idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
 	}
 
@@ -71,11 +71,11 @@ public class TakeResponsabilityFor {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -87,11 +87,11 @@ public class TakeResponsabilityFor {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 

@@ -1,6 +1,6 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Employees {
 	private long idEmployee; // BIGINT AUTO_INCREMENT NOT NULL
@@ -9,12 +9,12 @@ public class Employees {
 	private String roleEmp; // VARCHAR(50) NOT NULL
 	private String telEmp; // CHAR(10) NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
 	public void initEmployees(long idEmployee, String nameEmp, String codeEmp, String roleEmp, String telEmp, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idEmployee = idEmployee;
 		this.nameEmp = nameEmp;
 		this.codeEmp = codeEmp; // UNIQUE code comment à gérer !
@@ -28,12 +28,12 @@ public class Employees {
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public Employees(String nameEmp, String codeEmp, String roleEmp, String telEmp, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initEmployees(0, nameEmp, codeEmp, roleEmp, telEmp, userCreate, dateCreate, userModif, dateModif); // 0 ?
 	}
 	
 	public Employees(long idEmployee, String nameEmp, String codeEmp, String roleEmp, String telEmp, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initEmployees(idEmployee, nameEmp, codeEmp, roleEmp, telEmp, userCreate, dateCreate, userModif, dateModif);
 	}
 
@@ -86,11 +86,11 @@ public class Employees {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -102,11 +102,11 @@ public class Employees {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	

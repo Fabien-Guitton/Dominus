@@ -1,6 +1,6 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Orders {
 	private long idOrder; // BIGINT AUTO_INCREMENT NOT NULL
@@ -8,20 +8,21 @@ public class Orders {
 	private String typeOrd; // VARCHAR(50) NOT NULL
 	private boolean payOrdON; // BOOLEAN NOT NULL
 	private double reductionOrd; // DOUBLE
-	private Date takingDateOrd; // DATETIME NOT NULL
-	private Date readyDateOrd; // DATETIME NOT NULL
-	private double priceHTOrd; // DOUBLE NOT NULL
-	private double priceTTCOrd; // DOUBLE NOT NULL
+	private Timestamp takingDateOrd; // DATETIME NOT NULL
+	private Timestamp readyDateOrd; // DATETIME NOT NULL
+	private double priceETOrd; // DOUBLE NOT NULL
+	private double priceITOrd; // DOUBLE NOT NULL
+	private String instructionsOrd; // VARCHAR(100)
 	private Discounts idDiscount; // FOREIGN KEY : BIGINT
 	private Customers idCustomer; // FOREIGN KEY : BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initOrders(long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Date takingDateOrd, 
-			Date readyDateOrd, double priceHTOrd, double priceTTCOrd, Discounts idDiscount,Customers idCustomer, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public void initOrders(long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, 
+			Timestamp readyDateOrd, double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idOrder = idOrder;
 		this.nameOrd = nameOrd;
 		this.typeOrd = typeOrd;
@@ -29,8 +30,9 @@ public class Orders {
 		this.reductionOrd = reductionOrd;
 		this.takingDateOrd = takingDateOrd;
 		this.readyDateOrd = readyDateOrd;
-		this.priceHTOrd = priceHTOrd;
-		this.priceTTCOrd = priceTTCOrd;
+		this.priceETOrd = priceETOrd;
+		this.priceITOrd = priceITOrd;
+		this.instructionsOrd = instructionsOrd;
 		this.idDiscount = idDiscount;
 		this.idCustomer = idCustomer;
 		this.userCreate = userCreate;
@@ -40,18 +42,18 @@ public class Orders {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Date takingDateOrd, 
-			Date readyDateOrd, double priceHTOrd, double priceTTCOrd, Discounts idDiscount,Customers idCustomer, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceHTOrd, priceTTCOrd, idDiscount, idCustomer, 
+	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
 				userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
-	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Date takingDateOrd, 
-			Date readyDateOrd, double priceHTOrd, double priceTTCOrd, Discounts idDiscount,Customers idCustomer, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
-		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceHTOrd, priceTTCOrd, idDiscount, idCustomer,
-				userCreate, dateCreate, userModif, dateModif);
+	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
+				instructionsOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif);
 	}
 	
 	public long getIdOrder() {
@@ -94,36 +96,44 @@ public class Orders {
 		this.reductionOrd = reductionOrd;
 	}
 
-	public Date getTakingDateOrd() {
+	public Timestamp getTakingDateOrd() {
 		return takingDateOrd;
 	}
 
-	public void setTakingDateOrd(Date takingDateOrd) {
+	public void setTakingDateOrd(Timestamp takingDateOrd) {
 		this.takingDateOrd = takingDateOrd;
 	}
 
-	public Date getReadyDateOrd() {
+	public Timestamp getReadyDateOrd() {
 		return readyDateOrd;
 	}
 
-	public void setReadyDateOrd(Date readyDateOrd) {
+	public void setReadyDateOrd(Timestamp readyDateOrd) {
 		this.readyDateOrd = readyDateOrd;
 	}
 
-	public double getPriceHTOrd() {
-		return priceHTOrd;
+	public double getPriceETOrd() {
+		return priceETOrd;
 	}
 
-	public void setPriceHTOrd(double priceHTOrd) {
-		this.priceHTOrd = priceHTOrd;
+	public void setPriceETOrd(double priceETOrd) {
+		this.priceETOrd = priceETOrd;
 	}
 
-	public double getPriceTTCOrd() {
-		return priceTTCOrd;
+	public double getPriceITOrd() {
+		return priceITOrd;
 	}
 
-	public void setPriceTTCOrd(double priceTTCOrd) {
-		this.priceTTCOrd = priceTTCOrd;
+	public void setPriceITOrd(double priceITOrd) {
+		this.priceITOrd = priceITOrd;
+	}
+	
+	public String getInstructionsOrd() {
+		return instructionsOrd;
+	}
+
+	public void setInstructionsOrd(String instructionsOrd) {
+		this.instructionsOrd = instructionsOrd;
 	}
 
 	public Discounts getIdDiscount() {
@@ -151,11 +161,11 @@ public class Orders {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -167,11 +177,11 @@ public class Orders {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	
@@ -184,7 +194,7 @@ public class Orders {
 	public String toString() {
 		String result = "Orders: [idOrder = " + idOrder + ", nameOrd = " + nameOrd + ", typeOrd = " + typeOrd + ", payOrdON = " + payOrdON
 				+ ", reductionOrd = " + reductionOrd + ", takingDateOrd = " + takingDateOrd + ", readyDateOrd = "
-				+ readyDateOrd + ", priceHTOrd = " + priceHTOrd + ", priceTTCOrd = " + priceTTCOrd + ", idDiscount = ";
+				+ readyDateOrd + ", priceETOrd = " + priceETOrd + ", priceITOrd = " + priceITOrd + ", instructionsOrd = " + instructionsOrd + ", idDiscount = ";
 		if(idDiscount != null) {
 			result += idDiscount.resume();
 		}

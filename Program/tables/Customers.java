@@ -1,6 +1,6 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Customers {
 	private long idCustomer; // BIGINT AUTO_INCREMENT NOT NULL
@@ -12,13 +12,13 @@ public class Customers {
 	private String instructionsCst; // VARCHAR(100)
 	private String internalComCst; // VARCHAR(100)
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
 	public void initCustomers(long idCustomer, String nameCst, String telCst, String streetNumberCst, String streetNameCst,
 			String postcodeCst, String instructionsCst, String internalComCst, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idCustomer = idCustomer;
 		this.nameCst = nameCst;
 		this.telCst = telCst;
@@ -36,14 +36,14 @@ public class Customers {
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public Customers(String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
 			String postcodeCst, String instructionsCst, String internalComCst, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initCustomers(0, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
 				userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
 	public Customers(long idCustomer, String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
 			String postcodeCst, String instructionsCst, String internalComCst, 
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initCustomers(idCustomer, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
 				userCreate, dateCreate, userModif, dateModif);
 	}
@@ -121,11 +121,11 @@ public class Customers {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -137,11 +137,11 @@ public class Customers {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	

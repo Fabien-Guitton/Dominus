@@ -1,16 +1,16 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DefaultIngredients {
 	private Ingredients idIgredient; // FOREIGN KEY : BIGINT
 	private Products idProduct; // FOREIGN KEY : BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initDefaultIngredients(Ingredients idIgredient, Products idProduct, String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public void initDefaultIngredients(Ingredients idIgredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idIgredient = idIgredient;
 		this.idProduct = idProduct;
 		this.userCreate = userCreate;
@@ -20,7 +20,7 @@ public class DefaultIngredients {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public DefaultIngredients(String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public DefaultIngredients(Ingredients idIgredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initDefaultIngredients(idIgredient, idProduct, userCreate, dateCreate, userModif, dateModif);
 	}
 
@@ -49,11 +49,11 @@ public class DefaultIngredients {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -65,11 +65,11 @@ public class DefaultIngredients {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 

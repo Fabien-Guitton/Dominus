@@ -1,6 +1,6 @@
 package tables;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Discounts {
 	private long idDiscount; // BIGINT AUTO_INCREMENT NOT NULL
@@ -9,12 +9,12 @@ public class Discounts {
 	private String codeDist; // CHAR(6) NOT NULL
 	private boolean accredDistON; // BOOLEAN NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 	   
 	public void initDiscounts(long idDiscount, String nameDist, double valueDist, String codeDist, boolean accredDistON,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idDiscount = idDiscount;
 		this.nameDist = nameDist;
 		this.valueDist = valueDist;
@@ -28,12 +28,12 @@ public class Discounts {
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public Discounts(String nameDist, double valueDist, String codeDist, boolean accredDistON,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initDiscounts(0, nameDist, valueDist, codeDist, accredDistON, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
 	public Discounts(long idDiscount, String nameDist, double valueDist, String codeDist, boolean accredDistON,
-			String userCreate, Date dateCreate, String userModif, Date dateModif) {
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initDiscounts(idDiscount, nameDist, valueDist, codeDist, accredDistON, userCreate, dateCreate, userModif, dateModif);
 	}
 
@@ -86,11 +86,11 @@ public class Discounts {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -102,11 +102,11 @@ public class Discounts {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 	
