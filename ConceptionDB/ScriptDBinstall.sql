@@ -1,4 +1,4 @@
-/* SQL for Dominus */
+/* SQL install script for Dominus */
 CREATE DATABASE Dominus;
 
 USE Dominus;
@@ -66,11 +66,11 @@ CREATE OR REPLACE TABLE ClockingIn(
    idClockingIn BIGINT AUTO_INCREMENT NOT NULL,
    startClockingIn DATETIME NOT NULL,
    endClockingIn DATETIME,
+   idEmployee BIGINT,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   idEmployee BIGINT,
    PRIMARY KEY(idClockingIn)
 );
 
@@ -89,7 +89,7 @@ CREATE OR REPLACE TABLE Discounts(
 );
 
 CREATE OR REPLACE TABLE Orders(
-   idCommande BIGINT AUTO_INCREMENT NOT NULL,
+   idOrder BIGINT AUTO_INCREMENT NOT NULL,
    nameOrd VARCHAR(50) NOT NULL,
    typeOrd VARCHAR(50) NOT NULL,
    payOrdON BOOLEAN NOT NULL,
@@ -98,13 +98,13 @@ CREATE OR REPLACE TABLE Orders(
    readyDateOrd DATETIME NOT NULL,
    priceHTOrd DOUBLE NOT NULL,
    priceTTCOrd DOUBLE NOT NULL,
+   idDiscount BIGINT,
+   idCustomer BIGINT,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   idDiscount BIGINT,
-   idCustomer BIGINT,
-   PRIMARY KEY(idCommande)
+   PRIMARY KEY(idOrder)
 );
 
 CREATE OR REPLACE TABLE LineBasket(
@@ -112,23 +112,23 @@ CREATE OR REPLACE TABLE LineBasket(
    qtyProductLB INT NOT NULL,
    priceHTLB DOUBLE NOT NULL,
    priceTTCLB DOUBLE NOT NULL,
+   idProduct BIGINT,
+   idOrder BIGINT,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   idProduct BIGINT,
-   idCommande BIGINT,
    PRIMARY KEY(idLineBasket)
 );
 
-/* CREATE N,N */
+/* Creation of N,N link tables */
 CREATE OR REPLACE TABLE DefaultIngredients(
    idIgredient BIGINT,
    idProduct BIGINT,
-   userCreate_2 VARCHAR(100) NOT NULL,
-   dateCreate_2 DATETIME NOT NULL,
-   userModif_2 VARCHAR(100) NOT NULL,
-   dateModif_2 DATETIME NOT NULL,
+   userCreate VARCHAR(100) NOT NULL,
+   dateCreate DATETIME NOT NULL,
+   userModif VARCHAR(100) NOT NULL,
+   dateModif DATETIME NOT NULL,
    PRIMARY KEY(idIgredient, idProduct)
 );
 
@@ -137,26 +137,26 @@ CREATE OR REPLACE TABLE Supplements(
    idLineBasket BIGINT,
    qtySup INT NOT NULL,
    addSupON BOOLEAN NOT NULL,
-   userCreate_3 VARCHAR(100) NOT NULL,
-   dateCreate_3 DATETIME NOT NULL,
-   userModif_3 VARCHAR(100) NOT NULL,
-   dateModif_3 DATETIME NOT NULL,
+   userCreate VARCHAR(100) NOT NULL,
+   dateCreate DATETIME NOT NULL,
+   userModif VARCHAR(100) NOT NULL,
+   dateModif DATETIME NOT NULL,
    PRIMARY KEY(idIgredient, idLineBasket)
 );
 
 CREATE OR REPLACE TABLE TakeResponsibilityFor(
-   idCommande BIGINT,
+   idOrder BIGINT,
    idEmployee BIGINT,
    deliveryTakeON BOOLEAN NOT NULL,
    paymentTakeON BOOLEAN NOT NULL,
-   userCreate_1 VARCHAR(100) NOT NULL,
-   dateCreate_1 DATETIME NOT NULL,
-   userModif_1 VARCHAR(100) NOT NULL,
-   dateModif_1 DATETIME NOT NULL,
-   PRIMARY KEY(idCommande, idEmployee)
+   userCreate VARCHAR(100) NOT NULL,
+   dateCreate DATETIME NOT NULL,
+   userModif VARCHAR(100) NOT NULL,
+   dateModif DATETIME NOT NULL,
+   PRIMARY KEY(idOrder, idEmployee)
 );
 
-/* Relationship statement */
+/* Creating links between tables */
 ALTER TABLE ClockingIn
    ADD CONSTRAINT FK_EmployeeClokingIn
    FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee);
@@ -170,8 +170,8 @@ ALTER TABLE Orders
 ALTER TABLE LineBasket
    ADD CONSTRAINT FK_ProductLineBasket
    FOREIGN KEY(idProduct) REFERENCES Products(idProduct),
-   ADD CONSTRAINT FK_CommandeLineBasket
-   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande);
+   ADD CONSTRAINT FK_OrderLineBasket
+   FOREIGN KEY(idOrder) REFERENCES Orders(idOrder);
 
 ALTER TABLE DefaultIngredients
    ADD CONSTRAINT FK_IngredientDefaultIngredient
@@ -186,7 +186,7 @@ ALTER TABLE Supplements
    FOREIGN KEY(idLineBasket) REFERENCES LineBasket(idLineBasket);
 
 ALTER TABLE TakeResponsibilityFor
-   ADD CONSTRAINT FK_CommandeTakeResponsibilityFor
-   FOREIGN KEY(idCommande) REFERENCES Orders(idCommande),
+   ADD CONSTRAINT FK_OrderTakeResponsibilityFor
+   FOREIGN KEY(idOrder) REFERENCES Orders(idOrder),
    ADD CONSTRAINT FK_EmployeeTakeResponsibilityFor
    FOREIGN KEY(idEmployee) REFERENCES Employees(idEmployee);
