@@ -18,7 +18,8 @@ public class EmployeesDAO extends DAO<Employees> {
 		
 	}
 	
-	public Employees read(Employees emp) {
-		return emp;
+	public Employees read(long l) {
+		Employees e = null;
+		return e;
 	}
 }

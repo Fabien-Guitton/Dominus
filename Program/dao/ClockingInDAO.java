@@ -1,25 +1,99 @@
 package dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 import tables.ClockingIn;
+import tables.Employees;
 
 public class ClockingInDAO extends DAO<ClockingIn> {
+	
+	private ResultSet rs;
+	
 	@Override
 	public ClockingIn create(ClockingIn clo) {
+		String query = "INSERT INTO clockingin (startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?);";
+		PreparedStatement ps = super.getPs(query, PreparedStatement.RETURN_GENERATED_KEYS);
+		try {
+			ps.setTimestamp(0, clo.getStartClockingIn());
+			ps.setTimestamp(1, clo.getEndClockingIn());
+			ps.setLong(2, clo.getIdEmployee().getIdEmployee());
+			ps.setString(3, clo.getUserCreate());
+			ps.setTimestamp(4, clo.getDateCreate());
+			ps.setString(5, clo.getUserModif());
+			ps.setTimestamp(6, clo.getDateModif());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()){
+				long id = rs.getLong(1);
+				clo.setIdClockingIn(id);
+			}
+			rs.close();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return clo;
 	}
 	
 	@Override
 	public ClockingIn update(ClockingIn clo) {
+		String query = "UPDATE clockingin SET "
+				+ "startClockingIn = ?, endClockingIn = ?, idEmployee = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "WHERE idClockingIn = ?;";
+		PreparedStatement ps = super.getPs(query);
+		try {
+			ps.setTimestamp(0, clo.getStartClockingIn());
+			ps.setTimestamp(1, clo.getEndClockingIn());
+			ps.setLong(2, clo.getIdEmployee().getIdEmployee());
+			ps.setString(3, clo.getUserCreate());
+			ps.setTimestamp(4, clo.getDateCreate());
+			ps.setString(5, clo.getUserModif());
+			ps.setTimestamp(6, clo.getDateModif());
+			ps.setLong(7, clo.getIdClockingIn());
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return clo;
 	}
 	
 	@Override
 	public void delete(ClockingIn clo) {
-		
+		String query = "DELETE FROM clockingin WHERE id = ?;";
+		PreparedStatement ps = super.getPs(query);
+		try {
+			ps.setLong(0, clo.getIdClockingIn());
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// Il faudra en faire plusieurs
-	public ClockingIn read(ClockingIn clo) {
-		return clo;
+	public ArrayList<ClockingIn> readAll() {
+		ArrayList<ClockingIn> clocks = new ArrayList<ClockingIn>();
+		String query = "SELECT * FROM clockingin;";
+		Statement stmt = super.getStmt();
+		EmployeesDAO empD = new EmployeesDAO();
+		Employees emp = null;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				emp = empD.read(rs.getLong(4));
+				ClockingIn clo = new ClockingIn(rs.getLong(1), rs.getTimestamp(2), rs.getTimestamp(3), emp, rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getTimestamp(8));
+				clocks.add(clo);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clocks;
 	}
 }

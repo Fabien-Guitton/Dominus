@@ -1,12 +1,12 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public abstract class DAO<T> {
 	protected Connection connect;
-	protected Statement stmt;
 	
 	public DAO() {
 		open();
@@ -15,7 +15,6 @@ public abstract class DAO<T> {
 	public void open() {
 		try {
 			connect = SingleConnection.getInstance();
-			stmt = connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 		} catch (Exception e1) {
 			System.out.println("Error: There was a problem opening the DAO.");
 			e1.printStackTrace();
@@ -27,6 +26,36 @@ public abstract class DAO<T> {
 	public abstract T update(T object);
 	
 	public abstract void delete(T object);
+	
+	public Statement getStmt() {
+		Statement stmt = null;
+		try{
+			stmt = connect.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return stmt;
+	}
+	
+	public PreparedStatement getPs(String query) {
+		 PreparedStatement ps = null;
+		try {
+			ps = connect.prepareStatement(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ps;
+	}
+	
+	public PreparedStatement getPs(String query, int param) {
+		 PreparedStatement ps = null;
+		try {
+			ps = connect.prepareStatement(query, param);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ps;
+	}
 	
 	public void close() {
 		try {

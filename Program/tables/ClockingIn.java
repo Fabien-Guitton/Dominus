@@ -1,18 +1,18 @@
 package tables;
 
-import java.sql.Date; 
+import java.sql.Timestamp;
 
 public class ClockingIn {
 	private long idClockingIn; // BIGINT AUTO_INCREMENT NOT NULL
-	private Date startClockingIn; // DATETIME NOT NULL
-	private Date endClockingIn; // DATETIME
+	private Timestamp startClockingIn; // DATETIME NOT NULL
+	private Timestamp endClockingIn; // DATETIME
 	private Employees idEmployee; // FOREIGN KEY : BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
-	private Date dateCreate; // DATETIME NOT NULL
+	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
-	private Date dateModif; // DATETIME NOT NULL
+	private Timestamp dateModif; // DATETIME NOT NULL
 
-	private void initClockingIn(long idClockingIn, Date startClockingIn, Date endClockingIn, Employees idEmployee, String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	private void initClockingIn(long idClockingIn, Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idClockingIn = idClockingIn;
 		this.startClockingIn = startClockingIn;
 		this.endClockingIn = endClockingIn;
@@ -27,11 +27,11 @@ public class ClockingIn {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public ClockingIn(Date startClockingIn, Date endClockingIn, Employees idEmployee, String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public ClockingIn(Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initClockingIn(0, startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif); // regarder si c'est bien 0
 	}
 
-	public ClockingIn(long idClockingInd, Date startClockingIn, Date endClockingIn, Employees idEmployee, String userCreate, Date dateCreate, String userModif, Date dateModif) {
+	public ClockingIn(long idClockingInd, Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initClockingIn(idClockingInd, startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif);
 	}
 
@@ -43,19 +43,19 @@ public class ClockingIn {
 		this.idClockingIn = idClockingIn;
 	}
 
-	public Date getStartClockingIn() {
+	public Timestamp getStartClockingIn() {
 		return startClockingIn;
 	}
 
-	public void setStartClockingIn(Date startClockingIn) {
+	public void setStartClockingIn(Timestamp startClockingIn) {
 		this.startClockingIn = startClockingIn;
 	}
 
-	public Date getEndClockingIn() {
+	public Timestamp getEndClockingIn() {
 		return endClockingIn;
 	}
 
-	public void setEndClockingIn(Date endClockingIn) {
+	public void setEndClockingIn(Timestamp endClockingIn) {
 		this.endClockingIn = endClockingIn;
 	}
 
@@ -76,11 +76,11 @@ public class ClockingIn {
 		this.userCreate = userCreate;
 	}
 
-	public Date getDateCreate() {
+	public Timestamp getDateCreate() {
 		return dateCreate;
 	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(Timestamp dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
@@ -92,11 +92,11 @@ public class ClockingIn {
 		this.userModif = userModif;
 	}
 
-	public Date getDateModif() {
+	public Timestamp getDateModif() {
 		return dateModif;
 	}
 
-	public void setDateModif(Date dateModif) {
+	public void setDateModif(Timestamp dateModif) {
 		this.dateModif = dateModif;
 	}
 
