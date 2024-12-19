@@ -30,11 +30,11 @@ public class DefaultIngredients {
 		initDefaultIngredients(idDefaultIngredient, idIngredient, idProduct, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public long getididDefaultIngredient() {
+	public long getidDefaultIngredient() {
 		return idDefaultIngredient;
 	}
 
-	public void setidIngredient(long idDefaultIngredient) {
+	public void setidDefaultIngredient(long idDefaultIngredient) {
 		this.idDefaultIngredient = idDefaultIngredient;
 	}
 
