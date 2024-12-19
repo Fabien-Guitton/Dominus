@@ -54,8 +54,8 @@ public class IngredientsDAO extends DAO<Ingredients> {
 			ps.setString(3, ing.getUnityIng()); // unityIng
 			ps.setDouble(4, ing.getPriceETIng()); // priceETIng
 			ps.setDouble(5, ing.getPriceITIng()); // priceITIng
-			ps.setString(6, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(7, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(6, ing.getUserCreate()); // userCreate
+			ps.setTimestamp(7, ing.getDateCreate()); // dateCreate
 			ps.setString(8, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(10, ing.getidIngredient()); // id

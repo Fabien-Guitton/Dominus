@@ -53,8 +53,8 @@ public class DiscountsDAO extends DAO<Discounts> {
 			ps.setDouble(2, dist.getValueDist()); // valueDist
 			ps.setString(3, dist.getCodeDist()); // codeDist
 			ps.setBoolean(4, dist.isAccredDistON()); // accredDistON
-			ps.setString(5, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(6, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(5, dist.getUserCreate()); // userCreate
+			ps.setTimestamp(6, dist.getDateCreate()); // dateCreate
 			ps.setString(7, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(9, dist.getIdDiscount()); // id

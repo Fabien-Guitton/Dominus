@@ -50,8 +50,8 @@ public class DefaultIngredientsDAO extends DAO<DefaultIngredients> {
 		try {
 			ps.setDouble(1, defaultIng.getidIngredient().getidIngredient()); // idIgredient
 			ps.setDouble(2, defaultIng.getIdProduct().getIdProduct()); // idProduct
-			ps.setString(3, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(4, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(3, defaultIng.getUserCreate()); // userCreate
+			ps.setTimestamp(4, defaultIng.getDateCreate()); // dateCreate
 			ps.setString(5, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(6, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(7, defaultIng.getidDefaultIngredient()); // id

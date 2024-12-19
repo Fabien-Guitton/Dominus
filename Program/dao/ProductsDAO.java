@@ -54,8 +54,8 @@ public class ProductsDAO extends DAO<Products> {
 			ps.setString(3, prod.getCategoryProduct()); // categoryProduct
 			ps.setDouble(4, prod.getPriceETProduct()); // priceETProduct
 			ps.setDouble(5, prod.getPriceITProduct()); // priceITProduct
-			ps.setString(6, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(7, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(6, prod.getUserCreate()); // userCreate
+			ps.setTimestamp(7, prod.getDateCreate()); // dateCreate
 			ps.setString(8, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(10, prod.getIdProduct()); // id

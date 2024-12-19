@@ -56,8 +56,8 @@ public class LineBasketDAO extends DAO<LineBasket> {
 			ps.setDouble(3, lb.getPriceITLB()); // priceITLB
 			ps.setLong(4, lb.getIdProduct().getIdProduct()); // idProduct
 			ps.setLong(5, lb.getIdOrder().getIdOrder()); // idOrder
-			ps.setString(6, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(7, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(6, lb.getUserCreate()); // userCreate
+			ps.setTimestamp(7, lb.getDateCreate()); // dateCreate
 			ps.setString(8, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(10, lb.getIdLineBasket()); // id
