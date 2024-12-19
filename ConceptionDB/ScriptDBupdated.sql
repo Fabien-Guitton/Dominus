@@ -1,6 +1,40 @@
 /* SQL update script for Dominus */
 USE Dominus;
 
+/* Remove all constraints from the database */
+ALTER TABLE ClockingIn
+   DROP FOREIGN KEY FK_EmployeeClokingIn;
+
+ALTER TABLE Orders
+   DROP FOREIGN KEY FK_DiscountOrder;
+
+ALTER TABLE Orders
+   DROP FOREIGN KEY FK_CustomerOrder;
+
+ALTER TABLE LineBasket
+   DROP FOREIGN KEY FK_ProductLineBasket;
+
+ALTER TABLE LineBasket
+   DROP FOREIGN KEY FK_OrderLineBasket;
+
+ALTER TABLE DefaultIngredients
+   DROP FOREIGN KEY FK_IngredientDefaultIngredient;
+
+ALTER TABLE DefaultIngredients
+   DROP FOREIGN KEY FK_ProductDefaultIngredient;
+
+ALTER TABLE Supplements
+   DROP FOREIGN KEY FK_IngredientSupplement;
+
+ALTER TABLE Supplements
+   DROP FOREIGN KEY FK_LineBasketSupplement;
+
+ALTER TABLE TakeResponsibilityFor
+   DROP FOREIGN KEY FK_OrderTakeResponsibilityFor;
+
+ALTER TABLE TakeResponsibilityFor
+   DROP FOREIGN KEY FK_EmployeeTakeResponsibilityFor;
+
 /* Creation or replace of all tables */
 CREATE OR REPLACE TABLE Ingredients(
    idIngredient BIGINT AUTO_INCREMENT NOT NULL,
