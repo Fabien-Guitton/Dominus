@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Customers {
-	private long idCustomer; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idCustomer; // PRIMARY KEY : BIGINT AUTO_INCREMENT NOT NULL
 	private String nameCst; // VARCHAR(100) NOT NULL
 	private String telCst; // CHAR(10) NOT NULL
 	private String streetNumberCst; // VARCHAR(50) NOT NULL
@@ -34,18 +34,30 @@ public class Customers {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Customers(String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
-			String postcodeCst, String instructionsCst, String internalComCst, 
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initCustomers(0, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
-				userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public Customers(long idCustomer, String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
 			String postcodeCst, String instructionsCst, String internalComCst, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initCustomers(idCustomer, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
 				userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Customers(String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
+			String postcodeCst, String instructionsCst, String internalComCst, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initCustomers(0, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
+				userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Customers(long idCustomer, String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
+			String postcodeCst, String instructionsCst, String internalComCst) {
+		initCustomers(idCustomer, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Customers(String nameCst, String telCst, String streetNumberCst, String streetNameCst, 
+			String postcodeCst, String instructionsCst, String internalComCst) {
+		initCustomers(0, nameCst, telCst, streetNumberCst, streetNameCst, postcodeCst, instructionsCst, internalComCst, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
 	public long getIdCustomer() {
@@ -149,7 +161,7 @@ public class Customers {
 		return "Customers: [idCustomer = " + idCustomer + "]";
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		return "Customers: [idCustomer = " + idCustomer + ", nameCst = " + nameCst + ", telCst = " + telCst + ", streetNumberCst = " + streetNumberCst 

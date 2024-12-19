@@ -3,16 +3,23 @@ package tables;
 import java.sql.Timestamp;
 
 public class LineBasket {
-	private long idLineBasket; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idLineBasket; // PRIMARY KEY: BIGINT AUTO_INCREMENT NOT NULL
 	private int qtyProductLB; // INT NOT NULL
 	private double priceETLB; // DOUBLE NOT NULL
 	private double priceITLB; // DOUBLE NOT NULL
-	private Products idProduct; // BIGINT
-	private Orders idOrder; // BIGINT
+	private Products idProduct; // FOREIGN KEY: BIGINT
+	private Orders idOrder; // FOREIGN KEY: BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
 	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
+//	For debug	
+//	if(this.idProduct == null) { 
+//		System.out.println("WARNING: There are no linked products.");
+//	}	
+//	if(this.idOrder == null) { 
+//		System.out.println("WARNING: There are no linked orders.");
+//	}
 	
 	public void initLineBasket(long idLineBasket, int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
@@ -29,14 +36,24 @@ public class LineBasket {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public LineBasket(int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder,
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initLineBasket(0, qtyProductLB, priceETLB, priceITLB, idProduct, idOrder, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public LineBasket(long idLineBasket, int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		
+		initLineBasket(idLineBasket, qtyProductLB, priceETLB, priceITLB, idProduct, idOrder, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public LineBasket(int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initLineBasket(0, qtyProductLB, priceETLB, priceITLB, idProduct, idOrder, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public LineBasket(long idLineBasket, int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder) {
+		initLineBasket(idLineBasket, qtyProductLB, priceETLB, priceITLB, idProduct, idOrder, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public LineBasket(int qtyProductLB, double priceETLB, double priceITLB, Products idProduct, Orders idOrder) {
+		initLineBasket(0, qtyProductLB, priceETLB, priceITLB, idProduct, idOrder, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
 	public long getIdLineBasket() {
@@ -124,7 +141,7 @@ public class LineBasket {
 		return "LineBasket: [idLineBasket = " + idLineBasket + "]";
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		return "LineBasket: [idLineBasket = " + idLineBasket + ", qtyProductLB = " + qtyProductLB + ", priceETLB = " + priceETLB 

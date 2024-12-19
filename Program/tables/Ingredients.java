@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Ingredients { 
-	private long idIngredient; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idIngredient; // PRIMARY KEY: BIGINT AUTO_INCREMENT NOT NULL
 	private String nameIng; // VARCHAR(100) NOT NULL
 	private long stockIng; // BIGINT NOT NULL
 	private String unityIng; // VARCHAR(25) NOT NULL
@@ -29,15 +29,26 @@ public class Ingredients {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initIngredients(idIngredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
 	}
+	
+	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng) {
+		initIngredients(idIngredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng) {
+		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+
 
 	public long getidIngredient() {
 		return idIngredient;
@@ -124,7 +135,7 @@ public class Ingredients {
 		return "Ingredients: [idIngredient=" + idIngredient + "]";
 	}
 
-	// Pour debugger
+// 	For debug
 	@Override
 	public String toString() {
 		return "Ingredients: [idIngredient = " + idIngredient + ", nameIng = " + nameIng + ", stockIng = " + stockIng

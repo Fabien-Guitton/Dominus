@@ -3,16 +3,23 @@ package tables;
 import java.sql.Timestamp;
 
 public class TakeResponsabilityFor {   
-	private long idTakeResponsabilityFor; // BIGINT
-	private Orders idOrder; // FOREIGN KEY : BIGINT
-	private Employees idEmployee; // FOREIGN KEY : BIGINT
+	private long idTakeResponsabilityFor; // PRIMARY KEY: BIGINT AUTO_INCREMENT NOT NULL
+	private Orders idOrder; // PRIMARY KEY + FOREIGN KEY: BIGINT
+	private Employees idEmployee; // PRIMARY KEY + FOREIGN KEY: BIGINT
 	private boolean deliveryTakeON; // BOOLEAN NOT NULL
 	private boolean paymentTakeON; // BOOLEAN NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
 	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
-	
+//	For debug	
+//	if(this.idOrder == null) { 
+//		System.out.println("WARNING: There are no linked orders.");
+//	}	
+//	if(this.idEmployee == null) { 
+//		System.out.println("WARNING: There are no linked employees.");
+//	}
+
 	public void initTakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idTakeResponsabilityFor = idTakeResponsabilityFor;
@@ -27,14 +34,24 @@ public class TakeResponsabilityFor {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
+	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
+	}
+	
 	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
+	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON) {
+		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON) {
+		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
 	public long getidTakeResponsabilityFor() {
@@ -110,7 +127,7 @@ public class TakeResponsabilityFor {
 		this.dateModif = dateModif;
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		String result = "TakeResponsabilityFor: [idTakeResponsabilityFor = " + idTakeResponsabilityFor + ", idOrder = ";

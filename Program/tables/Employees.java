@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Employees {
-	private long idEmployee; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idEmployee; // PRIMARY KEY : BIGINT AUTO_INCREMENT NOT NULL
 	private String nameEmp; // VARCHAR(100) NOT NULL
 	private String codeEmp; // CHAR(4) NOT NULL
 	private String roleEmp; // VARCHAR(50) NOT NULL
@@ -27,14 +27,24 @@ public class Employees {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Employees(String nameEmp, String codeEmp, String roleEmp, String telEmp, 
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initEmployees(0, nameEmp, codeEmp, roleEmp, telEmp, userCreate, dateCreate, userModif, dateModif); // 0 ?
-	}
-	
 	public Employees(long idEmployee, String nameEmp, String codeEmp, String roleEmp, String telEmp, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initEmployees(idEmployee, nameEmp, codeEmp, roleEmp, telEmp, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Employees(String nameEmp, String codeEmp, String roleEmp, String telEmp, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initEmployees(0, nameEmp, codeEmp, roleEmp, telEmp, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Employees(long idEmployee, String nameEmp, String codeEmp, String roleEmp, String telEmp) {
+		initEmployees(idEmployee, nameEmp, codeEmp, roleEmp, telEmp, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Employees(String nameEmp, String codeEmp, String roleEmp, String telEmp) {
+		initEmployees(0, nameEmp, codeEmp, roleEmp, telEmp, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
 	public long getIdEmployee() {
@@ -114,7 +124,7 @@ public class Employees {
 		return "Employees: [idEmployee = " + idEmployee + "]";
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		return "Employees: [idEmployee = " + idEmployee + ", nameEmp = " + nameEmp + ", codeEmp = " + codeEmp + ", roleEmp = " + roleEmp + ", telEmp = " + telEmp 

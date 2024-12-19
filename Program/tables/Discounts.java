@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Discounts {
-	private long idDiscount; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idDiscount; // PRIMARY KEY : BIGINT AUTO_INCREMENT NOT NULL
 	private String nameDist; // VARCHAR(50) NOT NULL
 	private double valueDist; // DOUBLE NOT NULL
 	private String codeDist; // CHAR(6) NOT NULL
@@ -27,14 +27,24 @@ public class Discounts {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Discounts(String nameDist, double valueDist, String codeDist, boolean accredDistON,
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initDiscounts(0, nameDist, valueDist, codeDist, accredDistON, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public Discounts(long idDiscount, String nameDist, double valueDist, String codeDist, boolean accredDistON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initDiscounts(idDiscount, nameDist, valueDist, codeDist, accredDistON, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Discounts(String nameDist, double valueDist, String codeDist, boolean accredDistON,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initDiscounts(0, nameDist, valueDist, codeDist, accredDistON, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Discounts(long idDiscount, String nameDist, double valueDist, String codeDist, boolean accredDistON) {
+		initDiscounts(idDiscount, nameDist, valueDist, codeDist, accredDistON, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Discounts(String nameDist, double valueDist, String codeDist, boolean accredDistON) {
+		initDiscounts(0, nameDist, valueDist, codeDist, accredDistON, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
 	public long getIdDiscount() {
@@ -114,7 +124,7 @@ public class Discounts {
 		return "Discounts: [idDiscount = " + idDiscount + "]";
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		return "Discounts: [idDiscount = " + idDiscount + ", nameDist = " + nameDist + ", valueDist = " + valueDist

@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class ClockingIn {
-	private long idClockingIn; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idClockingIn; // PRIMARY KEY : BIGINT AUTO_INCREMENT NOT NULL
 	private Timestamp startClockingIn; // DATETIME NOT NULL
 	private Timestamp endClockingIn; // DATETIME
 	private Employees idEmployee; // FOREIGN KEY : BIGINT
@@ -21,18 +21,29 @@ public class ClockingIn {
 		this.dateCreate = dateCreate;
 		this.userModif = userModif;
 		this.dateModif = dateModif;
-//		if(this.idEmployee != null) { 
-//			Afficher un message d'erreur pour dire que cet employee existe pas
+//		For debug	
+//		if(this.idEmployee == null) { 
+//			System.out.println("WARNING: There are no linked employees.");
 //		}
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public ClockingIn(Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initClockingIn(0, startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif); // regarder si c'est bien 0
-	}
-
 	public ClockingIn(long idClockingInd, Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initClockingIn(idClockingInd, startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public ClockingIn(Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initClockingIn(0, startClockingIn, endClockingIn, idEmployee, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public ClockingIn(long idClockingInd, Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee) {
+		initClockingIn(idClockingInd, startClockingIn, endClockingIn, idEmployee, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public ClockingIn(Timestamp startClockingIn, Timestamp endClockingIn, Employees idEmployee) {
+		initClockingIn(0, startClockingIn, endClockingIn, idEmployee, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
 	public long getIdClockingIn() {
@@ -100,7 +111,7 @@ public class ClockingIn {
 		this.dateModif = dateModif;
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		String result = "ClockingIn: [idClockinIn = " + idClockingIn + ", startClockingIn = " + startClockingIn + ", endClockingIn = " + endClockingIn + 

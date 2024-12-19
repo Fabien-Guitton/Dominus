@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Products {
-	private long idProduct; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idProduct; // PRIMARY KEY: BIGINT AUTO_INCREMENT NOT NULL
 	private String nameProduct; // VARCHAR(100) NOT NULL
 	private String sizeProduct; // VARCHAR(50) NOT NULL
 	private String categoryProduct; // VARCHAR(100) NOT NULL
@@ -29,14 +29,24 @@ public class Products {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Products(String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initProducts(0, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public Products(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initProducts(idProduct, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Products(String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initProducts(0, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Products(long idProduct, String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct) {
+		initProducts(idProduct, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Products(String nameProduct, String sizeProduct, String categoryProduct, double priceETProduct, double priceITProduct) {
+		initProducts(0, nameProduct, sizeProduct, categoryProduct, priceETProduct, priceITProduct, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
 	public long getIdProduct() {
@@ -124,7 +134,7 @@ public class Products {
 		return "Products: [idProduct = " + idProduct + "]";
 	}
 
-	// Pour debugger
+//	For debug
 	@Override
 	public String toString() {
 		return "Products: [idProduct = " + idProduct + ", nameProduct = " + nameProduct + ", sizeProduct = " + sizeProduct

@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Orders {
-	private long idOrder; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idOrder; // PRIMARY KEY: BIGINT AUTO_INCREMENT NOT NULL
 	private String nameOrd; // VARCHAR(50) NOT NULL
 	private String typeOrd; // VARCHAR(50) NOT NULL
 	private boolean payOrdON; // BOOLEAN NOT NULL
@@ -13,12 +13,19 @@ public class Orders {
 	private double priceETOrd; // DOUBLE NOT NULL
 	private double priceITOrd; // DOUBLE NOT NULL
 	private String instructionsOrd; // VARCHAR(100)
-	private Discounts idDiscount; // FOREIGN KEY : BIGINT
-	private Customers idCustomer; // FOREIGN KEY : BIGINT
+	private Discounts idDiscount; // FOREIGN KEY: BIGINT
+	private Customers idCustomer; // FOREIGN KEY: BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
 	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
+//	For debug	
+//	if(this.idDiscount == null) { 
+//		System.out.println("WARNING: There are no linked discounts.");
+//	}	
+//	if(this.idCustomer == null) { 
+//		System.out.println("WARNING: There are no linked customers.");
+//	}
 	
 	public void initOrders(long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, 
 			Timestamp readyDateOrd, double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
@@ -42,18 +49,31 @@ public class Orders {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
-			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
-			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
-				userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
-	}
-	
 	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
 			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
 				instructionsOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
+				userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer) {
+		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
+				instructionsOrd, idDiscount, idCustomer, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
+	}
+	
+	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer) {
+		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
+				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
 	public long getIdOrder() {
@@ -189,7 +209,7 @@ public class Orders {
 		return "Orders: [idOrder = " + idOrder + "]";
 	}
 
-	// Pour debugger
+// 	For debug
 	@Override
 	public String toString() {
 		String result = "Orders: [idOrder = " + idOrder + ", nameOrd = " + nameOrd + ", typeOrd = " + typeOrd + ", payOrdON = " + payOrdON
