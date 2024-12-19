@@ -3,7 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class Ingredients { 
-	private long idIgredient; // BIGINT AUTO_INCREMENT NOT NULL
+	private long idIngredient; // BIGINT AUTO_INCREMENT NOT NULL
 	private String nameIng; // VARCHAR(100) NOT NULL
 	private long stockIng; // BIGINT NOT NULL
 	private String unityIng; // VARCHAR(25) NOT NULL
@@ -14,9 +14,9 @@ public class Ingredients {
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initIngredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+	public void initIngredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		this.idIgredient = idIgredient;
+		this.idIngredient = idIngredient;
 		this.nameIng = nameIng;
 		this.stockIng = stockIng;
 		this.unityIng = unityIng;
@@ -34,17 +34,17 @@ public class Ingredients {
 		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif); // 0 à vérifier
 	}
 	
-	public Ingredients(long idIgredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initIngredients(idIgredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
+		initIngredients(idIngredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
 	}
 
-	public long getIdIgredient() {
-		return idIgredient;
+	public long getidIngredient() {
+		return idIngredient;
 	}
 
-	public void setIdIgredient(long idIgredient) {
-		this.idIgredient = idIgredient;
+	public void setidIngredient(long idIngredient) {
+		this.idIngredient = idIngredient;
 	}
 
 	public String getNameIng() {
@@ -121,13 +121,13 @@ public class Ingredients {
 	}
 	
 	public String resume() {
-		return "Ingredients: [idIgredient=" + idIgredient + "]";
+		return "Ingredients: [idIngredient=" + idIngredient + "]";
 	}
 
 	// Pour debugger
 	@Override
 	public String toString() {
-		return "Ingredients: [idIgredient = " + idIgredient + ", nameIng = " + nameIng + ", stockIng = " + stockIng
+		return "Ingredients: [idIngredient = " + idIngredient + ", nameIng = " + nameIng + ", stockIng = " + stockIng
 				+ ", unityIng = " + unityIng + ", priceETIng = " + priceETIng + ", priceITIng = " + priceITIng
 				+ ", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 	}

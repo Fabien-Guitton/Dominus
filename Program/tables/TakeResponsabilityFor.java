@@ -3,6 +3,7 @@ package tables;
 import java.sql.Timestamp;
 
 public class TakeResponsabilityFor {   
+	private long idTakeResponsabilityFor; // BIGINT
 	private Orders idOrder; // FOREIGN KEY : BIGINT
 	private Employees idEmployee; // FOREIGN KEY : BIGINT
 	private boolean deliveryTakeON; // BOOLEAN NOT NULL
@@ -12,8 +13,9 @@ public class TakeResponsabilityFor {
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initTakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
+	public void initTakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		this.idTakeResponsabilityFor = idTakeResponsabilityFor;
 		this.idOrder = idOrder;
 		this.idEmployee = idEmployee;
 		this.deliveryTakeON = deliveryTakeON;
@@ -27,7 +29,20 @@ public class TakeResponsabilityFor {
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initTakeResponsabilityFor(idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
+		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
+			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public long getidTakeResponsabilityFor() {
+		return idTakeResponsabilityFor;
+	}
+
+	public void setidTakeResponsabilityFor(long idTakeResponsabilityFor) {
+		this.idTakeResponsabilityFor = idTakeResponsabilityFor;
 	}
 
 	public Orders getIdOrder() {
@@ -98,7 +113,7 @@ public class TakeResponsabilityFor {
 	// Pour debugger
 	@Override
 	public String toString() {
-		String result = "TakeResponsabilityFor: [idOrder = ";
+		String result = "TakeResponsabilityFor: [idTakeResponsabilityFor = " + idTakeResponsabilityFor + ", idOrder = ";
 		if(idOrder != null) {
 			result += idOrder.resume();
 		}

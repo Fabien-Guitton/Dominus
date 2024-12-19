@@ -3,15 +3,17 @@ package tables;
 import java.sql.Timestamp;
 
 public class DefaultIngredients {
-	private Ingredients idIgredient; // FOREIGN KEY : BIGINT
+	private long idDefaultIngredient; // BIGINT
+	private Ingredients idIngredient; // FOREIGN KEY : BIGINT
 	private Products idProduct; // FOREIGN KEY : BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
 	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initDefaultIngredients(Ingredients idIgredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		this.idIgredient = idIgredient;
+	public void initDefaultIngredients(long idDefaultIngredient, Ingredients idIngredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		this.idDefaultIngredient = idDefaultIngredient;
+		this.idIngredient = idIngredient;
 		this.idProduct = idProduct;
 		this.userCreate = userCreate;
 		this.dateCreate = dateCreate;
@@ -20,16 +22,28 @@ public class DefaultIngredients {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public DefaultIngredients(Ingredients idIgredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initDefaultIngredients(idIgredient, idProduct, userCreate, dateCreate, userModif, dateModif);
+	public DefaultIngredients(Ingredients idIngredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initDefaultIngredients(0, idIngredient, idProduct, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public DefaultIngredients(long idDefaultIngredient, Ingredients idIngredient, Products idProduct, String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
+		initDefaultIngredients(idDefaultIngredient, idIngredient, idProduct, userCreate, dateCreate, userModif, dateModif);
+	}
+	
+	public long getididDefaultIngredient() {
+		return idDefaultIngredient;
 	}
 
-	public Ingredients getIdIgredient() {
-		return idIgredient;
+	public void setidIngredient(long idDefaultIngredient) {
+		this.idDefaultIngredient = idDefaultIngredient;
 	}
 
-	public void setIdIgredient(Ingredients idIgredient) {
-		this.idIgredient = idIgredient;
+	public Ingredients getidIngredient() {
+		return idIngredient;
+	}
+
+	public void setidIngredient(Ingredients idIngredient) {
+		this.idIngredient = idIngredient;
 	}
 
 	public Products getIdProduct() {
@@ -76,9 +90,9 @@ public class DefaultIngredients {
 	// Pour debugger
 	@Override
 	public String toString() {
-		String result = "DefaultIngredients: [idIgredient = "; 
-		if(idIgredient != null) {
-			result += idIgredient.resume(); 
+		String result = "DefaultIngredients: [idDefaultIngredient = " + idDefaultIngredient + ", idIngredient = "; 
+		if(idIngredient != null) {
+			result += idIngredient.resume(); 
 		}
 		result +=  ", idProduct = ";
 		if(idProduct != null) {

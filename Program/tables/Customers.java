@@ -6,7 +6,7 @@ public class Customers {
 	private long idCustomer; // BIGINT AUTO_INCREMENT NOT NULL
 	private String nameCst; // VARCHAR(100) NOT NULL
 	private String telCst; // CHAR(10) NOT NULL
-	private String streetNumberCst; // CHAR(50) NOT NULL
+	private String streetNumberCst; // VARCHAR(50) NOT NULL
 	private String streetNameCst; // VARCHAR(255) NOT NULL
 	private String postcodeCst; // VARCHAR(50) NOT NULL
 	private String instructionsCst; // VARCHAR(100)
