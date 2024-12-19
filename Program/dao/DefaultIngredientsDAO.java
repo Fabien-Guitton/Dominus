@@ -16,11 +16,11 @@ public class DefaultIngredientsDAO extends DAO<DefaultIngredients> {
 	
 	@Override
 	public DefaultIngredients create(DefaultIngredients defaultIng) {
-		String query = "INSERT INTO defaultingredients (idIgredient, idProduct, userCreate, dateCreate, userModif, dateModif) "
+		String query = "INSERT INTO defaultingredients (idIngredient, idProduct, userCreate, dateCreate, userModif, dateModif) "
 				+ "VALUES(?, ?, ?, ?, ?, ?);";
 		PreparedStatement ps = super.getPs(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		try {
-			ps.setDouble(1, defaultIng.getidIngredient().getidIngredient()); // idIgredient
+			ps.setDouble(1, defaultIng.getidIngredient().getidIngredient()); // idIngredient
 			ps.setDouble(2, defaultIng.getIdProduct().getIdProduct()); // idProduct
 			ps.setString(3, super.connect.getMetaData().getUserName()); // userCreate
 			ps.setTimestamp(4, new Timestamp(System.currentTimeMillis())); // dateCreate
@@ -44,11 +44,11 @@ public class DefaultIngredientsDAO extends DAO<DefaultIngredients> {
 	@Override
 	public DefaultIngredients update(DefaultIngredients defaultIng) {
 		String query = "UPDATE defaultingredients SET "
-				+ "idIgredient = ?, idProduct = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "idIngredient = ?, idProduct = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
 				+ "WHERE idLineBasket = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
-			ps.setDouble(1, defaultIng.getidIngredient().getidIngredient()); // idIgredient
+			ps.setDouble(1, defaultIng.getidIngredient().getidIngredient()); // idIngredient
 			ps.setDouble(2, defaultIng.getIdProduct().getIdProduct()); // idProduct
 			ps.setString(3, defaultIng.getUserCreate()); // userCreate
 			ps.setTimestamp(4, defaultIng.getDateCreate()); // dateCreate

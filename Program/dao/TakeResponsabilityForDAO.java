@@ -3,7 +3,9 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import tables.Employees;
 import tables.Orders;
@@ -77,6 +79,30 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<TakeResponsabilityFor> readAll() {
+		ArrayList<TakeResponsabilityFor> trfs = new ArrayList<TakeResponsabilityFor>();
+		String query = "SELECT * FROM takeresponsibilityfor;";
+		Statement stmt = super.getStmt();
+		OrdersDAO ordDAO = new OrdersDAO();
+		Orders ord = null;
+		EmployeesDAO empDAO = new EmployeesDAO();
+		Employees emp = null;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				ord = ordDAO.read(rs.getLong(2));
+				emp = empDAO.read(rs.getLong(3));
+				TakeResponsabilityFor trf = new TakeResponsabilityFor(rs.getLong(1), ord, emp, rs.getBoolean(4), rs.getBoolean(5), rs.getString(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9));
+				trfs.add(trf);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return trfs;
 	}
 	
 	public TakeResponsabilityFor read(long idTakeResponsibilityFor) {

@@ -46,7 +46,7 @@ public class IngredientsDAO extends DAO<Ingredients> {
 	public Ingredients update(Ingredients ing) {
 		String query = "UPDATE ingredients SET "
 				+ "nameIng = ?, stockIng = ?, unityIng = ?, priceETIng = ?, priceITIng = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
-				+ "WHERE idIgredient = ?;";
+				+ "WHERE idIngredient = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
 			ps.setString(1, ing.getNameIng()); // nameIng
@@ -69,7 +69,7 @@ public class IngredientsDAO extends DAO<Ingredients> {
 	
 	@Override
 	public void delete(Ingredients ing) {
-		String query = "DELETE FROM ingredients WHERE idIgredient = ?;";
+		String query = "DELETE FROM ingredients WHERE idIngredient = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
 			ps.setLong(1, ing.getidIngredient());
@@ -98,12 +98,12 @@ public class IngredientsDAO extends DAO<Ingredients> {
 		return ingredients;
 	}
 	
-	public Ingredients read(long idIgredient) {
+	public Ingredients read(long idIngredient) {
 		Ingredients ing = null;
-		String query = "SELECT * FROM ingredients WHERE idIgredient = ?;";
+		String query = "SELECT * FROM ingredients WHERE idIngredient = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
-			ps.setLong(1, idIgredient);
+			ps.setLong(1, idIngredient);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getTimestamp(8), rs.getString(9), rs.getTimestamp(10));
