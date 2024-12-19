@@ -53,8 +53,8 @@ public class EmployeesDAO extends DAO<Employees> {
 			ps.setString(2, emp.getCodeEmp()); // codeEmp
 			ps.setString(3, emp.getRoleEmp()); // roleEmp
 			ps.setString(3, emp.getTelEmp()); // telEmp
-			ps.setString(4, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(5, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(4, emp.getUserCreate()); // userCreate
+			ps.setTimestamp(5, emp.getDateCreate()); // dateCreate
 			ps.setString(6, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(7, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setLong(8, emp.getIdEmployee()); // id

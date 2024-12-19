@@ -69,8 +69,8 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setString(9, ord.getInstructionsOrd()); // instructionsOrd
 			ps.setLong(10, ord.getIdDiscount().getIdDiscount()); // idDiscount
 			ps.setLong(11, ord.getIdCustomer().getIdCustomer()); // idCustomer
-			ps.setString(12, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(13, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(12, ord.getUserCreate()); // userCreate
+			ps.setTimestamp(13, ord.getDateCreate()); // dateCreate
 			ps.setString(14, super.connect.getMetaData().getUserName()); // userModif
 			ps.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.setString(16, ord.getNameOrd()); // id
