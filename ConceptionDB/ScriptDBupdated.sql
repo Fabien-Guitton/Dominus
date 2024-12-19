@@ -3,7 +3,7 @@ USE Dominus;
 
 /* Creation or replace of all tables */
 CREATE OR REPLACE TABLE Ingredients(
-   idIgredient BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT AUTO_INCREMENT NOT NULL,
    nameIng VARCHAR(100) NOT NULL,
    stockIng BIGINT NOT NULL,
    unityIng VARCHAR(25) NOT NULL,
@@ -13,7 +13,7 @@ CREATE OR REPLACE TABLE Ingredients(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient)
+   PRIMARY KEY(idIngredient)
 );
 
 CREATE OR REPLACE TABLE Products(
@@ -122,17 +122,19 @@ CREATE OR REPLACE TABLE LineBasket(
 
 /* Creation or replace of N,N link tables */
 CREATE OR REPLACE TABLE DefaultIngredients(
-   idIgredient BIGINT,
+   idDefaultIngredient BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT,
    idProduct BIGINT,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient, idProduct)
+   PRIMARY KEY(idDefaultIngredient, idIngredient, idProduct)
 );
 
 CREATE OR REPLACE TABLE Supplements(
-   idIgredient BIGINT,
+   idSupplement BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT,
    idLineBasket BIGINT,
    qtySup INT NOT NULL,
    addSupON BOOLEAN NOT NULL,
@@ -140,10 +142,11 @@ CREATE OR REPLACE TABLE Supplements(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient, idLineBasket)
+   PRIMARY KEY(idSupplement, idIngredient, idLineBasket)
 );
 
 CREATE OR REPLACE TABLE TakeResponsibilityFor(
+   idTakeResponsibilityFor BIGINT AUTO_INCREMENT NOT NULL,
    idOrder BIGINT,
    idEmployee BIGINT,
    deliveryTakeON BOOLEAN NOT NULL,
@@ -152,7 +155,7 @@ CREATE OR REPLACE TABLE TakeResponsibilityFor(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idOrder, idEmployee)
+   PRIMARY KEY(idTakeResponsibilityFor, idOrder, idEmployee)
 );
 
 /* Creating or replacing links between tables */
@@ -174,13 +177,13 @@ ALTER TABLE LineBasket
 
 ALTER TABLE DefaultIngredients
    ADD CONSTRAINT FK_IngredientDefaultIngredient
-   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   FOREIGN KEY(idIngredient) REFERENCES Ingredients(idIngredient),
    ADD CONSTRAINT FK_ProductDefaultIngredient
    FOREIGN KEY(idProduct) REFERENCES Products(idProduct);
 
 ALTER TABLE Supplements
    ADD CONSTRAINT FK_IngredientSupplement
-   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   FOREIGN KEY(idIngredient) REFERENCES Ingredients(idIngredient),
    ADD CONSTRAINT FK_LineBasketSupplement
    FOREIGN KEY(idLineBasket) REFERENCES LineBasket(idLineBasket);
 
