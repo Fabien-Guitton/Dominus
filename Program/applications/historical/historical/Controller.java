@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import dao.OrdersDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -33,21 +34,60 @@ public class Controller implements Initializable{
 	private Button showOrder;
 	@FXML
 	private Label currentDate;
+	@FXML
+	private Button firstSort;
 	
-	private Node selected;
-	/**
-     * Creates a Pane for a User object
-     */
+	private Node selected = null;
+	private Node lastSortType = null; // What was sort last time
+	private String lastSort = "ASC"; // ASC OR DESC
+	
+	private Long lastMaxId = 0L;
+	
+	@FXML
+	private void sortOrders(ActionEvent event) {
+		Node clickedSort = (Node) event.getTarget(); // Button sort
+		String whatToSort = clickedSort.getId(); // Column to sort
+		if (lastSortType == clickedSort) {
+			if (lastSort == "ASC") {
+				lastSort = "DESC";
+			}else {
+				lastSort = "ASC";
+			}
+		}else {
+			lastSortType = clickedSort;
+			lastSort = "ASC";
+		}
+		
+		OrdersDAO ordDAO = new OrdersDAO();
+    	ArrayList<Orders> orders = ordDAO.readTodaySort(whatToSort, lastSort);
+        lastMaxId = ordDAO.orderNumberStarting();
+        deleteOrders();
+        orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
+		
+		
+	}
+	
+	private void deleteOrders() {
+		orderContainer.getChildren().clear();
+	}
+	
     private HBox createLine(Orders ord, Long lastMaxId) {
     	// Créer une instance de HBox
         HBox hbox = new HBox(13);  // Spacing = 13.0
-        hbox.setId(Long.toString(ord.getIdOrder()));
+        String id = Long.toString(ord.getIdOrder() - lastMaxId);
+        hbox.setId(id);
+
+        if (selected != null && hbox.getId().equals(selected.getId())) {
+        	selected = (Node) hbox;
+        	hbox.getStyleClass().add("selectLine");
+        }
+        
         hbox.setOnMouseClicked(event -> selectLine(event));
         hbox.setMaxWidth(Double.POSITIVE_INFINITY);
         hbox.getStyleClass().add("tableLine"); // Ajouter la classe tableLine pour appliquer le style
 
         // Créer les Labels avec les classes CSS appropriées
-        Label label1 = new Label(Long.toString(ord.getIdOrder() - lastMaxId));
+        Label label1 = new Label(id);
         label1.getStyleClass().addAll("labelStyle", "bold", "centered");
         label1.setPrefHeight(80);
         label1.setPrefWidth(178);
@@ -112,7 +152,6 @@ public class Controller implements Initializable{
     
     @FXML
     public void selectLine(MouseEvent event) {
-    	showOrder.getStyleClass().add("clickableButton");
     	Node clickedItem = (Node) event.getTarget();
     	Parent line = null;
     	
@@ -126,6 +165,7 @@ public class Controller implements Initializable{
     	
     	if(selected == null) {
     		selected = line;
+    		showOrder.getStyleClass().add("clickableButton");
     	}
     	
     	selected.getStyleClass().remove("selectLine");
@@ -135,14 +175,15 @@ public class Controller implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	lastSortType = (Node) firstSort;
     	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
     	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
     	OrdersDAO ordDAO = new OrdersDAO();
     	ArrayList<Orders> orders = ordDAO.readToday();
-        Long lastMaxId = ordDAO.orderNumberStarting();
-        
+        lastMaxId = ordDAO.orderNumberStarting();
+        deleteOrders();
         orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
         
     }    

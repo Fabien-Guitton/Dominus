@@ -65,7 +65,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
             <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="HISTORIQUE" textFill="WHITE">
@@ -73,7 +73,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
             <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ENCAISSEMENT" textFill="WHITE">
@@ -81,7 +81,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
@@ -107,7 +107,7 @@
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="13.0" style="-fx-border-width: 2; -fx-border-color: CACACA;" VBox.vgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="166.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
+                  <Button id="idOrder" fx:id="firstSort" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="166.0" styleClass="sortButton" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -126,7 +126,23 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="NOM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" styleClass="sortButtonNotClickable" text="NOM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button id="typeOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="135.0" styleClass="sortButton" text="TYPE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -142,7 +158,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="135.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="TYPE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="takingDateOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="100.0" styleClass="sortButton" text="HEURE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -158,7 +174,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="HEURE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="priceITOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="110.0" styleClass="sortButton" text="PRIX" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -174,7 +190,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="PRIX" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" styleClass="sortButtonNotClickable" text="TELEPHONE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -186,23 +202,7 @@
                         </InnerShadow>
                      </effect>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Button>
-                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-background-color: #107FB1; -fx-background-radius: 10;" text="TELEPHONE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
-                           <color>
-                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
                </children>

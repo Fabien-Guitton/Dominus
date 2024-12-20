@@ -6,10 +6,25 @@
     -fx-faint-focus-color: transparent; /* Remove the faint focus outline */
 }
 
+.sortButtonNotClickable{
+	-fx-background-color: #107FB1;
+	-fx-background-radius: 10;
+}
+
+.sortButton{
+	-fx-background-color: #107FB1;
+	-fx-background-radius: 10;
+}
+
+.sortButton:pressed{
+	-fx-background-color: #106BB1;
+	-fx-background-radius: 10;
+}
+
 .showOrder{
 	-fx-background-radius: 10;
 	-fx-background-color: #cacaca;
-	-fx-cursor: hand;
+	-fx-cursor: open_hand;
 }
 
 .clickableButton{
