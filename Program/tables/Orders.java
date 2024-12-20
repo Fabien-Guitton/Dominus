@@ -52,7 +52,7 @@ public class Orders {
 	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
 			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
+		initOrders(idOrder, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
 				instructionsOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif);
 	}
 	
@@ -65,7 +65,7 @@ public class Orders {
 	
 	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
 			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer) {
-		initOrders(getIdOrder(), nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
+		initOrders(idOrder, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
 				instructionsOrd, idDiscount, idCustomer, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
