@@ -40,7 +40,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="569.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="showOrder" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="showOrder" text="PAYER" textFill="WHITE">
+            <Button fx:id="showOrder" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" text="PAYER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -60,7 +60,7 @@
    <bottom>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="103.0" style="-fx-background-color: #107FB1; -fx-border-color: white; -fx-border-width: 3 0 0 0;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="menu" mnemonicParsing="false" onAction="#switchScene" prefHeight="100.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ACCUEIL" textFill="WHITE">
+            <Button id="menu" mnemonicParsing="false" onAction="#switchScene" prefHeight="100.0" prefWidth="165.0" styleClass="menuClickableButton" text="ACCUEIL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="HISTORIQUE" textFill="WHITE">
+            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ENCAISSEMENT" textFill="WHITE">
+            <Button disable="true" mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C;" styleClass="menuClickableButton" text="ENCAISSEMENT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -85,7 +85,7 @@
                </cursor>
             </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="163.0" style="-fx-background-radius: 10; -fx-background-color: D80536;" text="DECONNEXION" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="163.0" styleClass="disconnectClickableButton" text="DECONNEXION" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -107,7 +107,7 @@
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="13.0" style="-fx-border-width: 2; -fx-border-color: CACACA;" VBox.vgrow="ALWAYS">
                <children>
-                  <Button id="idOrder" fx:id="firstSort" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="166.0" styleClass="sortButton" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
+                  <Button id="idOrder" fx:id="firstSort" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="166.0" styleClass="clickableButton" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -126,7 +126,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" styleClass="sortButtonNotClickable" text="NOM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" styleClass="clickableButton" text="NOM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -142,7 +142,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button id="typeOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="135.0" styleClass="sortButton" text="TYPE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="typeOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="135.0" styleClass="clickableButton" text="TYPE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -158,7 +158,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button id="takingDateOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="100.0" styleClass="sortButton" text="HEURE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="takingDateOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="100.0" styleClass="clickableButton" text="HEURE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -174,7 +174,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button id="priceITOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="110.0" styleClass="sortButton" text="PRIX" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="priceITOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="110.0" styleClass="clickableButton" text="PRIX" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -190,7 +190,7 @@
                      </cursor>
                   </Button>
                   <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" styleClass="sortButtonNotClickable" text="TELEPHONE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" styleClass="clickableButton" text="TELEPHONE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

@@ -4,15 +4,22 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="historicalPaymentScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.menu.MenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@menu.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.menu.MenuController">
    <top>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
          <children>
@@ -36,7 +43,7 @@
    <bottom>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="103.0" style="-fx-background-color: #107FB1; -fx-border-color: white; -fx-border-width: 3 0 0 0;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="165.0" style="-fx-background-color: #07364C; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ACCUEIL" textFill="WHITE">
+            <Button disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="165.0" style="-fx-background-color: #07364C;" styleClass="menuClickableButton" text="ACCUEIL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -44,7 +51,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="HISTORIQUE" textFill="WHITE">
+            <Button id="historical" fx:id="menuHistorical" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -52,7 +59,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ENCAISSEMENT" textFill="WHITE">
+            <Button id="payment" fx:id="menuPayment" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="ENCAISSEMENT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -61,7 +68,7 @@
                </cursor>
             </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="deconnectButton" mnemonicParsing="false" prefHeight="84.0" prefWidth="163.0" styleClass="NOTdeconnectButton" text="DECONNEXION" textFill="WHITE">
+            <Button fx:id="deconnectButton" mnemonicParsing="false" onAction="#logout" prefHeight="84.0" prefWidth="163.0" text="DECONNEXION" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -79,41 +86,215 @@
       </HBox>
    </bottom>
    <center>
-      <VBox alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="40.0">
+            <VBox fx:id="mainContainer" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false">
                <children>
-                  <Button fx:id="connectionButton" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="NOTconnectedButton" text="CONNEXION" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="showOrder1" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" style="-fx-background-color: #107FB1;" text="POINTAGE" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Button>
+                  <HBox fx:id="employeeContainer" alignment="CENTER" prefHeight="50.0" prefWidth="1180.0">
+                     <children>
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Connecté en tant que :  ">
+                           <font>
+                              <Font name="System Italic" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="employeText" fill="#05b92b" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="[Manager] Musa Ademi">
+                           <font>
+                              <Font name="System Bold Italic" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="356.0" prefWidth="1180.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="menuCaisse" disable="true" mnemonicParsing="false" prefHeight="169.0" prefWidth="251.0" text="CAISSE 1" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="40.0">
+                     <children>
+                        <Button fx:id="connectionButton" mnemonicParsing="false" onAction="#loginPane" prefHeight="95.0" prefWidth="163.0" styleClass="connectClickableButton" text="CONNEXION" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="showOrder1" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="POINTAGE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="loginContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: white; -fx-border-color: #107FB1; -fx-border-width: 6;" StackPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="118.0" prefWidth="448.0" spacing="10.0">
+                     <children>
+                        <Button id="del" mnemonicParsing="false" onAction="#digitInput" prefHeight="80.0" prefWidth="148.0" styleClass="digit" text="SUPPRIMER" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <PasswordField fx:id="passContainer" maxWidth="1.7976931348623157E308" prefHeight="80.0" promptText="Votre code" style="-fx-background-color: #cacaca; -fx-border-radius: 3; -fx-border-color: black;" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="288.0" prefWidth="448.0" vgap="15.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                    </rowConstraints>
+                     <children>
+                        <Button id="8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button id="0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="=&gt;" textFill="WHITE" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mainPane" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="X" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="60.0" right="60.0" />
+                     </VBox.margin>
+                  </GridPane>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="20.0" left="350.0" right="350.0" top="20.0" />
+               </StackPane.margin>
+            </VBox>
+            <Pane fx:id="errorContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="567.0" style="-fx-background-color: #ffd373; -fx-border-color: #ff9b05; -fx-border-width: 5; -fx-border-radius: 15; -fx-background-radius: 20;" visible="false" StackPane.alignment="CENTER">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" layoutX="5.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="269.0" prefWidth="557.0" spacing="100.0">
+                     <children>
+                        <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez saisir un code correcte." VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Italic" size="20.0" />
+                           </font>
+                        </Text>
+                        <Button alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#okError" prefHeight="44.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 0; -fx-cursor: open_hand; -fx-text-fill: black;" text="OK">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="15.14" radius="8.535" />
+                           </effect>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </Pane>
          </children>
-         <padding>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-         </padding>
-      </VBox>
+      </StackPane>
    </center>
 </BorderPane>

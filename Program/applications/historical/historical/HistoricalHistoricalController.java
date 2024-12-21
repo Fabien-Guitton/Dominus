@@ -1,6 +1,7 @@
 package applications.historical.historical;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
@@ -9,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import applications.ControllerMustHave;
 import dao.OrdersDAO;
+import init.SceneManager;
+import interfaces.ControllerMustHave;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -48,10 +49,6 @@ public class HistoricalHistoricalController implements Initializable, Controller
 	
 	private Long lastMaxId = 0L;
 	
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
-	
 	@FXML
 	private void sortOrders(ActionEvent event) {
 		Node clickedSort = (Node) event.getTarget(); // Button sort
@@ -78,7 +75,7 @@ public class HistoricalHistoricalController implements Initializable, Controller
     	// Créer une instance de HBox
         HBox hbox = new HBox(13);  // Spacing = 13.0
         String id = Long.toString(ord.getIdOrder() - lastMaxId);
-        hbox.setId(id);
+        hbox.setId(Long.toString(ord.getIdOrder()));
 
         if (selected != null && hbox.getId().equals(selected.getId())) {
         	selected = (Node) hbox;
@@ -178,36 +175,25 @@ public class HistoricalHistoricalController implements Initializable, Controller
     
     @FXML
     private void switchScene(ActionEvent event) throws IOException{
-    	String path = "";
     	Node clickedButton = (Node) event.getTarget();
-    	switch (clickedButton.getId()) {
-			case "historical":
-				path = "/applications/historical/historical/historicalHistorical.fxml";
-				break;
-			case "payment":
-				path = "/applications/historical/payment/historicalPayment.fxml";
-				break;
-			case "menu":
-				path = "/applications/menu/menu.fxml";
-				break;
-			default:
-				path = "/applications/menu/menu.fxml";
-    	}
+    	String sceneName = clickedButton.getId();
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-    	root = loader.load();
+    	//FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+    	//root = loader.load();
+    	//HistoricalHistoricalController historicalController = loader.getController();
+    	//historicalController.refreshData(); PAS BESOIN CAR void initialize EST LA POUR CA
     	
-    	//HistoricalPaymentController encaissementController = loader.getController();
-    	//encaissementController.refreshData(); PAS BESOIN CAR void initialize EST LA POUR CA
-    	
-    	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	scene = new Scene(root);
-    	stage.setScene(scene);
-    	stage.show();
+    	Object controller = SceneManager.getController(sceneName);
+    	((ControllerMustHave) controller).refreshData();
+    	Scene scene = SceneManager.getScene(sceneName);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
     
     @Override
     public void refreshData() {
+    	System.out.println("Refresh Historical");
     	OrdersDAO ordDAO = new OrdersDAO();
     	ArrayList<Orders> orders = ordDAO.readToday();
     	deleteOrders(); 
@@ -225,6 +211,7 @@ public class HistoricalHistoricalController implements Initializable, Controller
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	System.out.println("Init Historical");
     	lastSortType = (Node) firstSort;
     	refreshData();
     	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));

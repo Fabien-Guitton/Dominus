@@ -1,45 +1,40 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-/* Remove the focus border when the button is clicked or gains focus */
 .button:focused {
-    -fx-focus-color: transparent; /* Remove the focus highlight */
-    -fx-faint-focus-color: transparent; /* Remove the faint focus outline */
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
 }
 
-.sortButtonNotClickable{
-	-fx-background-color: #107FB1;
-	-fx-background-radius: 10;
-}
-
-.sortButton{
-	-fx-background-color: #107FB1;
-	-fx-background-radius: 10;
-}
-
-.sortButton:pressed{
-	-fx-background-color: #106BB1;
-	-fx-background-radius: 10;
-}
-
-.showOrder{
+.button{
 	-fx-background-radius: 10;
 	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+}
+
+.menuClickableButton{
+	-fx-background-color: #107FB1;
+	-fx-border-color: white;
+	-fx-border-width: 0 2 0 0;
+	-fx-background-radius: 0;
 	-fx-cursor: open_hand;
 }
 
 .clickableButton{
 	-fx-background-color: #107FB1;
+	-fx-cursor: open_hand;
 }
 
-/* Style pour l'HBox */
-.tableLine {
-    -fx-border-width: 2;
-    -fx-border-color: #cacaca;
-    -fx-spacing: 13px;
-    -fx-alignment: CENTER_LEFT;
+.disconnectClickableButton{
+	-fx-background-color: #D80536;
+	-fx-cursor: open_hand;
 }
 
-/* Style pour les labels à l'intérieur de l'HBox */
+.clickableButton:pressed, .disconnectClickableButton:pressed, .menuClickableButton:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}
+
 .labelStyle {
     -fx-border-color: #cacaca;
     -fx-border-width: 0 1 0 0;
@@ -67,11 +62,6 @@
     -fx-wrap-text: true;
 }
 
-.orderLine{
-	-fx-border-width: 1; 
-	-fx-border-color: #cacaca;
-}
-
 .selectLine{
 	-fx-cursor: closed_hand;
 	-fx-background-color: #dbdbdb;
@@ -86,9 +76,9 @@
 	-fx-border-color: #cacaca;
 	-fx-border-width: 1;
 	-fx-cursor: open_hand;
+    -fx-spacing: 13px;
+    -fx-alignment: CENTER_LEFT;
 }
-
-
 
 
 
