@@ -148,7 +148,7 @@ public class OrdersDAO extends DAO<Orders> {
 	public ArrayList<Orders> readToday() {
         LocalDateTime Today = LocalDate.now().atTime(00, 00, 01);
 		ArrayList<Orders> orders = new ArrayList<Orders>();
-		String query = "SELECT * FROM orders WHERE takingDateOrd > ? ORDER BY idOrder ASC;";
+		String query = "SELECT * FROM orders WHERE payOrdON AND takingDateOrd > ? ORDER BY idOrder ASC;";
 		PreparedStatement ps = super.getPs(query);
 		DiscountsDAO discDAO = new DiscountsDAO();
 		Discounts disc = null;
@@ -171,11 +171,59 @@ public class OrdersDAO extends DAO<Orders> {
 		return orders;
 	}
 	
+	public ArrayList<Orders> readNotPayed() {
+		ArrayList<Orders> orders = new ArrayList<Orders>();
+		String query = "SELECT * FROM orders WHERE NOT payOrdON ORDER BY idOrder ASC;";
+		Statement stmt = super.getStmt();
+		DiscountsDAO discDAO = new DiscountsDAO();
+		Discounts disc = null;
+		CustomersDAO custDAO = new CustomersDAO();
+		Customers cust = null;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				disc = discDAO.read(rs.getLong(11));
+				cust = custDAO.read(rs.getLong(12));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				orders.add(ord);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return orders;
+	}
+	
+	public ArrayList<Orders> readNotPayed(String sortColumn, String sortType) {
+		ArrayList<Orders> orders = new ArrayList<Orders>();
+		String query = "SELECT * FROM orders WHERE NOT payOrdON ORDER BY " + sortColumn + " " + sortType + ";";
+		Statement stmt = super.getStmt();
+		DiscountsDAO discDAO = new DiscountsDAO();
+		Discounts disc = null;
+		CustomersDAO custDAO = new CustomersDAO();
+		Customers cust = null;
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				disc = discDAO.read(rs.getLong(11));
+				cust = custDAO.read(rs.getLong(12));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				orders.add(ord);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return orders;
+	}
+	
 	// To read today with ordered result
-	public ArrayList<Orders> readTodaySort(String sortColumn, String sortType) {
+	public ArrayList<Orders> readToday(String sortColumn, String sortType) {
         LocalDateTime Today = LocalDate.now().atTime(00, 00, 01);
 		ArrayList<Orders> orders = new ArrayList<Orders>();
-		String query = "SELECT * FROM orders WHERE takingDateOrd > ? ORDER BY " + sortColumn + " " + sortType + ";";
+		String query = "SELECT * FROM orders WHERE payOrdON AND takingDateOrd > ? ORDER BY " + sortColumn + " " + sortType + ";";
 		PreparedStatement ps = super.getPs(query);
 		DiscountsDAO discDAO = new DiscountsDAO();
 		Discounts disc = null;

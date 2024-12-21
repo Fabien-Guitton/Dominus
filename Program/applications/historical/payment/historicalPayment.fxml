@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.historical.historical.Controller">
+<BorderPane fx:id="historicalPaymentScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@historicalPayment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.historical.payment.HistoricalPaymentController">
    <top>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
          <children>
@@ -40,7 +40,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="569.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="showOrder" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="showOrder" text="AFFICHER" textFill="WHITE">
+            <Button fx:id="showOrder" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="showOrder" text="PAYER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -60,7 +60,7 @@
    <bottom>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="103.0" style="-fx-background-color: #107FB1; -fx-border-color: white; -fx-border-width: 3 0 0 0;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ACCUEIL" textFill="WHITE">
+            <Button id="menu" mnemonicParsing="false" onAction="#switchScene" prefHeight="100.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ACCUEIL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="HISTORIQUE" textFill="WHITE">
+            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ENCAISSEMENT" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C; -fx-border-color: white; -fx-border-width: 0 2 0 0;" text="ENCAISSEMENT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

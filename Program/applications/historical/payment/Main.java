@@ -1,4 +1,4 @@
-package applications.historical.historical;
+package applications.historical.payment;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,8 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	@Override
 	public void start(Stage Stage) {
-		String cssFile = "historicalHistorical.css";
-		String fxmlFile = "historicalHistorical.fxml";
+		String cssFile = "historicalPayment.css";
+		String fxmlFile = "historicalPayment.fxml";
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
 			Scene scene = new Scene(root);

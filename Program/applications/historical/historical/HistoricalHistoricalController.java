@@ -1,5 +1,6 @@
 package applications.historical.historical;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
@@ -8,14 +9,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import applications.ControllerMustHave;
 import dao.OrdersDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -23,10 +27,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import tables.Orders;
 
-public class Controller implements Initializable{
+public class HistoricalHistoricalController implements Initializable, ControllerMustHave{
 	
 	@FXML
 	private VBox orderContainer;
@@ -43,10 +48,13 @@ public class Controller implements Initializable{
 	
 	private Long lastMaxId = 0L;
 	
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
+	
 	@FXML
 	private void sortOrders(ActionEvent event) {
 		Node clickedSort = (Node) event.getTarget(); // Button sort
-		String whatToSort = clickedSort.getId(); // Column to sort
 		if (lastSortType == clickedSort) {
 			if (lastSort == "ASC") {
 				lastSort = "DESC";
@@ -58,12 +66,7 @@ public class Controller implements Initializable{
 			lastSort = "ASC";
 		}
 		
-		OrdersDAO ordDAO = new OrdersDAO();
-    	ArrayList<Orders> orders = ordDAO.readTodaySort(whatToSort, lastSort);
-        lastMaxId = ordDAO.orderNumberStarting();
-        deleteOrders();
-        orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
-		
+		refreshData(lastSortType.getId(), lastSort);
 		
 	}
 	
@@ -173,18 +176,61 @@ public class Controller implements Initializable{
     	selected = line;
     }
     
+    @FXML
+    private void switchScene(ActionEvent event) throws IOException{
+    	String path = "";
+    	Node clickedButton = (Node) event.getTarget();
+    	switch (clickedButton.getId()) {
+			case "historical":
+				path = "/applications/historical/historical/historicalHistorical.fxml";
+				break;
+			case "payment":
+				path = "/applications/historical/payment/historicalPayment.fxml";
+				break;
+			case "menu":
+				path = "/applications/menu/menu.fxml";
+				break;
+			default:
+				path = "/applications/menu/menu.fxml";
+    	}
+    	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+    	root = loader.load();
+    	
+    	//HistoricalPaymentController encaissementController = loader.getController();
+    	//encaissementController.refreshData(); PAS BESOIN CAR void initialize EST LA POUR CA
+    	
+    	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	scene = new Scene(root);
+    	stage.setScene(scene);
+    	stage.show();
+    }
+    
+    @Override
+    public void refreshData() {
+    	OrdersDAO ordDAO = new OrdersDAO();
+    	ArrayList<Orders> orders = ordDAO.readToday();
+    	deleteOrders(); 
+		lastMaxId = ordDAO.orderNumberStarting();
+        orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
+	}
+    
+    public void refreshData(String column, String type) {
+    	OrdersDAO ordDAO = new OrdersDAO();
+    	ArrayList<Orders> orders = ordDAO.readToday(column, type);
+    	deleteOrders(); 
+		lastMaxId = ordDAO.orderNumberStarting();
+        orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
+	} 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	lastSortType = (Node) firstSort;
+    	refreshData();
     	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
     	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
-    	OrdersDAO ordDAO = new OrdersDAO();
-    	ArrayList<Orders> orders = ordDAO.readToday();
-        lastMaxId = ordDAO.orderNumberStarting();
-        deleteOrders();
-        orders.stream().map(order -> createLine(order, lastMaxId)).forEach(HBox -> orderContainer.getChildren().add(HBox));
         
     }    
 
