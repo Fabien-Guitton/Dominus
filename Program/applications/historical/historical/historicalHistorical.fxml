@@ -88,7 +88,7 @@
                </cursor>
             </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="163.0" styleClass="disconnectClickableButton" text="DECONNEXION" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#logout" prefHeight="84.0" prefWidth="163.0" styleClass="disconnectClickableButton" text="DECONNEXION" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

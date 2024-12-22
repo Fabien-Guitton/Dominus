@@ -128,6 +128,7 @@ public class MenuController implements Initializable, ControllerMustHave{
 				SceneManager.addScene("historical", "/applications/historical/historical/historicalHistorical.fxml");
 			    SceneManager.addScene("payment", "/applications/historical/payment/historicalPayment.fxml");
 			    // SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
+			 // SceneManager.addScene("clockingIn", "/applications/checkout/menu/menu.fxml"); LE POINTAGE
     			
     			connectedEmployees = emp;
     			employeText.setText("[" + connectedEmployees.getRoleEmp() + "] " + connectedEmployees.getNameEmp());
@@ -242,8 +243,8 @@ public class MenuController implements Initializable, ControllerMustHave{
     	errorContainer.setVisible(false);
     	employeeContainer.setVisible(false);
     	refreshData();
-    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))));
+    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")));
+    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
     }   

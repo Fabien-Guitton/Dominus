@@ -2,6 +2,7 @@ package applications.historical.payment;
 
 import java.io.IOException;
 
+
 import java.net.URL;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import applications.menu.MenuController;
 import dao.OrdersDAO;
 import init.SceneManager;
 import interfaces.ControllerMustHave;
@@ -50,6 +52,17 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
 	private Long lastMaxId = 0L;
 	
 	@FXML
+    private void logout(ActionEvent event) {
+		Object controller = SceneManager.getController("menu");
+		((MenuController) controller).setConnectedEmployees(null);
+    	((MenuController) controller).refreshData();
+    	Scene scene = SceneManager.getScene("menu");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+	
+	@FXML
 	private void sortOrders(ActionEvent event) {
 		Node clickedSort = (Node) event.getTarget(); // Button sort
 		if (lastSortType == clickedSort) {
@@ -64,7 +77,6 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
 		}
 		
 		refreshData(lastSortType.getId(), lastSort);
-		
 	}
 	
 	private void deleteOrders() {
@@ -86,6 +98,9 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
         hbox.setMaxWidth(Double.POSITIVE_INFINITY);
         hbox.getStyleClass().add("tableLine"); // Ajouter la classe tableLine pour appliquer le style
 
+        if (ord.getIdOrder() - lastMaxId <= 0) {
+        	id = "ELAPSED";
+        }
         // Créer les Labels avec les classes CSS appropriées
         Label label1 = new Label(id);
         label1.getStyleClass().addAll("labelStyle", "bold", "centered");
@@ -214,8 +229,8 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
     	System.out.println("Init Payment");
     	refreshData();
     	lastSortType = (Node) firstSort;
-    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))));
+    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")));
+    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
     }   

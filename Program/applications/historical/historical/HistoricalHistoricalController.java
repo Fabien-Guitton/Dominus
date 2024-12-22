@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import applications.menu.MenuController;
 import dao.OrdersDAO;
 import init.SceneManager;
 import interfaces.ControllerMustHave;
@@ -48,6 +49,17 @@ public class HistoricalHistoricalController implements Initializable, Controller
 	private String lastSort = "ASC"; // ASC OR DESC
 	
 	private Long lastMaxId = 0L;
+	
+	@FXML
+    private void logout(ActionEvent event) {
+		Object controller = SceneManager.getController("menu");
+		((MenuController) controller).setConnectedEmployees(null);
+    	((MenuController) controller).refreshData();
+    	Scene scene = SceneManager.getScene("menu");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 	
 	@FXML
 	private void sortOrders(ActionEvent event) {
@@ -214,8 +226,8 @@ public class HistoricalHistoricalController implements Initializable, Controller
     	System.out.println("Init Historical");
     	lastSortType = (Node) firstSort;
     	refreshData();
-    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))));
+    	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")));
+    	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
         
