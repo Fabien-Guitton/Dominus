@@ -68,7 +68,7 @@ VALUES
 (5, 2, 1, TRUE, 'admin', NOW(), 'admin', NOW());
 
 /* Populate TakeResponsibilityFor */
-INSERT INTO TakeResponsibilityFor (idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif)
+INSERT INTO TakeResponsibilityFor (idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake, userCreate, dateCreate, userModif, dateModif)
 VALUES
-(1, 2, TRUE, TRUE, 'admin', NOW(), 'admin', NOW()),
-(2, 3, FALSE, TRUE, 'admin', NOW(), 'admin', NOW());
+(1, 2, TRUE, TRUE, NOW(), NULL, 'admin', NOW(), 'admin', NOW()),
+(2, 3, FALSE, TRUE, NOW(), NOW(), 'admin', NOW(), 'admin', NOW());

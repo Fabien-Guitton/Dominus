@@ -17,18 +17,20 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 	
 	@Override
 	public TakeResponsabilityFor create(TakeResponsabilityFor trf) {
-		String query = "INSERT INTO takeresponsibilityfor (idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO takeresponsibilityfor (idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake, userCreate, dateCreate, userModif, dateModif) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement ps = super.getPs(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		try {
 			ps.setLong(1, trf.getIdOrder().getIdOrder()); // idOrder
 			ps.setLong(2, trf.getIdEmployee().getIdEmployee()); // idEmployee
 			ps.setBoolean(3, trf.isDeliveryTakeON()); // deliveryTakeON
 			ps.setBoolean(4, trf.isPaymentTakeON()); // paymentTakeON
-			ps.setString(5, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(6, new Timestamp(System.currentTimeMillis())); // dateCreate
-			ps.setString(7, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setTimestamp(5, trf.getStartDateTake()); // startDateTake
+			ps.setTimestamp(6, trf.getEndDateTake()); // endDateTake
+			ps.setString(7, super.connect.getMetaData().getUserName()); // userCreate
+			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(9, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
@@ -47,7 +49,7 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 	@Override
 	public TakeResponsabilityFor update(TakeResponsabilityFor trf) {
 		String query = "UPDATE takeresponsibilityfor SET "
-				+ "idOrder = ?, idEmployee = ?, deliveryTakeON = ?, paymentTakeON = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "idOrder = ?, idEmployee = ?, deliveryTakeON = ?, paymentTakeON = ?, startDateTake = ?, endDateTake = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
 				+ "WHERE idTakeResponsibilityFor = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
@@ -55,11 +57,13 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 			ps.setLong(2, trf.getIdEmployee().getIdEmployee()); // idEmployee
 			ps.setBoolean(3, trf.isDeliveryTakeON()); // deliveryTakeON
 			ps.setBoolean(4, trf.isPaymentTakeON()); // paymentTakeON
-			ps.setString(5, trf.getUserCreate()); // userCreate
-			ps.setTimestamp(6, trf.getDateCreate()); // dateCreate
-			ps.setString(7, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateModif
-			ps.setLong(9, trf.getidTakeResponsabilityFor()); // id
+			ps.setTimestamp(5, trf.getStartDateTake()); // startDateTake
+			ps.setTimestamp(6, trf.getEndDateTake()); // endDateTake
+			ps.setString(7, trf.getUserCreate()); // userCreate
+			ps.setTimestamp(8, trf.getDateCreate()); // dateCreate
+			ps.setString(9, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setLong(11, trf.getidTakeResponsabilityFor()); // id
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -94,7 +98,7 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 			while (rs.next()) {
 				ord = ordDAO.read(rs.getLong(2));
 				emp = empDAO.read(rs.getLong(3));
-				TakeResponsabilityFor trf = new TakeResponsabilityFor(rs.getLong(1), ord, emp, rs.getBoolean(4), rs.getBoolean(5), rs.getString(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9));
+				TakeResponsabilityFor trf = new TakeResponsabilityFor(rs.getLong(1), ord, emp, rs.getBoolean(4), rs.getBoolean(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
 				trfs.add(trf);
 			}
 			rs.close();
@@ -119,7 +123,7 @@ public class TakeResponsabilityForDAO extends DAO<TakeResponsabilityFor> {
 			while (rs.next()) {
 				ord = ordDAO.read(rs.getLong(2));
 				emp = empDAO.read(rs.getLong(3));
-				trf = new TakeResponsabilityFor(rs.getLong(1), ord, emp, rs.getBoolean(4), rs.getBoolean(5), rs.getString(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9));
+				trf = new TakeResponsabilityFor(rs.getLong(1), ord, emp, rs.getBoolean(4), rs.getBoolean(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
 			}
 			rs.close();
 			ps.close();

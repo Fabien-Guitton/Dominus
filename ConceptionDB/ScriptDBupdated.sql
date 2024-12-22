@@ -185,6 +185,8 @@ CREATE OR REPLACE TABLE TakeResponsibilityFor(
    idEmployee BIGINT,
    deliveryTakeON BOOLEAN NOT NULL,
    paymentTakeON BOOLEAN NOT NULL,
+   startDateTake DATETIME NOT NULL,
+   endDateTake DATETIME,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
