@@ -32,6 +32,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import tables.Orders;
+import utilClass.IdsMetaData;
+import utilClass.ScenesMap;
 
 public class HistoricalHistoricalController implements Initializable, ControllerMustHave{
 	
@@ -52,10 +54,10 @@ public class HistoricalHistoricalController implements Initializable, Controller
 	
 	@FXML
     private void logout(ActionEvent event) {
-		Object controller = SceneManager.getController("menu");
+		Object controller = SceneManager.getController(ScenesMap.MENU);
 		((MenuController) controller).setConnectedEmployees(null);
     	((MenuController) controller).refreshData();
-    	Scene scene = SceneManager.getScene("menu");
+    	Scene scene = SceneManager.getScene(ScenesMap.MENU);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -86,10 +88,12 @@ public class HistoricalHistoricalController implements Initializable, Controller
     private HBox createLine(Orders ord, Long lastMaxId) {
     	// Créer une instance de HBox
         HBox hbox = new HBox(13);  // Spacing = 13.0
-        String id = Long.toString(ord.getIdOrder() - lastMaxId);
-        hbox.setId(Long.toString(ord.getIdOrder()));
+        Long realId = ord.getIdOrder();
+        Long todayId = ord.getIdOrder() - lastMaxId;
+        IdsMetaData meta = new IdsMetaData(realId, todayId);
+        hbox.setUserData(meta);
 
-        if (selected != null && hbox.getId().equals(selected.getId())) {
+        if (selected != null && meta.getRealId() == ((IdsMetaData) selected.getUserData()).getRealId()) {
         	selected = (Node) hbox;
         	hbox.getStyleClass().add("selectLine");
         }
@@ -99,7 +103,7 @@ public class HistoricalHistoricalController implements Initializable, Controller
         hbox.getStyleClass().add("tableLine"); // Ajouter la classe tableLine pour appliquer le style
 
         // Créer les Labels avec les classes CSS appropriées
-        Label label1 = new Label(id);
+        Label label1 = new Label(Long.toString(meta.getTodayId()));
         label1.getStyleClass().addAll("labelStyle", "bold", "centered");
         label1.setPrefHeight(80);
         label1.setPrefWidth(178);
@@ -195,9 +199,9 @@ public class HistoricalHistoricalController implements Initializable, Controller
     	//HistoricalHistoricalController historicalController = loader.getController();
     	//historicalController.refreshData(); PAS BESOIN CAR void initialize EST LA POUR CA
     	
-    	Object controller = SceneManager.getController(sceneName);
+    	Object controller = SceneManager.getController(Enum.valueOf(ScenesMap.class, sceneName.toUpperCase()));
     	((ControllerMustHave) controller).refreshData();
-    	Scene scene = SceneManager.getScene(sceneName);
+    	Scene scene = SceneManager.getScene(Enum.valueOf(ScenesMap.class, sceneName.toUpperCase()));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

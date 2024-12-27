@@ -158,7 +158,7 @@ public class TakeResponsabilityFor {
 		if(idEmployee != null) {
 			result += idEmployee.resume();
 		}
-		result += ", deliveryTakeON = " + deliveryTakeON + ", paymentTakeON = " + paymentTakeON + 
+		result += ", deliveryTakeON = " + deliveryTakeON + ", paymentTakeON = " + paymentTakeON + ", startDateTake = " + startDateTake + ", endDateTake = " + endDateTake +
 				", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 		return result; 
 	}

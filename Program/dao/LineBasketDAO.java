@@ -129,4 +129,29 @@ public class LineBasketDAO extends DAO<LineBasket> {
 		}
 		return lb;
 	}
+	
+	public ArrayList<LineBasket> readLBInOrder(long idOrder) {
+		ArrayList<LineBasket> linebasket = new ArrayList<LineBasket>();
+		String query = "SELECT * FROM linebasket WHERE idOrder = ? ORDER BY idOrder;";
+		PreparedStatement ps = super.getPs(query);
+		ProductsDAO prodDAO = new ProductsDAO();
+		Products prod = null;
+		OrdersDAO ordDAO = new OrdersDAO();
+		Orders ord = null;
+		try {
+			ps.setLong(1, idOrder);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				prod = prodDAO.read(rs.getLong(5));
+				ord = ordDAO.read(rs.getLong(6));
+				LineBasket lb = new LineBasket(rs.getLong(1), rs.getInt(2), rs.getDouble(3), rs.getDouble(4), prod, ord, rs.getString(7), rs.getTimestamp(8), rs.getString(9), rs.getTimestamp(10));
+				linebasket.add(lb);
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return linebasket;
+	}
 }

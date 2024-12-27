@@ -71,7 +71,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" disable="true" mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C;" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
+            <Button id="historical_historical" disable="true" mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C;" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="payment" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="ENCAISSEMENT" textFill="WHITE">
+            <Button id="historical_payment" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="ENCAISSEMENT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

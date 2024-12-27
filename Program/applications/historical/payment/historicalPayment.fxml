@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="historicalPaymentScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@historicalPayment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.historical.payment.HistoricalPaymentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@historicalPayment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.historical.payment.HistoricalPaymentController">
    <top>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
          <children>
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
+            <Button id="historical_historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -105,7 +105,7 @@
    <center>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="13.0" style="-fx-border-width: 2; -fx-border-color: CACACA;" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="13.0" style="-fx-border-width: 1; -fx-border-color: CACACA;" VBox.vgrow="ALWAYS">
                <children>
                   <Button id="idOrder" fx:id="firstSort" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="166.0" styleClass="clickableButton" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
                      <font>

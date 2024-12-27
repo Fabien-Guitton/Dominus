@@ -51,7 +51,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="historical" fx:id="menuHistorical" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="HISTORIQUE" textFill="WHITE">
+            <Button id="HISTORICAL_HISTORICAL" fx:id="menuHistorical" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="HISTORIQUE" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
             </Button>
-            <Button id="payment" fx:id="menuPayment" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="ENCAISSEMENT" textFill="WHITE">
+            <Button id="HISTORICAL_PAYMENT" fx:id="menuPayment" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuButton" text="ENCAISSEMENT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -154,7 +154,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="118.0" prefWidth="448.0" spacing="10.0">
                      <children>
-                        <Button id="del" mnemonicParsing="false" onAction="#digitInput" prefHeight="80.0" prefWidth="148.0" styleClass="digit" text="SUPPRIMER" HBox.hgrow="ALWAYS">
+                        <Button id="digit-del" mnemonicParsing="false" onAction="#digitInput" prefHeight="80.0" prefWidth="148.0" styleClass="digit" text="SUPPRIMER" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -182,52 +182,52 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <Button id="8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button id="digit-1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
                         </Button>
-                        <Button id="0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button id="digit-0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>

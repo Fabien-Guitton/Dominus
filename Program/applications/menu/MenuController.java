@@ -1,9 +1,11 @@
 package applications.menu;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import dao.EmployeesDAO;
@@ -27,6 +29,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import tables.Employees;
+import utilClass.ScenesMap;
+import utilClass.UDPMultiCastApp;
 
 public class MenuController implements Initializable, ControllerMustHave{
 	
@@ -59,7 +63,8 @@ public class MenuController implements Initializable, ControllerMustHave{
 	
 	private Timeline timeUpdate;
 	
-	private Employees connectedEmployees = null;
+	private ArrayList<Long> connectedEmployees = new ArrayList<Long>();
+	private Employees connectedEmp = null;
     
     @FXML
     private void switchScene(ActionEvent event) throws IOException{
@@ -74,9 +79,9 @@ public class MenuController implements Initializable, ControllerMustHave{
     	//HistoricalHistoricalController historicalController = loader.getController();
     	//historicalController.refreshData(); PAS BESOIN CAR void initialize EST LA POUR CA
     	
-    	Object controller = SceneManager.getController(sceneName);
+    	Object controller = SceneManager.getController(Enum.valueOf(ScenesMap.class, sceneName.toUpperCase()));
     	((ControllerMustHave) controller).refreshData();
-    	Scene scene = SceneManager.getScene(sceneName);
+    	Scene scene = SceneManager.getScene(Enum.valueOf(ScenesMap.class, sceneName.toUpperCase()));
     	if (scene != null) {
     		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -108,7 +113,8 @@ public class MenuController implements Initializable, ControllerMustHave{
     	passContainer.requestFocus();
     	passContainer.selectRange(length, length);
     	Node clickedButton = (Node) event.getTarget();
-    	String digit = clickedButton.getId();
+    	String[] digitId = clickedButton.getId().split("-");
+    	String digit = digitId[1];
     	if (!digit.equals("del") && length < 4) {
     		passContainer.appendText(digit);
     	}else if (digit.equals("del") && length > 0){
@@ -121,20 +127,24 @@ public class MenuController implements Initializable, ControllerMustHave{
     	if (passContainer.getLength() == 4) {
     		String code = passContainer.getText();
     		EmployeesDAO empDAO = new EmployeesDAO();
-    		Employees emp = empDAO.readCode(code);
+    		Employees emp = empDAO.read(code);
     		if (emp != null) { // Connexion reussi
-    			
-    			// Préchargement des scenes voisines
-				SceneManager.addScene("historical", "/applications/historical/historical/historicalHistorical.fxml");
-			    SceneManager.addScene("payment", "/applications/historical/payment/historicalPayment.fxml");
-			    // SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
-			 // SceneManager.addScene("clockingIn", "/applications/checkout/menu/menu.fxml"); LE POINTAGE
-    			
-    			connectedEmployees = emp;
-    			employeText.setText("[" + connectedEmployees.getRoleEmp() + "] " + connectedEmployees.getNameEmp());
-    			mainPane(event);
+    			if (!connectedEmployees.contains(emp.getIdEmployee())) {
+    				// Préchargement des scenes voisines
+    				SceneManager.addScene(ScenesMap.HISTORICAL_HISTORICAL);
+    			    SceneManager.addScene(ScenesMap.HISTORICAL_PAYMENT);
+    			    // SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
+    			    // SceneManager.addScene("clockingIn", "/applications/checkout/menu/menu.fxml"); LE POINTAGE
+        			
+        			connectedEmp = emp;
+        			UDPMultiCastApp.sendCommand(utilClass.Command.ADD_CONNECTED_EMPLOYEE.getCommand() + Long.toString(emp.getIdEmployee()));
+        			employeText.setText("[" + connectedEmp.getRoleEmp() + "] " + connectedEmp.getNameEmp());
+        			mainPane(event);
+    			}else {
+    				error("L'employé est déjà connecté à une caisse.");
+    			}
     		}else {
-    			error("Code erroné.");
+    			error("Le code est erroné OU l'employé n'est pas pointé.");
     		}
     	}else {
     		error("Veuillez saisir un code correcte");
@@ -143,7 +153,8 @@ public class MenuController implements Initializable, ControllerMustHave{
     
     @FXML
     private void logout(ActionEvent event) {
-    	connectedEmployees = null;
+    	UDPMultiCastApp.sendCommand(utilClass.Command.RM_CONNECTED_EMPLOYEE.getCommand() + Long.toString(connectedEmp.getIdEmployee()));
+    	connectedEmp = null;
     	mainPane(event);
     }
     
@@ -161,7 +172,15 @@ public class MenuController implements Initializable, ControllerMustHave{
     }
     
     public void setConnectedEmployees(Employees emp) {
-    	connectedEmployees = emp;
+    	connectedEmp = emp;
+    }
+    
+    public void addConnectedEmp(Long idEmployee) {
+    	connectedEmployees.add(idEmployee);
+    }
+    
+    public void removeConnectedEmp(Long idEmployee) {
+    	connectedEmployees.remove(idEmployee);
     }
     
     private void isConnected(Boolean isConnected){
@@ -187,8 +206,8 @@ public class MenuController implements Initializable, ControllerMustHave{
     	}else {
     		
     		// Dé-chargement des scenes car elles ne sont plus voisines vu que non connecté
-        	SceneManager.removeScene("historical");
-    	    SceneManager.removeScene("payment");
+        	SceneManager.removeScene(ScenesMap.HISTORICAL_HISTORICAL);
+    	    SceneManager.removeScene(ScenesMap.HISTORICAL_PAYMENT);
     	    
     		connectionButton.getStyleClass().add("connectClickableButton");
 			deconnectButton.getStyleClass().remove("disconnectClickableButton");
@@ -209,10 +228,10 @@ public class MenuController implements Initializable, ControllerMustHave{
     	System.out.println("Refresh Menu");
     	int afk_timeout = 60; // In secondes
     	
-    	if (connectedEmployees != null) { // An employee is already connected
+    	if (connectedEmp != null) { // An employee is already connected
 			isConnected(true);
     		timeUpdate = new Timeline(new KeyFrame(Duration.seconds(afk_timeout), e -> { // Timeout if AFK
-    			connectedEmployees = null;
+    			logout(null);
     			isConnected(false);
     		}));
         	timeUpdate.play();

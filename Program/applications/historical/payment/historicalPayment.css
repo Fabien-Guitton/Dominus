@@ -111,10 +111,6 @@
     -fx-background-color: #cacaca; /* Couleur d'arrière-plan */
 }
 
-.scroll-bar:horizontal {
-    -fx-background-color: #cacaca; /* Couleur d'arrière-plan */
-}
-
 /* Thumb - la partie qu'on déplace */
 .scroll-bar .thumb {
     -fx-background-color: white; /* Couleur principale */

@@ -11,7 +11,7 @@ public class SingleConnection {
 	private SingleConnection(String serverName, String dbName, String login, String password) {
 		String databaseName = "Dominus";
 		// Connection with xampp
-		String url = "jdbc:mysql://localhost:3306/" + databaseName + "?serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost:3306/" + databaseName + "?serverTimezone=Europe/Paris";
 //		String login = "root"; // dans l'ideal un login de connexion pour l'application, et non root...
 //		String password = ""; // mot de passe avec xampp
 		connect = null;
@@ -42,6 +42,14 @@ public class SingleConnection {
 			new SingleConnection("127.0.0.1", "Dominus", "root", "");
 		}
 		return connect;
+	}
+	
+	public static void setAutoCommit(Boolean autoCommit) {
+		try {
+			connect.setAutoCommit(autoCommit);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void close() {

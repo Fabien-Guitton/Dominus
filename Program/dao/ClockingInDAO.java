@@ -99,4 +99,29 @@ public class ClockingInDAO extends DAO<ClockingIn> {
 		}
 		return clocks;
 	}
+	
+	/*
+	public ClockingIn read(String codeEmp) {
+		ClockingIn clo = null;
+		// Un employé rechercher par son code, qui est présent actuellement (donc qui est pointé)
+		String query = "SELECT clo.* FROM employees emp INNER JOIN clockingin clo USING(idEmployee) WHERE emp.codeEmp = ? AND c.endClockingIn IS NULL ORDER BY c.idClockingIn DESC LIMIT 1;";
+		PreparedStatement ps = super.getPs(query);
+		EmployeesDAO empDAO = new EmployeesDAO();
+		Employees emp = null;
+		try {
+			ps.setString(1, codeEmp);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				emp = empDAO.read(rs.getLong(4));
+				clo = new ClockingIn(rs.getLong(1), rs.getTimestamp(2), rs.getTimestamp(3), emp, rs.getString(5), rs.getTimestamp(6), rs.getString(7), rs.getTimestamp(8));
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return clo;
+	}
+	*/
 }
