@@ -133,8 +133,7 @@ public class MenuController implements Initializable, ControllerMustHave{
     				// Préchargement des scenes voisines
     				SceneManager.addScene(ScenesMap.HISTORICAL_HISTORICAL);
     			    SceneManager.addScene(ScenesMap.HISTORICAL_PAYMENT);
-    			    // SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
-    			    // SceneManager.addScene("clockingIn", "/applications/checkout/menu/menu.fxml"); LE POINTAGE
+//    			    SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
         			
         			connectedEmp = emp;
         			UDPMultiCastApp.sendCommand(utilClass.Command.ADD_CONNECTED_EMPLOYEE.getCommand() + Long.toString(emp.getIdEmployee()));
@@ -243,6 +242,11 @@ public class MenuController implements Initializable, ControllerMustHave{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	System.out.println("Init Menu");
+    	try {
+			SceneManager.addScene(ScenesMap.LOGIN);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	passContainer.addEventFilter(KeyEvent.KEY_TYPED, e -> {
     	    if (!e.getCharacter().matches("[0-9]") || passContainer.getLength() >= 4) {
     	        e.consume();  // Empêche l'entrée si c'est pas un chiffre

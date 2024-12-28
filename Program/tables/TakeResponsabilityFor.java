@@ -8,8 +8,6 @@ public class TakeResponsabilityFor {
 	private Employees idEmployee; // PRIMARY KEY + FOREIGN KEY: BIGINT
 	private boolean deliveryTakeON; // BOOLEAN NOT NULL
 	private boolean paymentTakeON; // BOOLEAN NOT NULL
-	private Timestamp startDateTake; // DATETIME NOT NULL
-	private Timestamp endDateTake; // DATETIME
 	private String userCreate; // VARCHAR(100) NOT NULL
 	private Timestamp dateCreate; // DATETIME NOT NULL
 	private String userModif; // VARCHAR(100) NOT NULL
@@ -22,15 +20,13 @@ public class TakeResponsabilityFor {
 //		System.out.println("WARNING: There are no linked employees.");
 //	}
 
-	public void initTakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON, Timestamp startDateTake, Timestamp endDateTake,
+	public void initTakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idTakeResponsabilityFor = idTakeResponsabilityFor;
 		this.idOrder = idOrder;
 		this.idEmployee = idEmployee;
 		this.deliveryTakeON = deliveryTakeON;
 		this.paymentTakeON = paymentTakeON;
-		this.startDateTake = startDateTake;
-		this.endDateTake = endDateTake;
 		this.userCreate = userCreate;
 		this.dateCreate = dateCreate;
 		this.userModif = userModif;
@@ -38,23 +34,23 @@ public class TakeResponsabilityFor {
 	}
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON, Timestamp startDateTake, Timestamp endDateTake,
+	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake, userCreate, dateCreate, userModif, dateModif);
+		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON, Timestamp startDateTake, Timestamp endDateTake,
+	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake, userCreate, dateCreate, userModif, dateModif);
+		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON, Timestamp startDateTake, Timestamp endDateTake) {
-		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake,
+	public TakeResponsabilityFor(long idTakeResponsabilityFor, Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON) {
+		initTakeResponsabilityFor(idTakeResponsabilityFor, idOrder, idEmployee, deliveryTakeON, paymentTakeON, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
-	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON, Timestamp startDateTake, Timestamp endDateTake) {
-		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, startDateTake, endDateTake,
+	public TakeResponsabilityFor(Orders idOrder, Employees idEmployee, boolean deliveryTakeON, boolean paymentTakeON) {
+		initTakeResponsabilityFor(0, idOrder, idEmployee, deliveryTakeON, paymentTakeON, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
@@ -89,29 +85,13 @@ public class TakeResponsabilityFor {
 	public void setDeliveryTakeON(boolean deliveryTakeON) {
 		this.deliveryTakeON = deliveryTakeON;
 	}
-	
+
 	public boolean isPaymentTakeON() {
 		return paymentTakeON;
 	}
 
 	public void setPaymentTakeON(boolean paymentTakeON) {
 		this.paymentTakeON = paymentTakeON;
-	}
-
-	public Timestamp getStartDateTake() {
-		return startDateTake;
-	}
-
-	public void setStartDateTake(Timestamp startDateTake) {
-		this.startDateTake = startDateTake;
-	}
-	
-	public Timestamp getEndDateTake() {
-		return endDateTake;
-	}
-
-	public void setEndDateTake(Timestamp endDateTake) {
-		this.endDateTake = endDateTake;
 	}
 
 	// A VOIR POUR CELA
@@ -158,7 +138,7 @@ public class TakeResponsabilityFor {
 		if(idEmployee != null) {
 			result += idEmployee.resume();
 		}
-		result += ", deliveryTakeON = " + deliveryTakeON + ", paymentTakeON = " + paymentTakeON + ", startDateTake = " + startDateTake + ", endDateTake = " + endDateTake +
+		result += ", deliveryTakeON = " + deliveryTakeON + ", paymentTakeON = " + paymentTakeON + 
 				", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 		return result; 
 	}

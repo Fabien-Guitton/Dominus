@@ -5,8 +5,8 @@ public enum ScenesMap {
 	HISTORICAL_HISTORICAL("/applications/historical/historical/historicalHistorical.fxml"),
 	DELIVERY("/applications/delivery/delivery.fxml"),
 	INIT("/init/init.fxml"),
-	HISTORICAL_PAYMENT("/applications/historical/payment/historicalPayment.fxml");
-	
+	HISTORICAL_PAYMENT("/applications/historical/payment/historicalPayment.fxml"),
+	LOGIN("/applications/login/login.fxml");
 	private String fxmlPath;
 
 	ScenesMap(String fxmlPath) {

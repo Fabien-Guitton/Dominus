@@ -204,4 +204,24 @@ public class EmployeesDAO extends DAO<Employees> {
 		return emp;
 	}
 	
+	public Employees readEmp(String codeEmp) {
+		Employees emp = null;
+		// Un employé rechercher par son code, qui est présent actuellement (donc qui est pointé)
+		String query = "SELECT * FROM employees WHERE codeEmp = ? LIMIT 1;";
+		PreparedStatement ps = super.getPs(query);
+		try {
+			ps.setString(1, codeEmp);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				emp = new Employees(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getTimestamp(7), rs.getString(8), rs.getTimestamp(9));
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return emp;
+	}
+	
 }

@@ -100,11 +100,11 @@ public class ClockingInDAO extends DAO<ClockingIn> {
 		return clocks;
 	}
 	
-	/*
+
 	public ClockingIn read(String codeEmp) {
 		ClockingIn clo = null;
 		// Un employé rechercher par son code, qui est présent actuellement (donc qui est pointé)
-		String query = "SELECT clo.* FROM employees emp INNER JOIN clockingin clo USING(idEmployee) WHERE emp.codeEmp = ? AND c.endClockingIn IS NULL ORDER BY c.idClockingIn DESC LIMIT 1;";
+		String query = "SELECT clo.* FROM employees emp INNER JOIN clockingin clo USING(idEmployee) WHERE emp.codeEmp = ? AND clo.endClockingIn IS NULL ORDER BY clo.idClockingIn DESC LIMIT 1;";
 		PreparedStatement ps = super.getPs(query);
 		EmployeesDAO empDAO = new EmployeesDAO();
 		Employees emp = null;
@@ -123,5 +123,5 @@ public class ClockingInDAO extends DAO<ClockingIn> {
 		
 		return clo;
 	}
-	*/
+	
 }

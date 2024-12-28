@@ -132,7 +132,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="showOrder1" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="POINTAGE" textFill="WHITE">
+                        <Button id="LOGIN" mnemonicParsing="false" onAction="#switchScene" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="POINTAGE" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

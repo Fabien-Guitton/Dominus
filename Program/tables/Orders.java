@@ -12,6 +12,7 @@ public class Orders {
 	private Timestamp readyDateOrd; // DATETIME NOT NULL
 	private double priceETOrd; // DOUBLE NOT NULL
 	private double priceITOrd; // DOUBLE NOT NULL
+	private String instructionsOrd; // VARCHAR(100)
 	private Discounts idDiscount; // FOREIGN KEY: BIGINT
 	private Customers idCustomer; // FOREIGN KEY: BIGINT
 	private String userCreate; // VARCHAR(100) NOT NULL
@@ -27,7 +28,7 @@ public class Orders {
 //	}
 	
 	public void initOrders(long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, 
-			Timestamp readyDateOrd, double priceETOrd, double priceITOrd, Discounts idDiscount,Customers idCustomer, 
+			Timestamp readyDateOrd, double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idOrder = idOrder;
 		this.nameOrd = nameOrd;
@@ -38,6 +39,7 @@ public class Orders {
 		this.readyDateOrd = readyDateOrd;
 		this.priceETOrd = priceETOrd;
 		this.priceITOrd = priceITOrd;
+		this.instructionsOrd = instructionsOrd;
 		this.idDiscount = idDiscount;
 		this.idCustomer = idCustomer;
 		this.userCreate = userCreate;
@@ -48,29 +50,29 @@ public class Orders {
 
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
 	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
-			double priceETOrd, double priceITOrd, Discounts idDiscount,Customers idCustomer, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initOrders(idOrder, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd,
-				idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif);
+		initOrders(idOrder, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
+				instructionsOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif);
 	}
 	
 	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
-			double priceETOrd, double priceITOrd, Discounts idDiscount,Customers idCustomer, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer, 
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, idDiscount, idCustomer, 
+		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
 				userCreate, dateCreate, userModif, dateModif);
 	}
 	
 	public Orders(Long idOrder, String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
-			double priceETOrd, double priceITOrd, Discounts idDiscount,Customers idCustomer) {
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer) {
 		initOrders(idOrder, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, 
-				idDiscount, idCustomer, 
+				instructionsOrd, idDiscount, idCustomer, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
 	public Orders(String nameOrd, String typeOrd, boolean payOrdON, double reductionOrd, Timestamp takingDateOrd, Timestamp readyDateOrd, 
-			double priceETOrd, double priceITOrd, Discounts idDiscount,Customers idCustomer) {
-		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, idDiscount, idCustomer, 
+			double priceETOrd, double priceITOrd, String instructionsOrd, Discounts idDiscount,Customers idCustomer) {
+		initOrders(0, nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
@@ -145,6 +147,14 @@ public class Orders {
 	public void setPriceITOrd(double priceITOrd) {
 		this.priceITOrd = priceITOrd;
 	}
+	
+	public String getInstructionsOrd() {
+		return instructionsOrd;
+	}
+
+	public void setInstructionsOrd(String instructionsOrd) {
+		this.instructionsOrd = instructionsOrd;
+	}
 
 	public Discounts getIdDiscount() {
 		return idDiscount;
@@ -204,7 +214,7 @@ public class Orders {
 	public String toString() {
 		String result = "Orders: [idOrder = " + idOrder + ", nameOrd = " + nameOrd + ", typeOrd = " + typeOrd + ", payOrdON = " + payOrdON
 				+ ", reductionOrd = " + reductionOrd + ", takingDateOrd = " + takingDateOrd + ", readyDateOrd = "
-				+ readyDateOrd + ", priceETOrd = " + priceETOrd + ", priceITOrd = " + priceITOrd + ", idDiscount = ";
+				+ readyDateOrd + ", priceETOrd = " + priceETOrd + ", priceITOrd = " + priceITOrd + ", instructionsOrd = " + instructionsOrd + ", idDiscount = ";
 		if(idDiscount != null) {
 			result += idDiscount.resume();
 		}

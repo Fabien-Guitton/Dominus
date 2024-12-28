@@ -123,14 +123,10 @@ public class Employees {
 	public String resume() {
 		return "Employees: [idEmployee = " + idEmployee + "]";
 	}
-	
-	@Override
-	public String toString() {
-		return nameEmp;
-	}
 
 //	For debug
-	public String toStringDebug() {
+	@Override
+	public String toString() {
 		return "Employees: [idEmployee = " + idEmployee + ", nameEmp = " + nameEmp + ", codeEmp = " + codeEmp + ", roleEmp = " + roleEmp + ", telEmp = " + telEmp 
 				+ ", userCreate = " + userCreate + ", dateCreate = " + dateCreate + ", userModif = " + userModif + ", dateModif = " + dateModif + "]";
 	}
