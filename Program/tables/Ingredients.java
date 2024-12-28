@@ -7,6 +7,7 @@ public class Ingredients {
 	private String nameIng; // VARCHAR(100) NOT NULL
 	private long stockIng; // BIGINT NOT NULL
 	private String unityIng; // VARCHAR(25) NOT NULL
+	private Boolean supplementPossibleON;
 	private double priceETIng; // DOUBLE NOT NULL
 	private double priceITIng; // DOUBLE NOT NULL
 	private String userCreate; // VARCHAR(100) NOT NULL
@@ -14,12 +15,13 @@ public class Ingredients {
 	private String userModif; // VARCHAR(100) NOT NULL
 	private Timestamp dateModif; // DATETIME NOT NULL
 	
-	public void initIngredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+	public void initIngredients(long idIngredient, String nameIng, long stockIng, String unityIng, Boolean supplementPossibleON, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
 		this.idIngredient = idIngredient;
 		this.nameIng = nameIng;
 		this.stockIng = stockIng;
 		this.unityIng = unityIng;
+		this.supplementPossibleON = supplementPossibleON;
 		this.priceETIng = priceETIng;
 		this.priceITIng = priceITIng;
 		this.userCreate = userCreate;
@@ -29,23 +31,23 @@ public class Ingredients {
 	}
 	
 	// PEUT ETRE D'AUTRE A CREER SUIVANT LA DAO
-	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, Boolean supplementPossibleON, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initIngredients(idIngredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
+		initIngredients(idIngredient, nameIng, stockIng, unityIng, supplementPossibleON, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng,
+	public Ingredients(String nameIng, long stockIng, String unityIng, Boolean supplementPossibleON, double priceETIng, double priceITIng,
 			String userCreate, Timestamp dateCreate, String userModif, Timestamp dateModif) {
-		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
+		initIngredients(0, nameIng, stockIng, unityIng, supplementPossibleON, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif);
 	}
 	
-	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng) {
-		initIngredients(idIngredient, nameIng, stockIng, unityIng, priceETIng, priceITIng, 
+	public Ingredients(long idIngredient, String nameIng, long stockIng, String unityIng, Boolean supplementPossibleON, double priceETIng, double priceITIng) {
+		initIngredients(idIngredient, nameIng, stockIng, unityIng, supplementPossibleON, priceETIng, priceITIng, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 	
-	public Ingredients(String nameIng, long stockIng, String unityIng, double priceETIng, double priceITIng) {
-		initIngredients(0, nameIng, stockIng, unityIng, priceETIng, priceITIng, 
+	public Ingredients(String nameIng, long stockIng, String unityIng, Boolean supplementPossibleON, double priceETIng, double priceITIng) {
+		initIngredients(0, nameIng, stockIng, unityIng, supplementPossibleON, priceETIng, priceITIng, 
 				Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()), Constants.JAVA_USER.getUser(), new Timestamp(System.currentTimeMillis()));
 	}
 
@@ -80,6 +82,14 @@ public class Ingredients {
 
 	public void setUnityIng(String unityIng) {
 		this.unityIng = unityIng;
+	}
+	
+	public Boolean isSupplementPossibleON() {
+		return supplementPossibleON;
+	}
+
+	public void setUnityIng(Boolean supplementPossibleON) {
+		this.supplementPossibleON = supplementPossibleON;
 	}
 
 	public double getPriceETIng() {

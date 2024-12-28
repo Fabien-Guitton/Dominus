@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@checkoutOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.checkout.order.CheckoutOrderController">
+   <top>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="156.0" text="DO’MINUS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Region prefWidth="977.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="currentDate" alignment="CENTER" prefHeight="29.0" prefWidth="230.0" text="23/11/2024 | 22:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="15.0" radius="3.25" width="0.0" />
+         </effect>
+      </HBox>
+   </top>
+   <center>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0" style="-fx-background-color: #998965;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="20.0">
+               <children>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="SUPPRIMER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="77.0" styleClass="cancelClickableButton" text="-" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="33.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+                  <Spinner editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="72.0" prefWidth="94.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Spinner>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="77.0" styleClass="clickableButton" text="+" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="33.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="20.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="TAILLE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" styleClass="clickableButton" text="MEDIUM" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" styleClass="clickableButton" text="LARGE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" styleClass="clickableButton" text="EXTRA LARGE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: RED;" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </children>
+            </StackPane>
+            <HBox spacing="20.0">
+               <children>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" styleClass="selectedButtonMenu" text="PIZZA" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" styleClass="clickableButton" text="INGREDIENTS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="22.47" radius="10.370000000000001" width="21.01" />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="672.0" prefWidth="256.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </left>
+   <right>
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="showOrder3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="cancelClickableButton" text="ANNULER" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+            </Button>
+            <Button fx:id="showOrder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="clickableButton" text="CLIENT" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+            </Button>
+            <Button fx:id="showOrder1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="clickableButton" text="ACCUEIL" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="showOrder2" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="selectedButtonMenu" text="PIZZAS" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="showOrder21" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="clickableButton" text="EXTRAS" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="showOrder22" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="clickableButton" text="PAIEMENT" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="showOrder23" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" styleClass="clickableButton" text="TERMINER" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
