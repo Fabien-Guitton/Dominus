@@ -16,4 +16,5 @@ public enum ScenesMap {
 	public String getFXML() {
 		return fxmlPath;
 	}
+	
 }

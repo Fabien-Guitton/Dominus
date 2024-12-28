@@ -20,8 +20,8 @@ public class OrdersDAO extends DAO<Orders> {
 	
 	@Override
 	public Orders create(Orders ord) {
-		String query = "INSERT INTO orders (nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, instructionsOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO orders (nameOrd, typeOrd, payOrdON, reductionOrd, takingDateOrd, readyDateOrd, priceETOrd, priceITOrd, idDiscount, idCustomer, userCreate, dateCreate, userModif, dateModif) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement ps = super.getPs(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		try {
 			ps.setString(1, ord.getNameOrd()); // nameOrd
@@ -32,13 +32,12 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setTimestamp(6, ord.getReadyDateOrd()); // readyDateOrd
 			ps.setDouble(7, ord.getPriceETOrd()); // priceETOrd
 			ps.setDouble(8, ord.getPriceITOrd()); // priceITOrd
-			ps.setString(9, ord.getInstructionsOrd()); // instructionsOrd
-			ps.setLong(10, ord.getIdDiscount().getIdDiscount()); // idDiscount
-			ps.setLong(11, ord.getIdCustomer().getIdCustomer()); // idCustomer
-			ps.setString(12, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(13, new Timestamp(System.currentTimeMillis())); // dateCreate
-			ps.setString(14, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setLong(9, ord.getIdDiscount().getIdDiscount()); // idDiscount
+			ps.setLong(10, ord.getIdCustomer().getIdCustomer()); // idCustomer
+			ps.setString(11, super.connect.getMetaData().getUserName()); // userCreate
+			ps.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(13, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(14, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
@@ -57,7 +56,7 @@ public class OrdersDAO extends DAO<Orders> {
 	@Override
 	public Orders update(Orders ord) {
 		String query = "UPDATE orders SET "
-				+ "nameOrd = ?, typeOrd = ?, payOrdON = ?, reductionOrd = ?, takingDateOrd = ?, readyDateOrd = ?, priceETOrd = ?, priceITOrd = ?, instructionsOrd = ?, idDiscount = ?, idCustomer = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "nameOrd = ?, typeOrd = ?, payOrdON = ?, reductionOrd = ?, takingDateOrd = ?, readyDateOrd = ?, priceETOrd = ?, priceITOrd = ?, idDiscount = ?, idCustomer = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
 				+ "WHERE idOrder = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
@@ -69,22 +68,21 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setTimestamp(6, ord.getReadyDateOrd()); // readyDateOrd
 			ps.setDouble(7, ord.getPriceETOrd()); // priceETOrd
 			ps.setDouble(8, ord.getPriceITOrd()); // priceITOrd
-			ps.setString(9, ord.getInstructionsOrd()); // instructionsOrd
 			if (ord.getIdDiscount() != null) {
-				ps.setLong(10, ord.getIdDiscount().getIdDiscount()); // idDiscount
+				ps.setLong(9, ord.getIdDiscount().getIdDiscount()); // idDiscount
 			}else {
-				ps.setObject(10, null); // idDiscount
+				ps.setObject(9, null); // idDiscount
 			}
 			if (ord.getIdCustomer() != null) {
-				ps.setLong(11, ord.getIdCustomer().getIdCustomer()); // idCustomer
+				ps.setLong(10, ord.getIdCustomer().getIdCustomer()); // idCustomer
 			}else {
-				ps.setObject(11, null); // idCustomer
+				ps.setObject(10, null); // idCustomer
 			}
-			ps.setString(12, ord.getUserCreate()); // userCreate
-			ps.setTimestamp(13, ord.getDateCreate()); // dateCreate
-			ps.setString(14, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // dateModif
-			ps.setLong(16, ord.getIdOrder()); // id
+			ps.setString(11, ord.getUserCreate()); // userCreate
+			ps.setTimestamp(12, ord.getDateCreate()); // dateCreate
+			ps.setString(13, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(14, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setLong(15, ord.getIdOrder()); // id
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -96,7 +94,7 @@ public class OrdersDAO extends DAO<Orders> {
 	
 	public void update(ArrayList<Orders> orders) {
 		String query = "UPDATE orders SET "
-				+ "nameOrd = ?, typeOrd = ?, payOrdON = ?, reductionOrd = ?, takingDateOrd = ?, readyDateOrd = ?, priceETOrd = ?, priceITOrd = ?, instructionsOrd = ?, idDiscount = ?, idCustomer = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "nameOrd = ?, typeOrd = ?, payOrdON = ?, reductionOrd = ?, takingDateOrd = ?, readyDateOrd = ?, priceETOrd = ?, priceITOrd = ?, idDiscount = ?, idCustomer = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
 				+ "WHERE idOrder = ?;";
 		
 		if (orders.size() > 0) {
@@ -114,22 +112,21 @@ public class OrdersDAO extends DAO<Orders> {
 					psBatch.setTimestamp(6, ord.getReadyDateOrd()); // readyDateOrd
 					psBatch.setDouble(7, ord.getPriceETOrd()); // priceETOrd
 					psBatch.setDouble(8, ord.getPriceITOrd()); // priceITOrd
-					psBatch.setString(9, ord.getInstructionsOrd()); // instructionsOrd
 					if (ord.getIdDiscount() != null) {
-						psBatch.setLong(10, ord.getIdDiscount().getIdDiscount()); // idDiscount
+						psBatch.setLong(9, ord.getIdDiscount().getIdDiscount()); // idDiscount
 					}else {
-						psBatch.setObject(10, null); // idDiscount
+						psBatch.setObject(9, null); // idDiscount
 					}
 					if (ord.getIdCustomer() != null) {
-						psBatch.setLong(11, ord.getIdCustomer().getIdCustomer()); // idCustomer
+						psBatch.setLong(10, ord.getIdCustomer().getIdCustomer()); // idCustomer
 					}else {
-						psBatch.setObject(11, null); // idCustomer
+						psBatch.setObject(10, null); // idCustomer
 					}
-					psBatch.setString(12, ord.getUserCreate()); // userCreate
-					psBatch.setTimestamp(13, ord.getDateCreate()); // dateCreate
-					psBatch.setString(14, super.connect.getMetaData().getUserName()); // userModif
-					psBatch.setTimestamp(15, new Timestamp(System.currentTimeMillis())); // dateModif
-					psBatch.setLong(16, ord.getIdOrder()); // id
+					psBatch.setString(11, ord.getUserCreate()); // userCreate
+					psBatch.setTimestamp(12, ord.getDateCreate()); // dateCreate
+					psBatch.setString(13, super.connect.getMetaData().getUserName()); // userModif
+					psBatch.setTimestamp(14, new Timestamp(System.currentTimeMillis())); // dateModif
+					psBatch.setLong(15, ord.getIdOrder()); // id
 					psBatch.addBatch();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -179,9 +176,9 @@ public class OrdersDAO extends DAO<Orders> {
 		try {
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -204,9 +201,9 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setLong(1, idOrder);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 			}
 			rs.close();
 			ps.close();
@@ -229,9 +226,9 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setTimestamp(1, Timestamp.valueOf(Today));
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -253,9 +250,9 @@ public class OrdersDAO extends DAO<Orders> {
 		try {
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -277,9 +274,9 @@ public class OrdersDAO extends DAO<Orders> {
 		try {
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -304,9 +301,9 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setTimestamp(1, Timestamp.valueOf(Today));
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -329,9 +326,9 @@ public class OrdersDAO extends DAO<Orders> {
 		try {
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				disc = discDAO.read(rs.getLong(11));
-				cust = custDAO.read(rs.getLong(12));
-				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+				disc = discDAO.read(rs.getLong(10));
+				cust = custDAO.read(rs.getLong(11));
+				Orders ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				orders.add(ord);
 			}
 			rs.close();
@@ -355,9 +352,9 @@ public class OrdersDAO extends DAO<Orders> {
 				ps.setLong(1, idOrder);
 				rs = ps.executeQuery();
 				while (rs.next()) {
-					disc = discDAO.read(rs.getLong(11));
-					cust = custDAO.read(rs.getLong(12));
-					ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), rs.getString(10), disc, cust, rs.getString(13), rs.getTimestamp(14), rs.getString(15), rs.getTimestamp(16));
+					disc = discDAO.read(rs.getLong(10));
+					cust = custDAO.read(rs.getLong(11));
+					ord = new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), disc, cust, rs.getString(12), rs.getTimestamp(13), rs.getString(14), rs.getTimestamp(15));
 				}
 				rs.close();
 				ps.close();

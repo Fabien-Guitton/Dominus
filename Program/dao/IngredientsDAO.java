@@ -14,19 +14,20 @@ public class IngredientsDAO extends DAO<Ingredients> {
 	
 	@Override
 	public Ingredients create(Ingredients ing) {
-		String query = "INSERT INTO ingredients (nameIng, stockIng, unityIng, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO ingredients (nameIng, stockIng, unityIng, supplementPossibleON, priceETIng, priceITIng, userCreate, dateCreate, userModif, dateModif) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement ps = super.getPs(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		try {
 			ps.setString(1, ing.getNameIng()); // nameIng
 			ps.setDouble(2, ing.getStockIng()); // stockIng
 			ps.setString(3, ing.getUnityIng()); // unityIng
-			ps.setDouble(4, ing.getPriceETIng()); // priceETIng
-			ps.setDouble(5, ing.getPriceITIng()); // priceITIng
-			ps.setString(6, super.connect.getMetaData().getUserName()); // userCreate
-			ps.setTimestamp(7, new Timestamp(System.currentTimeMillis())); // dateCreate
-			ps.setString(8, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setBoolean(4, ing.isSupplementPossibleON()); // supplementPossibleON
+			ps.setDouble(5, ing.getPriceETIng()); // priceETIng
+			ps.setDouble(6, ing.getPriceITIng()); // priceITIng
+			ps.setString(7, super.connect.getMetaData().getUserName()); // userCreate
+			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(9, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // dateModif
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if(rs.next()){
@@ -45,20 +46,21 @@ public class IngredientsDAO extends DAO<Ingredients> {
 	@Override
 	public Ingredients update(Ingredients ing) {
 		String query = "UPDATE ingredients SET "
-				+ "nameIng = ?, stockIng = ?, unityIng = ?, priceETIng = ?, priceITIng = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
+				+ "nameIng = ?, stockIng = ?, unityIng = ?, supplementPossibleON = ?, priceETIng = ?, priceITIng = ?, userCreate = ?, dateCreate = ?, userModif = ?, dateModif = ? "
 				+ "WHERE idIngredient = ?;";
 		PreparedStatement ps = super.getPs(query);
 		try {
 			ps.setString(1, ing.getNameIng()); // nameIng
 			ps.setDouble(2, ing.getStockIng()); // stockIng
 			ps.setString(3, ing.getUnityIng()); // unityIng
-			ps.setDouble(4, ing.getPriceETIng()); // priceETIng
-			ps.setDouble(5, ing.getPriceITIng()); // priceITIng
-			ps.setString(6, ing.getUserCreate()); // userCreate
-			ps.setTimestamp(7, ing.getDateCreate()); // dateCreate
-			ps.setString(8, super.connect.getMetaData().getUserName()); // userModif
-			ps.setTimestamp(9, new Timestamp(System.currentTimeMillis())); // dateModif
-			ps.setLong(10, ing.getidIngredient()); // id
+			ps.setBoolean(4, ing.isSupplementPossibleON()); // supplementPossibleON
+			ps.setDouble(5, ing.getPriceETIng()); // priceETIng
+			ps.setDouble(6, ing.getPriceITIng()); // priceITIng
+			ps.setString(7, super.connect.getMetaData().getUserName()); // userCreate
+			ps.setTimestamp(8, new Timestamp(System.currentTimeMillis())); // dateCreate
+			ps.setString(9, super.connect.getMetaData().getUserName()); // userModif
+			ps.setTimestamp(10, new Timestamp(System.currentTimeMillis())); // dateModif
+			ps.setLong(11, ing.getidIngredient()); // id
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -87,7 +89,7 @@ public class IngredientsDAO extends DAO<Ingredients> {
 		try {
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				Ingredients ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getTimestamp(8), rs.getString(9), rs.getTimestamp(10));
+				Ingredients ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getBoolean(5), rs.getDouble(6), rs.getDouble(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
 				ingredients.add(ing);
 			}
 			rs.close();
@@ -106,7 +108,7 @@ public class IngredientsDAO extends DAO<Ingredients> {
 			ps.setLong(1, idIngredient);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getTimestamp(8), rs.getString(9), rs.getTimestamp(10));
+				ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getBoolean(5), rs.getDouble(6), rs.getDouble(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
 			}
 			rs.close();
 			ps.close();

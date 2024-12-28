@@ -1,6 +1,7 @@
 package applications.delivery;
 
 import java.net.URL;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +47,9 @@ import tables.LineBasket;
 import tables.Orders;
 import javafx.util.Duration;
 import tables.TakeResponsabilityFor;
+import utilClass.Command;
 import utilClass.IdsMetaData;
+import utilClass.ScenesMap;
 import utilClass.UDPMultiCastApp;
 
 public class DeliveryController implements Initializable, ControllerMustHave{
@@ -853,7 +856,7 @@ public class DeliveryController implements Initializable, ControllerMustHave{
 	}
     
     private void refreshAllApp() { // App to refresh -> HISTORICAL_HISTORICAL, HISTORICAL_PAYMENT, DELIVERY
-    	UDPMultiCastApp.sendCommand("HISTORICAL_HISTORICAL,HISTORICAL_PAYMENT,DELIVERY");
+    	UDPMultiCastApp.sendCommand(Command.REFRESH.getCommand() + ScenesMap.HISTORICAL_HISTORICAL.name() + "," + ScenesMap.HISTORICAL_PAYMENT.name() + "," + ScenesMap.DELIVERY.name());
     }
     
     @FXML
