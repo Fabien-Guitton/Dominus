@@ -244,6 +244,7 @@ public class MenuController implements Initializable, ControllerMustHave{
     	System.out.println("Init Menu");
     	try {
 			SceneManager.addScene(ScenesMap.LOGIN);
+			SceneManager.addScene(ScenesMap.CHECKOUT_ORDER);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -88,7 +88,7 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="mainContainer" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false">
+            <VBox fx:id="mainContainer" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <HBox fx:id="employeeContainer" alignment="CENTER" prefHeight="50.0" prefWidth="1180.0">
                      <children>
@@ -106,7 +106,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="356.0" prefWidth="1180.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="menuCaisse" disable="true" mnemonicParsing="false" prefHeight="169.0" prefWidth="251.0" text="CAISSE 1" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Button id="CHECKOUT_ORDER" fx:id="menuCaisse" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#switchScene" prefHeight="169.0" prefWidth="251.0" text="CAISSE 1" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
@@ -150,7 +150,7 @@
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </padding>
             </VBox>
-            <VBox fx:id="loginContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: white; -fx-border-color: #107FB1; -fx-border-width: 6;" StackPane.alignment="CENTER">
+            <VBox fx:id="loginContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: white; -fx-border-color: #107FB1; -fx-border-width: 6;" visible="false" StackPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="118.0" prefWidth="448.0" spacing="10.0">
                      <children>

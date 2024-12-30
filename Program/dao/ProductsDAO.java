@@ -115,4 +115,23 @@ public class ProductsDAO extends DAO<Products> {
 		}
 		return prod;
 	}
+	
+	public ArrayList<Products> readAllPizzas() {
+		ArrayList<Products> products = new ArrayList<Products>();
+		String query = "SELECT * FROM products WHERE categoryProduct = 'pizzas' GROUP BY nameProduct ORDER BY nameProduct ASC;";
+		Statement stmt = super.getStmt();
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				Products prod = new Products(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getTimestamp(8), rs.getString(9), rs.getTimestamp(10));
+				products.add(prod);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return products;
+	}
+
 }

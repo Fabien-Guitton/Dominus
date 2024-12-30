@@ -117,4 +117,41 @@ public class IngredientsDAO extends DAO<Ingredients> {
 		}
 		return ing;
 	}
+	
+	public ArrayList<Ingredients> readAllPizzaIng(Long idProduct) {
+		ArrayList<Ingredients> ingredients = new ArrayList<Ingredients>();
+		String query = "SELECT ing.* FROM ingredients ing INNER JOIN defaultingredients dfIng USING(idIngredient) WHERE supplementPossibleON AND dfIng.idProduct = ? ORDER BY ing.nameIng;";
+		PreparedStatement ps = super.getPs(query);
+		try {
+			ps.setLong(1, idProduct);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Ingredients ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getBoolean(5), rs.getDouble(6), rs.getDouble(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
+				ingredients.add(ing);
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ingredients;
+	}
+	
+	public ArrayList<Ingredients> readAllPizzaIng() {
+		ArrayList<Ingredients> ingredients = new ArrayList<Ingredients>();
+		String query = "SELECT DISTINCT ing.* FROM ingredients ing INNER JOIN defaultingredients dfIng USING(idIngredient) INNER JOIN products prod USING (idProduct) WHERE supplementPossibleON AND prod.categoryProduct = 'pizzas' ORDER BY ing.nameIng;";
+		Statement stmt = super.getStmt();
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				Ingredients ing = new Ingredients(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getBoolean(5), rs.getDouble(6), rs.getDouble(7), rs.getString(8), rs.getTimestamp(9), rs.getString(10), rs.getTimestamp(11));
+				ingredients.add(ing);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ingredients;
+	}
 }

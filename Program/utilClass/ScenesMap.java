@@ -6,6 +6,7 @@ public enum ScenesMap {
 	DELIVERY("/applications/delivery/delivery.fxml"),
 	INIT("/init/init.fxml"),
 	HISTORICAL_PAYMENT("/applications/historical/payment/historicalPayment.fxml"),
+	CHECKOUT_ORDER("/applications/checkout/order/checkoutOrder.fxml"),
 	LOGIN("/applications/login/login.fxml");
 	private String fxmlPath;
 

@@ -13,13 +13,39 @@
 }
 .clickableButton{
 	-fx-background-color: #107FB1;
+	-fx-text-fill: white;
 	-fx-cursor: open_hand;
 }
 
-.selectedButtonMenu{
+.clickableButtonAddLB{
+	-fx-background-color: #05B92B;
+	-fx-text-fill: white;
+	-fx-cursor: open_hand;
+}
+
+.selectedButton{
 	-fx-background-color: #FFDA7C;
 	-fx-text-fill: #383838;
 	-fx-cursor: default;
+}
+
+.selectedButtonIngAll{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: open_hand;
+}
+
+.selectedButtonIng{
+	-fx-border-color: white;
+	-fx-border-radius: 6;
+	-fx-border-width: 5;
+	-fx-cursor: default;
+}
+
+.selectedButtonIngSupp{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: open_hand;
 }
 
 .cancelClickableButton{
@@ -27,28 +53,19 @@
 	-fx-cursor: open_hand;
 }
 
-.clickableButton:pressed, .cancelClickableButton:pressed{
+.nextPagination{
+	-fx-background-color: #404040;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed, .cancelClickableButton:pressed, .nextPagination:pressed, .clickableButtonAddLB:pressed, .selectedButtonIngAll:pressed, .selectedButtonIngSupp:pressed{
 	-fx-cursor: closed_hand;
 	-fx-opacity: 0.9;
 }
 
-.radio-button {
-    -fx-background-color: lightgray; /* Fond du bouton */
-    -fx-border-color: darkgray;
-    -fx-border-radius: 5px;
-    -fx-padding: 10 20; /* Espacement interne */
-    -fx-font-size: 14px;
-    -fx-text-fill: black; /* Couleur du texte */
-}
-
-.radio-button:selected {
-    -fx-background-color: #4CAF50; /* Couleur lorsqu'il est sélectionné */
-    -fx-text-fill: white;
-    -fx-border-color: #388E3C;
-}
-
-.radio-button .dot, .radio-button .radio {
-    -fx-background-color: transparent; /* Supprime les éléments visuels par défaut */
+.selectedButtonIng:pressed, .selectedButton:pressed{
+	-fx-cursor: default;
+	-fx-opacity: 1;
 }
 
 .spinner .increment-arrow-button,
@@ -63,4 +80,17 @@
 .spinner .increment-arrow-button:hover,
 .spinner .decrement-arrow-button:hover {
     -fx-opacity: 0; /* Désactive l'effet au survol */
+}
+
+
+.lineBasket{
+	-fx-background-color: #cacaca;
+	-fx-border-color: black;
+	-fx-border-width: 0 0 2 0;
+	-fx-cursor: open_hand;
+}
+
+.selectedLineBasket{
+	-fx-background-color: yellow;
+	-fx-cursor: default;
 }
