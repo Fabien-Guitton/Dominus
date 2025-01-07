@@ -56,7 +56,7 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
 	@FXML
     private void logout(ActionEvent event) {
 		Object controller = SceneManager.getController(ScenesMap.MENU);
-		((MenuController) controller).setConnectedEmployees(null);
+		((MenuController) controller).logout(event);
     	((MenuController) controller).refreshData();
     	Scene scene = SceneManager.getScene(ScenesMap.MENU);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -191,6 +191,16 @@ public class HistoricalPaymentController implements Initializable, ControllerMus
     	selected.getStyleClass().remove("selectLine");
     	line.getStyleClass().add("selectLine");
     	selected = line;
+    }
+    
+    @FXML
+    private void sendOrder(ActionEvent event) {
+    	Long id = ((IdsMetaData) selected.getUserData()).getRealId();
+    	OrdersDAO ordDAO = new OrdersDAO();
+    	Orders ord = ordDAO.read(id);
+    	ord.setPayOrdON(true);
+    	ordDAO.update(ord);
+    	refreshData();
     }
     
     @FXML

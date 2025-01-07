@@ -1,5 +1,9 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
+.label{
+	-fx-text-fill: white;
+}
+
 .button:focused {
     -fx-focus-color: transparent; 
     -fx-faint-focus-color: transparent;
@@ -93,4 +97,67 @@
 .selectedLineBasket{
 	-fx-background-color: yellow;
 	-fx-cursor: default;
+}
+
+.discountLB{
+	-fx-background-color: #7ede8d;
+	-fx-cursor: default;
+}
+
+
+
+/* Customize the increment and decrement buttons (arrows) */
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: white;    /* Set custom background color for the arrows */
+    -fx-scale-x: 3;
+    -fx-scale-y: 5;
+    -fx-cursor: hand;
+}
+
+.scroll-bar .decrement-button {
+	-fx-padding: 0px 0.5px 4px 0px;
+}
+
+.scroll-bar .increment-button{
+	-fx-padding: 4px 0.5px 0px 0px;
+}
+
+/* Applique des styles à la ScrollPane */
+.scroll-pane {
+    -fx-background-color: #07364C; /* Couleur de fond */
+}
+
+/* Style pour les ScrollBars */
+.scroll-bar:vertical {
+    -fx-padding: 20px 12px 20px 12px; /* Espacement autour de la barre */
+    -fx-background-color: white; /* Couleur d'arrière-plan */
+}
+
+/* Track - la zone sur laquelle se déplace le thumb */
+.scroll-bar .track {
+    -fx-background-color: white;
+    -fx-scale-x: 3;
+}
+
+/* Thumb - la partie qu'on déplace */
+.scroll-bar .thumb {
+    -fx-background-color: white; /* Couleur principale */
+    -fx-background-radius: 0px; /* Coins arrondis */
+    -fx-background-insets: 0;
+    -fx-scale-x: 3;
+    -fx-border-insets: 0;
+    -fx-border-color: #1D1D1D;
+    -fx-border-width: 2 0.5 2 0.5;
+}
+
+/* Hover effect pour le thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: white; /* Couleur quand on survole */
+    -fx-cursor: open_hand;
+}
+
+/* Pressed effect pour le thumb */
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #ebebeb; /* Couleur quand on clique */
+    -fx-cursor: closed_hand;
 }

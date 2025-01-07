@@ -81,7 +81,7 @@ public class DiscountsDAO extends DAO<Discounts> {
 	
 	public ArrayList<Discounts> readAll() {
 		ArrayList<Discounts> discounts = new ArrayList<Discounts>();
-		String query = "SELECT * FROM discounts;";
+		String query = "SELECT * FROM discounts ORDER BY nameDist;";
 		Statement stmt = super.getStmt();
 		try {
 			rs = stmt.executeQuery(query);

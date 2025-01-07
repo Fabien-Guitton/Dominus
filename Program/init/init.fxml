@@ -64,7 +64,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Button id="waitingscreen" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #107FB1; -fx-background-radius: 20;" text="VUE CLIENT" textFill="WHITE">
+                        <Button id="customer_Waiting" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #107FB1; -fx-background-radius: 20;" text="VUE CLIENT" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Button id="kitchen" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #107FB1; -fx-background-radius: 20;" text="CUISINE" textFill="WHITE">
+                        <Button id="kitchen" disable="true" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #cacaca; -fx-background-radius: 20;" text="CUISINE" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
@@ -86,7 +86,7 @@
                               <Cursor fx:constant="OPEN_HAND" />
                            </cursor>
                         </Button>
-                        <Button id="admin" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #107FB1; -fx-background-radius: 20;" text="ADMIN" textFill="WHITE">
+                        <Button id="admin" disable="true" mnemonicParsing="false" onAction="#selectApp" prefHeight="169.0" prefWidth="251.0" style="-fx-background-color: #cacaca; -fx-background-radius: 20;" text="ADMIN" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>

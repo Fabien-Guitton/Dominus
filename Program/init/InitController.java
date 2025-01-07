@@ -20,8 +20,10 @@ import javafx.util.Duration;
 import utilClass.ScenesMap;
 
 public class InitController implements Initializable{
+	
 	@FXML
 	private Label currentDate;
+	
 	@FXML
 	private HBox loadBar;
 	
@@ -49,6 +51,7 @@ public class InitController implements Initializable{
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
     	System.out.println("Init Application");
+
     	currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")));
     	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);

@@ -55,7 +55,7 @@ public class HistoricalHistoricalController implements Initializable, Controller
 	@FXML
     private void logout(ActionEvent event) {
 		Object controller = SceneManager.getController(ScenesMap.MENU);
-		((MenuController) controller).setConnectedEmployees(null);
+		((MenuController) controller).logout(event);
     	((MenuController) controller).refreshData();
     	Scene scene = SceneManager.getScene(ScenesMap.MENU);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -181,7 +181,7 @@ public class HistoricalHistoricalController implements Initializable, Controller
     	
     	if(selected == null) {
     		selected = line;
-    		showOrder.getStyleClass().add("clickableButton");
+    		//showOrder.getStyleClass().add("clickableButton");
     	}
     	
     	selected.getStyleClass().remove("selectLine");

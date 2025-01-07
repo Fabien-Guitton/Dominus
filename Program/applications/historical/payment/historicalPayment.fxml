@@ -40,7 +40,7 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="569.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="showOrder" mnemonicParsing="false" prefHeight="95.0" prefWidth="163.0" text="PAYER" textFill="WHITE">
+            <Button fx:id="showOrder" mnemonicParsing="false" onAction="#sendOrder" prefHeight="95.0" prefWidth="163.0" text="PAYER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

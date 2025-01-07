@@ -1,0 +1,35 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.button:focused {
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
+}
+
+.button{
+	-fx-background-radius: 10;
+	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+}
+
+.clickableButton{
+	-fx-background-color: #107FB1;
+	-fx-text-fill: white;
+	-fx-cursor: open_hand;
+}
+
+.selectedButton{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: default;
+}
+
+.cancelClickableButton{
+	-fx-background-color: #D80536;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed, .cancelClickableButton:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}

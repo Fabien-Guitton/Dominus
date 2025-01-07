@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -49,13 +51,19 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button id="digit-del" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #cacaca;" text="&lt;=">
+                        <Button id="digit-del" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="&lt;">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
                         <PasswordField fx:id="codePointage" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" style="-fx-background-color: #cacaca;">
                            <HBox.margin>
@@ -69,117 +77,189 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button id="digit-1" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="1">
+                        <Button id="digit-1" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="1">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
-                        <Button id="digit-2" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="2">
+                        <Button id="digit-2" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="2">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
-                        <Button id="digit-3" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="3">
+                        <Button id="digit-3" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="3">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button id="digit-4" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="4">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                        </Button>
-                        <Button id="digit-5" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="5">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="28.0" />
-                           </font>
-                        </Button>
-                        <Button id="digit-6" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="6">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="28.0" />
-                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button id="digit-7" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="7">
+                        <Button id="digit-4" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="4">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
-                        <Button id="digit-8" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="8">
+                        <Button id="digit-5" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="5">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
-                        <Button id="digit-9" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="9">
+                        <Button id="digit-6" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="6">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button id="digit-0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca;" text="0">
+                        <Button id="digit-7" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="7">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="28.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
+                        </Button>
+                        <Button id="digit-8" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="8">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
+                        </Button>
+                        <Button id="digit-9" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="9">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cancelClockingIn" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #d80536;" text="ANNULER" textFill="WHITE">
+                        <Button id="digit-0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#digitInput" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #cacaca; -fx-background-radius: 10;" text="0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#cancelClockingIn" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #d80536; -fx-background-radius: 10;" text="ANNULER" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#confirmClockingIn" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #05b92b;" text="POINTAGE" textFill="WHITE">
+                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#confirmClockingIn" prefHeight="60.0" prefWidth="100.0" style="-fx-background-color: #05b92b; -fx-background-radius: 10;" text="POINTAGE" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow height="18.07" radius="8.535" width="18.07" />
+                           </effect>
                         </Button>
                      </children>
                   </HBox>
@@ -187,10 +267,24 @@
             </VBox>
             <HBox fx:id="messageContainer" alignment="CENTER" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" visible="false" StackPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: yellow;">
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="500.0" style="-fx-border-color: white; -fx-border-width: 5; -fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: yellow;">
                      <children>
-                        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Button mnemonicParsing="false" onAction="#okMessage" text="Button" />
+                        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Button alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#okMessage" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;" text="OK">
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
                </children>

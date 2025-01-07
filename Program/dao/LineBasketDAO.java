@@ -130,6 +130,23 @@ public class LineBasketDAO extends DAO<LineBasket> {
 		return lb;
 	}
 	
+	public Timestamp readEstimatedWaitingTime() {
+		Timestamp estimatedTime = null;
+		String query = "SELECT NOW() + INTERVAL SUM(TIMESTAMPDIFF(SECOND, NOW(), o.readyDateOrd)) SECOND AS totalWaitTime FROM LineBasket lb INNER JOIN Orders o ON lb.idOrder = o.idOrder INNER JOIN  Products p ON lb.idProduct = p.idProduct WHERE o.readyDateOrd > NOW() AND p.categoryProduct = 'Pizzas' LIMIT 1;";
+		Statement stmt = super.getStmt();
+		try {
+			rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				estimatedTime = rs.getTimestamp(1);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return estimatedTime;
+	}
+	
 	public ArrayList<LineBasket> readLBInOrder(long idOrder) {
 		ArrayList<LineBasket> linebasket = new ArrayList<LineBasket>();
 		String query = "SELECT * FROM linebasket WHERE idOrder = ? ORDER BY idOrder;";

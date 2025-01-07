@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import tables.Customers;
 import tables.Discounts;
@@ -32,8 +33,17 @@ public class OrdersDAO extends DAO<Orders> {
 			ps.setTimestamp(6, ord.getReadyDateOrd()); // readyDateOrd
 			ps.setDouble(7, ord.getPriceETOrd()); // priceETOrd
 			ps.setDouble(8, ord.getPriceITOrd()); // priceITOrd
-			ps.setLong(9, ord.getIdDiscount().getIdDiscount()); // idDiscount
-			ps.setLong(10, ord.getIdCustomer().getIdCustomer()); // idCustomer
+			if (ord.getIdDiscount() != null) {
+				ps.setLong(9, ord.getIdDiscount().getIdDiscount()); // idDiscount
+			}else {
+				ps.setObject(9, null); // idDiscount
+			}
+			
+			if (ord.getIdCustomer() != null) {
+				ps.setLong(10, ord.getIdCustomer().getIdCustomer()); // idCustomer
+			}else {
+				ps.setObject(10, null); // idCustomer
+			}
 			ps.setString(11, super.connect.getMetaData().getUserName()); // userCreate
 			ps.setTimestamp(12, new Timestamp(System.currentTimeMillis())); // dateCreate
 			ps.setString(13, super.connect.getMetaData().getUserName()); // userModif
@@ -241,7 +251,7 @@ public class OrdersDAO extends DAO<Orders> {
 	
 	public ArrayList<Orders> readNotPayed() {
 		ArrayList<Orders> orders = new ArrayList<Orders>();
-		String query = "SELECT * FROM orders WHERE NOT payOrdON ORDER BY idOrder ASC;";
+		String query = "SELECT * FROM orders WHERE NOT payOrdON AND typeOrd != 'Delivery' ORDER BY idOrder ASC;";
 		Statement stmt = super.getStmt();
 		DiscountsDAO discDAO = new DiscountsDAO();
 		Discounts disc = null;
@@ -265,7 +275,7 @@ public class OrdersDAO extends DAO<Orders> {
 	
 	public ArrayList<Orders> readNotPayed(String sortColumn, String sortType) {
 		ArrayList<Orders> orders = new ArrayList<Orders>();
-		String query = "SELECT * FROM orders WHERE NOT payOrdON ORDER BY " + sortColumn + " " + sortType + ";";
+		String query = "SELECT * FROM orders WHERE NOT payOrdON AND typeOrd != 'Delivery' ORDER BY " + sortColumn + " " + sortType + ";";
 		Statement stmt = super.getStmt();
 		DiscountsDAO discDAO = new DiscountsDAO();
 		Discounts disc = null;
@@ -384,5 +394,21 @@ public class OrdersDAO extends DAO<Orders> {
 		}
 		return lastMaxId;
 	}
+	
+	public List<Orders> PendingOrders() {
+        List<Orders> orders = new ArrayList<>();
+        String query = "SELECT * FROM Orders o WHERE CURRENT_TIMESTAMP <= DATE_ADD(o.readyDateOrd, INTERVAL 2 MINUTE) && o.typeOrd != 'Delivery' ORDER BY o.readyDateOrd LIMIT ?;";
+        PreparedStatement ps = super.getPs(query);
+        try {
+            ps.setLong(1, 8);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+				orders.add(new Orders(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDouble(5), rs.getTimestamp(6), rs.getTimestamp(7), rs.getDouble(8), rs.getDouble(9), null, null));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 	
 }

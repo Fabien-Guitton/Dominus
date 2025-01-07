@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import applications.menu.MenuController;
 import dao.ClockingInDAO;
 import dao.EmployeesDAO;
 import init.SceneManager;
@@ -99,10 +100,12 @@ public class LoginController implements Initializable, ControllerMustHave {
     	codePointage.clear();
     	pointageContainer.setVisible(true);
     	messageContainer.setVisible(false);
+    	Object controller = SceneManager.getController(ScenesMap.MENU);
+    	((MenuController) controller).logout(event);
     	Scene scene = SceneManager.getScene(ScenesMap.MENU);
     	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();    	
+        stage.show();	
     }
     
     
@@ -124,6 +127,7 @@ public class LoginController implements Initializable, ControllerMustHave {
 	@Override
 	public void refreshData() {
 		System.out.println("Refresh login");
+		codePointage.requestFocus(); // Pour ecrire direct avec le clavier sans cliquer dans le passwordfield
 	}
 
 	@Override
@@ -135,10 +139,9 @@ public class LoginController implements Initializable, ControllerMustHave {
 
             if (e.getCharacter().equals("\r")) {
                 // Si la touche Entrée est pressée, appeler la méthode
-//                sendDigit.fire();
+            	confirmClockingIn(null);
             }
         });
-		codePointage.requestFocus(); // Pour ecrire direct avec le clavier sans cliquer dans le passwordfield
 		
 		currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")));
     	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));

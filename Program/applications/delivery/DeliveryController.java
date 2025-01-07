@@ -784,8 +784,10 @@ public class DeliveryController implements Initializable, ControllerMustHave{
 	
     @Override
     public void refreshData() {
+    	if (resumeContainer.isVisible()) {
+    		return;
+    	}
     	System.out.println("Refresh Delivery");
-    	
     	EmployeesDAO empDAO = new EmployeesDAO();
     	ArrayList<Employees> empDisponibleList = empDAO.readDisponibleDeliveryMan();
     	presentEmployeeContainer.getChildren().clear();
@@ -937,6 +939,23 @@ public class DeliveryController implements Initializable, ControllerMustHave{
     	Timeline timeUpdate = new Timeline(new KeyFrame(Duration.seconds(1), e -> currentDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss")))));
     	timeUpdate.setCycleCount(Timeline.INDEFINITE);
     	timeUpdate.play();
+    	
+    	Runnable task = () -> {
+        	while(true) {
+        		try {
+        			Platform.runLater(() -> {
+        				refreshData();
+        			});
+        			Thread.sleep(5000);
+        		} catch(InterruptedException e) {
+        			System.out.println("Le thread a été interrompu.");
+        			break; // Quitter la boucle
+        		}
+        	}
+        };
+        Thread thread = new Thread(task);
+        thread.setDaemon(true); // Pour mettre le thread en fond
+        thread.start();
     }   
 
     

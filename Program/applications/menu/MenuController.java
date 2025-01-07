@@ -66,6 +66,10 @@ public class MenuController implements Initializable, ControllerMustHave{
 	private ArrayList<Long> connectedEmployees = new ArrayList<Long>();
 	private Employees connectedEmp = null;
     
+	public Employees getConnectedEmp() {
+		return connectedEmp;
+	}
+	
     @FXML
     private void switchScene(ActionEvent event) throws IOException{
     	if (timeUpdate != null) {
@@ -133,6 +137,11 @@ public class MenuController implements Initializable, ControllerMustHave{
     				// Préchargement des scenes voisines
     				SceneManager.addScene(ScenesMap.HISTORICAL_HISTORICAL);
     			    SceneManager.addScene(ScenesMap.HISTORICAL_PAYMENT);
+    				SceneManager.addScene(ScenesMap.CHECKOUT_ORDER);
+    				SceneManager.addScene(ScenesMap.CHECKOUT_CUSTOMER);
+    				SceneManager.addScene(ScenesMap.CHECKOUT_MENU);
+    				SceneManager.addScene(ScenesMap.CHECKOUT_DISCOUNT);
+    				SceneManager.addScene(ScenesMap.CHECKOUT_PAYMENT);
 //    			    SceneManager.addScene("checkout", "/applications/checkout/menu/menu.fxml"); LA CAISSE A RELIER
         			
         			connectedEmp = emp;
@@ -151,10 +160,12 @@ public class MenuController implements Initializable, ControllerMustHave{
     }
     
     @FXML
-    private void logout(ActionEvent event) {
-    	UDPMultiCastApp.sendCommand(utilClass.Command.RM_CONNECTED_EMPLOYEE.getCommand() + Long.toString(connectedEmp.getIdEmployee()));
-    	connectedEmp = null;
-    	mainPane(event);
+    public void logout(ActionEvent event) {
+    	if (connectedEmp != null) {
+    		UDPMultiCastApp.sendCommand(utilClass.Command.RM_CONNECTED_EMPLOYEE.getCommand() + Long.toString(connectedEmp.getIdEmployee()));
+        	connectedEmp = null;
+        	mainPane(event);
+    	}
     }
     
     private void error(String message) {
@@ -207,6 +218,11 @@ public class MenuController implements Initializable, ControllerMustHave{
     		// Dé-chargement des scenes car elles ne sont plus voisines vu que non connecté
         	SceneManager.removeScene(ScenesMap.HISTORICAL_HISTORICAL);
     	    SceneManager.removeScene(ScenesMap.HISTORICAL_PAYMENT);
+    	    SceneManager.removeScene(ScenesMap.CHECKOUT_ORDER);
+        	SceneManager.removeScene(ScenesMap.CHECKOUT_CUSTOMER);
+        	SceneManager.removeScene(ScenesMap.CHECKOUT_MENU);
+        	SceneManager.removeScene(ScenesMap.CHECKOUT_DISCOUNT);
+        	SceneManager.removeScene(ScenesMap.CHECKOUT_PAYMENT);
     	    
     		connectionButton.getStyleClass().add("connectClickableButton");
 			deconnectButton.getStyleClass().remove("disconnectClickableButton");
@@ -244,7 +260,6 @@ public class MenuController implements Initializable, ControllerMustHave{
     	System.out.println("Init Menu");
     	try {
 			SceneManager.addScene(ScenesMap.LOGIN);
-			SceneManager.addScene(ScenesMap.CHECKOUT_ORDER);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
