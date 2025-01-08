@@ -1,19 +1,54 @@
 /* SQL update script for Dominus */
 USE Dominus;
 
+/* Remove all constraints from the database */
+ALTER TABLE ClockingIn
+   DROP FOREIGN KEY FK_EmployeeClokingIn;
+
+ALTER TABLE Orders
+   DROP FOREIGN KEY FK_DiscountOrder;
+
+ALTER TABLE Orders
+   DROP FOREIGN KEY FK_CustomerOrder;
+
+ALTER TABLE LineBasket
+   DROP FOREIGN KEY FK_ProductLineBasket;
+
+ALTER TABLE LineBasket
+   DROP FOREIGN KEY FK_OrderLineBasket;
+
+ALTER TABLE DefaultIngredients
+   DROP FOREIGN KEY FK_IngredientDefaultIngredient;
+
+ALTER TABLE DefaultIngredients
+   DROP FOREIGN KEY FK_ProductDefaultIngredient;
+
+ALTER TABLE Supplements
+   DROP FOREIGN KEY FK_IngredientSupplement;
+
+ALTER TABLE Supplements
+   DROP FOREIGN KEY FK_LineBasketSupplement;
+
+ALTER TABLE TakeResponsibilityFor
+   DROP FOREIGN KEY FK_OrderTakeResponsibilityFor;
+
+ALTER TABLE TakeResponsibilityFor
+   DROP FOREIGN KEY FK_EmployeeTakeResponsibilityFor;
+
 /* Creation or replace of all tables */
 CREATE OR REPLACE TABLE Ingredients(
-   idIgredient BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT AUTO_INCREMENT NOT NULL,
    nameIng VARCHAR(100) NOT NULL,
    stockIng BIGINT NOT NULL,
    unityIng VARCHAR(25) NOT NULL,
-   priceHTIng DOUBLE NOT NULL,
-   priceTTCIng DOUBLE NOT NULL,
+   supplementPossibleON BOOLEAN NOT NULL,
+   priceETIng DOUBLE NOT NULL,
+   priceITIng DOUBLE NOT NULL,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient)
+   PRIMARY KEY(idIngredient)
 );
 
 CREATE OR REPLACE TABLE Products(
@@ -21,8 +56,8 @@ CREATE OR REPLACE TABLE Products(
    nameProduct VARCHAR(100) NOT NULL,
    sizeProduct VARCHAR(50) NOT NULL,
    categoryProduct VARCHAR(100) NOT NULL,
-   priceHTProduct DOUBLE NOT NULL,
-   priceTTCProduct DOUBLE NOT NULL,
+   priceETProduct DOUBLE NOT NULL,
+   priceITProduct DOUBLE NOT NULL,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
@@ -34,7 +69,7 @@ CREATE OR REPLACE TABLE Customers(
    idCustomer BIGINT AUTO_INCREMENT NOT NULL,
    nameCst VARCHAR(100) NOT NULL,
    telCst CHAR(10) NOT NULL,
-   streetNumberCst CHAR(50) NOT NULL,
+   streetNumberCst VARCHAR(50) NOT NULL,
    streetNameCst VARCHAR(255) NOT NULL,
    postcodeCst VARCHAR(50) NOT NULL,
    instructionsCst VARCHAR(100),
@@ -94,8 +129,8 @@ CREATE OR REPLACE TABLE Orders(
    reductionOrd DOUBLE,
    takingDateOrd DATETIME NOT NULL,
    readyDateOrd DATETIME NOT NULL,
-   priceHTOrd DOUBLE NOT NULL,
-   priceTTCOrd DOUBLE NOT NULL,
+   priceETOrd DOUBLE NOT NULL,
+   priceITOrd DOUBLE NOT NULL,
    idDiscount BIGINT,
    idCustomer BIGINT,
    userCreate VARCHAR(100) NOT NULL,
@@ -108,8 +143,8 @@ CREATE OR REPLACE TABLE Orders(
 CREATE OR REPLACE TABLE LineBasket(
    idLineBasket BIGINT AUTO_INCREMENT NOT NULL,
    qtyProductLB INT NOT NULL,
-   priceHTLB DOUBLE NOT NULL,
-   priceTTCLB DOUBLE NOT NULL,
+   priceETLB DOUBLE NOT NULL,
+   priceITLB DOUBLE NOT NULL,
    idProduct BIGINT,
    idOrder BIGINT,
    userCreate VARCHAR(100) NOT NULL,
@@ -121,17 +156,19 @@ CREATE OR REPLACE TABLE LineBasket(
 
 /* Creation or replace of N,N link tables */
 CREATE OR REPLACE TABLE DefaultIngredients(
-   idIgredient BIGINT,
+   idDefaultIngredient BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT,
    idProduct BIGINT,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient, idProduct)
+   PRIMARY KEY(idDefaultIngredient, idIngredient, idProduct)
 );
 
 CREATE OR REPLACE TABLE Supplements(
-   idIgredient BIGINT,
+   idSupplement BIGINT AUTO_INCREMENT NOT NULL,
+   idIngredient BIGINT,
    idLineBasket BIGINT,
    qtySup INT NOT NULL,
    addSupON BOOLEAN NOT NULL,
@@ -139,19 +176,22 @@ CREATE OR REPLACE TABLE Supplements(
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idIgredient, idLineBasket)
+   PRIMARY KEY(idSupplement, idIngredient, idLineBasket)
 );
 
 CREATE OR REPLACE TABLE TakeResponsibilityFor(
+   idTakeResponsibilityFor BIGINT AUTO_INCREMENT NOT NULL,
    idOrder BIGINT,
    idEmployee BIGINT,
    deliveryTakeON BOOLEAN NOT NULL,
    paymentTakeON BOOLEAN NOT NULL,
+   startDateTake DATETIME NOT NULL,
+   endDateTake DATETIME,
    userCreate VARCHAR(100) NOT NULL,
    dateCreate DATETIME NOT NULL,
    userModif VARCHAR(100) NOT NULL,
    dateModif DATETIME NOT NULL,
-   PRIMARY KEY(idOrder, idEmployee)
+   PRIMARY KEY(idTakeResponsibilityFor, idOrder, idEmployee)
 );
 
 /* Creating or replacing links between tables */
@@ -173,13 +213,13 @@ ALTER TABLE LineBasket
 
 ALTER TABLE DefaultIngredients
    ADD CONSTRAINT FK_IngredientDefaultIngredient
-   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   FOREIGN KEY(idIngredient) REFERENCES Ingredients(idIngredient),
    ADD CONSTRAINT FK_ProductDefaultIngredient
    FOREIGN KEY(idProduct) REFERENCES Products(idProduct);
 
 ALTER TABLE Supplements
    ADD CONSTRAINT FK_IngredientSupplement
-   FOREIGN KEY(idIgredient) REFERENCES Ingredients(idIgredient),
+   FOREIGN KEY(idIngredient) REFERENCES Ingredients(idIngredient),
    ADD CONSTRAINT FK_LineBasketSupplement
    FOREIGN KEY(idLineBasket) REFERENCES LineBasket(idLineBasket);
 
