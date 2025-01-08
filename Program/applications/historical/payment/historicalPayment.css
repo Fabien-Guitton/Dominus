@@ -1,0 +1,141 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.button:focused {
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
+}
+
+.button{
+	-fx-background-radius: 10;
+	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+}
+
+.menuClickableButton{
+	-fx-background-color: #107FB1;
+	-fx-border-color: white;
+	-fx-border-width: 0 2 0 0;
+	-fx-background-radius: 0;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton{
+	-fx-background-color: #107FB1;
+	-fx-cursor: open_hand;
+}
+
+.disconnectClickableButton{
+	-fx-background-color: #D80536;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed, .disconnectClickableButton:pressed, .menuClickableButton:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}
+
+.labelStyle {
+    -fx-border-color: #cacaca;
+    -fx-border-width: 0 1 0 0;
+    -fx-text-alignment: center;
+    -fx-text-fill: black;
+}
+
+.labelStyle.bold {
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+.labelStyle.normal {
+    -fx-font-size: 20;
+}
+
+.labelStyle.large {
+    -fx-font-size: 25;
+}
+
+.labelStyle.centered {
+    -fx-alignment: center;
+}
+
+.labelStyle.wrapText {
+    -fx-wrap-text: true;
+}
+
+.selectLine{
+	-fx-cursor: closed_hand;
+	-fx-background-color: #dbdbdb;
+}
+
+.tableLine:pressed{
+	-fx-cursor: closed_hand;
+}
+
+.tableLine{
+	-fx-cursor: hand;
+	-fx-border-color: #cacaca;
+	-fx-border-width: 1;
+	-fx-cursor: open_hand;
+    -fx-spacing: 13px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+
+
+/* Customize the increment and decrement buttons (arrows) */
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: #cacaca;    /* Set custom background color for the arrows */
+    -fx-scale-x: 2;
+    -fx-scale-y: 3;
+    -fx-cursor: hand;
+}
+
+.scroll-bar .decrement-button {
+	-fx-padding: 0px 1px 7px 0px;
+}
+
+.scroll-bar .increment-button{
+	-fx-padding: 7px 1px 0px 0px;
+}
+
+/* Applique des styles à la ScrollPane */
+.scroll-pane {
+    -fx-background-color: #f4f4f4; /* Couleur de fond */
+}
+
+/* Style pour les ScrollBars */
+.scroll-bar:vertical {
+    -fx-padding: 25px 18px 25px 18px; /* Espacement autour de la barre */
+    -fx-background-color: #cacaca; /* Couleur d'arrière-plan */
+}
+
+/* Thumb - la partie qu'on déplace */
+.scroll-bar .thumb {
+    -fx-background-color: white; /* Couleur principale */
+    -fx-background-radius: 0px; /* Coins arrondis */
+    -fx-background-insets: 0;
+    -fx-scale-x: 5;
+    -fx-border-insets: 0;
+    -fx-border-color: #1D1D1D;
+    -fx-border-width: 2 0.5 2 0.5;
+}
+
+/* Track - la zone sur laquelle se déplace le thumb */
+.scroll-bar .track {
+    -fx-background-color: #cacaca;
+    -fx-scale-x: 3;
+}
+
+/* Hover effect pour le thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: white; /* Couleur quand on survole */
+    -fx-cursor: open_hand;
+}
+
+/* Pressed effect pour le thumb */
+.scroll-bar .thumb:pressed {
+    -fx-background-color: white; /* Couleur quand on clique */
+    -fx-cursor: closed_hand;
+}

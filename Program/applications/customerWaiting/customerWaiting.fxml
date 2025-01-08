@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@customerWaiting.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.customerWaiting.CustomerWaitingConntroller">
+	<top>
+		<HBox alignment="CENTER" prefHeight="50.0" prefWidth="1280.0" styleClass="hbox-top" BorderPane.alignment="CENTER">
+			<children>
+				<Label styleClass="label-common" text="A qui le tour ?" textFill="WHITE" />
+			</children>
+		</HBox>
+	</top>
+	<center>
+		<GridPane fx:id="gridPane" alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="gridpane" BorderPane.alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="230.0" prefWidth="230.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="633.5999755859375" minWidth="10.0" prefWidth="393.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="1071.2000274658203" minWidth="10.0" prefWidth="393.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="1071.2000274658203" minWidth="10.0" prefWidth="393.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+				<RowConstraints maxHeight="1.7976931348623157E308" minHeight="62.0" prefHeight="62.0" vgrow="ALWAYS" />
+			</rowConstraints>
+		</GridPane>
+	</center>
+	<bottom>
+		<HBox alignment="CENTER" prefHeight="50.0" prefWidth="1280.0" styleClass="hbox-top" BorderPane.alignment="CENTER">
+			<children>
+				<Label alignment="CENTER" styleClass="label-common" text="DO'MINUS" textFill="WHITE">
+					<HBox.margin>
+						<Insets left="30.0" />
+					</HBox.margin>
+				</Label>
+				<Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+				<Label fx:id="currentDate" alignment="CENTER" styleClass="label-common" text="19/12/2024 | 22:10" textFill="WHITE">
+					<HBox.margin>
+						<Insets right="30.0" />
+					</HBox.margin>
+				</Label>
+			</children>
+		</HBox>
+	</bottom>
+</BorderPane>

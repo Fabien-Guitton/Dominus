@@ -1,0 +1,67 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.button:focused {
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
+}
+
+.button{
+	-fx-background-radius: 10;
+	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+	-fx-text-fill: white;
+}
+
+.menuButton{
+	-fx-background-color: #cacaca;
+	-fx-border-color: white;
+	-fx-border-width: 0 2 0 0;
+	-fx-background-radius: 0;
+	-fx-cursor: default;
+}
+
+.digit{
+	-fx-background-radius: 3;
+	-fx-border-color: black;
+	-fx-text-fill: black;
+	-fx-cursor: open_hand;
+}
+
+.menuClickableButton{
+	-fx-background-color: #107FB1;
+	-fx-border-color: white;
+	-fx-border-width: 0 2 0 0;
+	-fx-background-radius: 0;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton{
+	-fx-background-color: #107FB1;
+	-fx-cursor: open_hand;
+}
+
+.checkoutClickableButton{
+	 -fx-background-color: #FFDA7C;
+	 -fx-cursor: open_hand;
+}
+
+.connectClickableButton{
+	-fx-background-color: #05B92B;
+	-fx-cursor: open_hand;
+}
+
+.disconnectClickableButton{
+	-fx-background-color: #D80536;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed, 
+.disconnectClickableButton:pressed, 
+.menuClickableButton:pressed, 
+.connectClickableButton:pressed, 
+.checkoutClickableButton:pressed,
+.digit:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}

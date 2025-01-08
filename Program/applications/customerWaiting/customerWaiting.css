@@ -1,0 +1,42 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/* Style pour la barre supérieure */
+.hbox-top {
+	-fx-alignment: center;
+    -fx-background-color: #107FB1;
+    -fx-effect: dropshadow(gaussian, black, 3.25, 0, 0, 0);
+}
+
+/* Style pour la barre inférieure */
+.hbox-bottom {
+	-fx-alignment: center;
+    -fx-background-color: #107FB1;
+}
+
+/* Style commun pour les Labels */
+.label-common {
+	-fx-alignment: center;
+    -fx-font-family: "System";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
+/* Marges pour les Labels dans la barre inférieure */
+.label-margin-left {
+	/* trouver pour margin left 30px */
+}
+
+/* Style pour le GridPane */
+.gridpane {
+	-fx-alignment: center;
+    -fx-background-color: #b0bdc3;
+}
+
+/* Style pour les Labels dans le GridPane */
+.gridpane-label {
+    -fx-alignment: center;
+    -fx-font-family: "System";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}

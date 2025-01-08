@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@historicalPayment.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.historical.payment.HistoricalPaymentController">
+   <top>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="156.0" text="DO’MINUS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Region prefWidth="977.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="currentDate" alignment="CENTER" prefHeight="29.0" prefWidth="230.0" text="23/11/2024 | 22:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="15.0" radius="3.25" width="0.0" />
+         </effect>
+      </HBox>
+   </top>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="569.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="showOrder" mnemonicParsing="false" onAction="#sendOrder" prefHeight="95.0" prefWidth="163.0" text="PAYER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="103.0" style="-fx-background-color: #107FB1; -fx-border-color: white; -fx-border-width: 3 0 0 0;" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="menu" mnemonicParsing="false" onAction="#switchScene" prefHeight="100.0" prefWidth="165.0" styleClass="menuClickableButton" text="ACCUEIL" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button id="historical_historical" mnemonicParsing="false" onAction="#switchScene" prefHeight="117.0" prefWidth="165.0" styleClass="menuClickableButton" text="HISTORIQUE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Button disable="true" mnemonicParsing="false" prefHeight="117.0" prefWidth="165.0" style="-fx-background-color: #07364C;" styleClass="menuClickableButton" text="ENCAISSEMENT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#logout" prefHeight="84.0" prefWidth="163.0" styleClass="disconnectClickableButton" text="DECONNEXION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="13.0" style="-fx-border-width: 1; -fx-border-color: CACACA;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button id="idOrder" fx:id="firstSort" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="166.0" styleClass="clickableButton" text="COMMANDE N°" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" styleClass="clickableButton" text="NOM" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button id="typeOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="135.0" styleClass="clickableButton" text="TYPE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button id="takingDateOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="100.0" styleClass="clickableButton" text="HEURE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button id="priceITOrd" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sortOrders" prefHeight="80.0" prefWidth="110.0" styleClass="clickableButton" text="PRIX" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+                  <Line endX="-100.0" endY="79.0" fill="BLACK" startX="-100.0" stroke="#cacaca" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" styleClass="clickableButton" text="TELEPHONE" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow blurType="GAUSSIAN" height="32.73" radius="15.862499999999997" width="32.72">
+                           <color>
+                              <Color red="0.22368420660495758" green="0.22368420660495758" blue="0.22368420660495758" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets right="45.0" />
+               </VBox.margin>
+            </HBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="1071.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+              <content>
+                <AnchorPane maxWidth="1.7976931348623157E308" style="-fx-background-color: white;">
+                     <children>
+                        <VBox fx:id="orderContainer" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

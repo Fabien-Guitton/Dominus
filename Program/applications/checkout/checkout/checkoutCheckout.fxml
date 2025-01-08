@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #07364C;" stylesheets="@checkoutCheckout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applications.checkout.checkout.CheckoutCheckoutController">
+   <top>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" style="-fx-background-color: #107FB1;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="156.0" text="DO’MINUS" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Region prefWidth="977.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="currentDate" alignment="CENTER" prefHeight="29.0" prefWidth="230.0" text="23/11/2024 | 22:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="15.0" radius="3.25" width="0.0" />
+         </effect>
+      </HBox>
+   </top>
+   <right>
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#backMenu" prefWidth="140.0" styleClass="cancelClickableButton" text="ANNULER" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+            </Button>
+            <Button id="checkout_customer-order" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchScene" prefWidth="140.0" styleClass="clickableButton" text="CLIENT" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+            </Button>
+            <Button id="checkout_menu-order" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchScene" prefWidth="140.0" styleClass="clickableButton" text="ACCUEIL" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button id="checkout_order-order" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchScene" prefWidth="140.0" styleClass="clickableButton" text="COMMANDE" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button id="checkout_discount-order" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchScene" prefWidth="140.0" styleClass="clickableButton" text="COUPONS" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button id="checkout_payment-order" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="140.0" text="PAIEMENT" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="clickableButton" />
+                  <String fx:value="selectedButton" />
+               </styleClass>
+            </Button>
+            <Button id="finish-order" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#validCommand" prefWidth="140.0" styleClass="clickableButton" text="TERMINER" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="45.0" style="-fx-background-color: #998965; -fx-border-color: white; -fx-border-width: 0 2 0 0;">
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
+               <children>
+                  <HBox fx:id="addButtonContainer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0">
+                     <children>
+                        <Button id="2-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="2" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                        <Button id="5-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="5" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                        <Button id="10-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="10" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                        <Button id="15-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="15" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                        <Button id="20-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="20" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                        <Button id="50-add" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addAutoPrice" prefHeight="100.0" prefWidth="140.0" styleClass="clickableButton" text="50" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" spacing="5.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button id="payNow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#orderPayed" prefHeight="100.0" prefWidth="150.0" styleClass="clickableButton" text="MAINTENANT" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <effect>
+                                          <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                                       </effect>
+                                    </Button>
+                                    <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <Button id="payLater" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#orderPayed" prefHeight="100.0" prefWidth="150.0" styleClass="clickableButton" text="PLUS TARD" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <effect>
+                                          <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+                                       </effect>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0">
+                                 <children>
+                                    <Label maxWidth="1.7976931348623157E308" text="PRIX TOTAL" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalPriceLabel" text="00,00€" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0">
+                                 <children>
+                                    <Label maxWidth="1.7976931348623157E308" text="À RENDRE" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="toReturn" text="00,00€" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" fillWidth="false" HBox.hgrow="ALWAYS">
+                           <children>
+                           	<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="450.0" spacing="5.0" style="-fx-background-color: white; -fx-border-color: #107FB1; -fx-border-width: 6;">
+      			               <children>
+      			                  <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="118.0" spacing="10.0">
+      			                     <children>
+      			                        <Button id="digit-del" mnemonicParsing="false" onAction="#digitInput" prefHeight="80.0" prefWidth="148.0" styleClass="digit" text="&lt;" HBox.hgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="36.0" />
+      			                           </font>
+      			                        </Button>
+                                          <TextField fx:id="priceContainer" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" minWidth="209.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" promptText="00,00€" style="-fx-background-color: #cacaca; -fx-border-radius: 3; -fx-border-color: black;" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font name="System Bold" size="19.0" />
+                                             </font>
+                                          </TextField>
+      			                     </children>
+      			                     <VBox.margin>
+      			                        <Insets left="60.0" right="60.0" />
+      			                     </VBox.margin>
+      			                  </HBox>
+      			                  <GridPane alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="288.0" prefWidth="448.0" vgap="15.0" VBox.vgrow="ALWAYS">
+      			                    <columnConstraints>
+      			                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      			                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      			                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+      			                    </columnConstraints>
+      			                    <rowConstraints>
+      			                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      			                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      			                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      			                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      			                    </rowConstraints>
+      			                     <children>
+      			                        <Button id="digit-8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="7" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button id="digit-0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#digitInput" styleClass="digit" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="28.0" />
+      			                           </font>
+      			                        </Button>
+      			                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#resetPrice" prefHeight="95.0" prefWidth="163.0" styleClass="clickableButton" text="EFFACER" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+      			                           <font>
+      			                              <Font name="System Bold" size="18.0" />
+      			                           </font>
+      			                           <effect>
+      			                              <InnerShadow blurType="GAUSSIAN" height="30.0" radius="14.5" width="30.0" />
+      			                           </effect>
+      			                           <cursor>
+      			                              <Cursor fx:constant="OPEN_HAND" />
+      			                           </cursor>
+      			                        </Button>
+      			                     </children>
+      			                     <VBox.margin>
+      			                        <Insets bottom="20.0" left="60.0" right="60.0" />
+      			                     </VBox.margin>
+      			                  </GridPane>
+      			               </children>
+      			            </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="errorContainer" alignment="CENTER" fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-width: 5; -fx-border-radius: 15; -fx-background-radius: 20;" visible="false">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="280.0" prefWidth="550.0" spacing="100.0" style="-fx-background-color: #ffd373; -fx-border-color: #ff9b05; -fx-border-width: 5; -fx-border-radius: 15; -fx-background-radius: 20;">
+                     <children>
+                        <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="450.0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="okButton" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#okMessage" prefHeight="44.0" prefWidth="431.0" style="-fx-background-color: white; -fx-background-radius: 0;" text="OK">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

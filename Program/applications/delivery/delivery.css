@@ -1,0 +1,198 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.tableLine{
+	-fx-background-color: #e6e6e6;
+	-fx-background-radius: 10;
+	-fx-border-color: black;
+	-fx-border-radius: 8;
+	-fx-border-width: 2;
+	-fx-cursor: open_hand;
+	-fx-alignment: center-left;
+    -fx-padding: 10 15 10 15;
+}
+
+.tableLine:pressed{
+	-fx-background-color: #cacaca;
+	-fx-cursor: closed_hand;
+}
+
+.label-present-employee{
+	-fx-font-size: 18;
+}
+
+/* Style des labels */
+.label-id {
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 40;
+}
+
+.label-address-phone {
+    -fx-font-family: "System";
+    -fx-font-style: italic;
+    -fx-font-size: 16;
+}
+
+.label-command-info {
+    -fx-font-size: 16;
+}
+
+.label-status {
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+/* Style des séparateurs */
+.separator-vertical {
+    -fx-pref-height: 200;
+}
+
+.separator-full-height {
+    -fx-max-height: infinity;
+}
+
+/* Style général de la ComboBox */
+.dropbox {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-border-color: black;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-cursor: open_hand;
+}
+
+/* Texte de la ComboBox */
+.dropbox .text {
+    -fx-fill: black;
+    -fx-font-size: 28px;
+}
+
+/* Bouton déroulant */
+.dropbox .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* Icône du bouton déroulant */
+.dropbox .arrow {
+    -fx-background-color: black;
+    -fx-scale-x: 2;
+    -fx-scale-y: 2;
+}
+
+/* Liste déroulante */
+.dropbox .combo-box-popup .list-view {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #cccccc;
+}
+
+.dropbox .combo-box-popup .list-view .cell:pressed,
+.dropbox:pressed{
+	-fx-cursor: closed_hand;
+}
+
+/* Élément de la liste */
+.dropbox .combo-box-popup .list-view .cell {
+    -fx-background-color: transparent;
+    -fx-font-size: 28px;
+    -fx-padding: 10px;
+    -fx-cursor: open_hand;
+}
+
+/* Élément sélectionné dans la liste */
+.dropbox .combo-box-popup .list-view .cell:selected {
+    -fx-background-color: #107FB1;
+}
+
+.button:focused {
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
+}
+
+.button{
+	-fx-background-radius: 10;
+	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+	-fx-text-fill: white;
+}
+
+.digit{
+	-fx-background-radius: 3;
+	-fx-border-color: black;
+	-fx-text-fill: black;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton{
+	-fx-background-color: #107FB1;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}
+
+.menuDeroulantContainer{
+	-fx-background-color: white;
+	-fx-background-radius: 0;
+}
+
+
+/* Customize the increment and decrement buttons (arrows) */
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: white;    /* Set custom background color for the arrows */
+    -fx-scale-x: 3;
+    -fx-scale-y: 5;
+    -fx-cursor: hand;
+}
+
+.scroll-bar .decrement-button {
+	-fx-padding: 0px 0.5px 4px 0px;
+}
+
+.scroll-bar .increment-button{
+	-fx-padding: 4px 0.5px 0px 0px;
+}
+
+/* Applique des styles à la ScrollPane */
+.scroll-pane {
+    -fx-background-color: #07364C; /* Couleur de fond */
+}
+
+/* Style pour les ScrollBars */
+.scroll-bar:vertical {
+    -fx-padding: 20px 24px 20px 24px; /* Espacement autour de la barre */
+    -fx-background-color: white; /* Couleur d'arrière-plan */
+}
+
+/* Track - la zone sur laquelle se déplace le thumb */
+.scroll-bar .track {
+    -fx-background-color: white;
+    -fx-scale-x: 4;
+}
+
+/* Thumb - la partie qu'on déplace */
+.scroll-bar .thumb {
+    -fx-background-color: white; /* Couleur principale */
+    -fx-background-radius: 0px; /* Coins arrondis */
+    -fx-background-insets: 0;
+    -fx-scale-x: 4;
+    -fx-border-insets: 0;
+    -fx-border-color: #1D1D1D;
+    -fx-border-width: 2 0.5 2 0.5;
+}
+
+/* Hover effect pour le thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: white; /* Couleur quand on survole */
+    -fx-cursor: open_hand;
+}
+
+/* Pressed effect pour le thumb */
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #ebebeb; /* Couleur quand on clique */
+    -fx-cursor: closed_hand;
+}
+

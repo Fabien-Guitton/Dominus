@@ -1,0 +1,163 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.label{
+	-fx-text-fill: white;
+}
+
+.button:focused {
+    -fx-focus-color: transparent; 
+    -fx-faint-focus-color: transparent;
+}
+
+.button{
+	-fx-background-radius: 10;
+	-fx-background-color: #cacaca;
+	-fx-cursor: default;
+	-fx-opacity: 1;
+}
+.clickableButton{
+	-fx-background-color: #107FB1;
+	-fx-text-fill: white;
+	-fx-cursor: open_hand;
+}
+
+.clickableButtonAddLB{
+	-fx-background-color: #05B92B;
+	-fx-text-fill: white;
+	-fx-cursor: open_hand;
+}
+
+.selectedButton{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: default;
+}
+
+.selectedButtonIngAll{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: open_hand;
+}
+
+.selectedButtonIng{
+	-fx-border-color: white;
+	-fx-border-radius: 6;
+	-fx-border-width: 5;
+	-fx-cursor: default;
+}
+
+.selectedButtonIngSupp{
+	-fx-background-color: #FFDA7C;
+	-fx-text-fill: #383838;
+	-fx-cursor: open_hand;
+}
+
+.cancelClickableButton{
+	-fx-background-color: #D80536;
+	-fx-cursor: open_hand;
+}
+
+.nextPagination{
+	-fx-background-color: #404040;
+	-fx-cursor: open_hand;
+}
+
+.clickableButton:pressed, .cancelClickableButton:pressed, .nextPagination:pressed, .clickableButtonAddLB:pressed, .selectedButtonIngAll:pressed, .selectedButtonIngSupp:pressed{
+	-fx-cursor: closed_hand;
+	-fx-opacity: 0.9;
+}
+
+.selectedButtonIng:pressed, .selectedButton:pressed{
+	-fx-cursor: default;
+	-fx-opacity: 1;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-pref-width: 0; /* Réduit la largeur des flèches à 0 */
+    -fx-padding: 0; /* Supprime le padding */
+    -fx-opacity: 0; /* Rend invisible */
+    -fx-focus-color: transparent; /* Supprime les bordures focus */
+    -fx-background-color: transparent; /* Pas de fond */
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-opacity: 0; /* Désactive l'effet au survol */
+}
+
+
+.lineBasket{
+	-fx-background-color: #cacaca;
+	-fx-border-color: black;
+	-fx-border-width: 0 0 2 0;
+	-fx-cursor: open_hand;
+}
+
+.selectedLineBasket{
+	-fx-background-color: yellow;
+	-fx-cursor: default;
+}
+
+.discountLB{
+	-fx-background-color: #7ede8d;
+	-fx-cursor: default;
+}
+
+
+
+/* Customize the increment and decrement buttons (arrows) */
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: white;    /* Set custom background color for the arrows */
+    -fx-scale-x: 3;
+    -fx-scale-y: 5;
+    -fx-cursor: hand;
+}
+
+.scroll-bar .decrement-button {
+	-fx-padding: 0px 0.5px 4px 0px;
+}
+
+.scroll-bar .increment-button{
+	-fx-padding: 4px 0.5px 0px 0px;
+}
+
+/* Applique des styles à la ScrollPane */
+.scroll-pane {
+    -fx-background-color: #07364C; /* Couleur de fond */
+}
+
+/* Style pour les ScrollBars */
+.scroll-bar:vertical {
+    -fx-padding: 20px 12px 20px 12px; /* Espacement autour de la barre */
+    -fx-background-color: white; /* Couleur d'arrière-plan */
+}
+
+/* Track - la zone sur laquelle se déplace le thumb */
+.scroll-bar .track {
+    -fx-background-color: white;
+    -fx-scale-x: 3;
+}
+
+/* Thumb - la partie qu'on déplace */
+.scroll-bar .thumb {
+    -fx-background-color: white; /* Couleur principale */
+    -fx-background-radius: 0px; /* Coins arrondis */
+    -fx-background-insets: 0;
+    -fx-scale-x: 3;
+    -fx-border-insets: 0;
+    -fx-border-color: #1D1D1D;
+    -fx-border-width: 2 0.5 2 0.5;
+}
+
+/* Hover effect pour le thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: white; /* Couleur quand on survole */
+    -fx-cursor: open_hand;
+}
+
+/* Pressed effect pour le thumb */
+.scroll-bar .thumb:pressed {
+    -fx-background-color: #ebebeb; /* Couleur quand on clique */
+    -fx-cursor: closed_hand;
+}
